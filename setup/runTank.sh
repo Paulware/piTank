@@ -53,6 +53,6 @@ systemctl daemon-reload
 systemctl enable backdoor.service
 # remove the autorun option from the file manager
 #sed -i 's/autorun=1/autorun=0/' /home/pi/.config/pcmanfm/LXDE-pi/pcmanfm.conf
-export DISPLAY=desktop:0
-echo "On reboot the service should start see /share/WOD/sshBackdoor.log for details"
+#export DISPLAY=desktop:0
+echo "On reboot the service should start see /home/pi/piTank/tank.log for details"
 

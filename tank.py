@@ -28,78 +28,71 @@ upDown.start(0)
 
 GPIO.setup(16,GPIO.OUT)
 
-
 def main():
-   lastTime = time.time()
-   lastTank = ''
-   hc06 = HC06.HC06('98:D3:31:20:53:D4')    
-   hc06.waitForSerialPort()
-   
-   count = 0
-   done = False
-   while not done:
-      (done,tank) = hc06.readline()
-      if done: 
-         break
-
-      if tank != lastTank:
-         print ( str(count) + ') ' + tank )
-         lastTank = tank
-      count = count + 1
+   try:
+      lastTime = time.time()
+      lastTank = ''
+      hc06 = HC06.HC06('98:D3:31:20:53:D4')    
       
-      if tank.find ('L') > -1: 
-         #pwm left forward 
-         leftReverse.ChangeDutyCycle(0) 
-         leftForward.ChangeDutyCycle(100)
-      elif tank.find ('l') > -1: 
-         #pwm left reverse
-         leftForward.ChangeDutyCycle(0)
-         leftReverse.ChangeDutyCycle(100)
-      else:
-         #pwm left off
-         leftForward.ChangeDutyCycle(0)
-         leftReverse.ChangeDutyCycle(0)
+      count = 0
+      while not hc06.disconnected:
+         tank = hc06.readline();
 
-      if tank.find ('R') > -1:
-         #pwm right forward
-         rightReverse.ChangeDutyCycle(0)
-         rightForward.ChangeDutyCycle(100)
-      elif tank.find ('r') > -1:   
-         #pwm right reverse
-         rightForward.ChangeDutyCycle (0)
-         rightReverse.ChangeDutyCycle(100)
-      else:
-         #pwm right off    
-         rightForward.ChangeDutyCycle (0)
-         rightReverse.ChangeDutyCycle (0)
+         if tank != lastTank:
+            print ( str(count) + ') ' + tank )
+            lastTank = tank
+         count = count + 1
          
-      if tank.find ('T') > -1:
-         rightTurret.ChangeDutyCycle (0)
-         leftTurret.ChangeDutyCycle (100)
-      elif tank.find ('t') > -1:
-         leftTurret.ChangeDutyCycle (0)
-         rightTurret.ChangeDutyCycle (100)
-      else:
-         leftTurret.ChangeDutyCycle (0)
-         rightTurret.ChangeDutyCycle(0)
-       
-      if tank.find ('V') > -1:
-         upDown.ChangeDutyCycle (100)
-      else:
-         upDown.ChangeDutyCycle (0)
-     
-      if tank.find ('F') > -1:
-         GPIO.output(16,True)         
-      else:
-         GPIO.output(16,False)
+         if tank.find ('L') > -1: 
+            #pwm left forward 
+            leftReverse.ChangeDutyCycle(0) 
+            leftForward.ChangeDutyCycle(100)
+         elif tank.find ('l') > -1: 
+            #pwm left reverse
+            leftForward.ChangeDutyCycle(0)
+            leftReverse.ChangeDutyCycle(100)
+         else:
+            #pwm left off
+            leftForward.ChangeDutyCycle(0)
+            leftReverse.ChangeDutyCycle(0)
 
-     
-      event = sf30.read()
-      if (event == sf30.SELECT_PRESSED) or (event == sf30.START_PRESSED): 
-         break
+         if tank.find ('R') > -1:
+            #pwm right forward
+            rightReverse.ChangeDutyCycle(0)
+            rightForward.ChangeDutyCycle(100)
+         elif tank.find ('r') > -1:   
+            #pwm right reverse
+            rightForward.ChangeDutyCycle (0)
+            rightReverse.ChangeDutyCycle(100)
+         else:
+            #pwm right off    
+            rightForward.ChangeDutyCycle (0)
+            rightReverse.ChangeDutyCycle (0)
+            
+         if tank.find ('T') > -1:
+            rightTurret.ChangeDutyCycle (0)
+            leftTurret.ChangeDutyCycle (100)
+         elif tank.find ('t') > -1:
+            leftTurret.ChangeDutyCycle (0)
+            rightTurret.ChangeDutyCycle (100)
+         else:
+            leftTurret.ChangeDutyCycle (0)
+            rightTurret.ChangeDutyCycle(0)
+          
+         if tank.find ('V') > -1:
+            upDown.ChangeDutyCycle (100)
+         else:
+            upDown.ChangeDutyCycle (0)
+        
+         if tank.find ('F') > -1:
+            GPIO.output(16,True)         
+         else:
+            GPIO.output(16,False)
+        
+   finally: 
+      hc06.close()
          
    print ( "Done in main" )  
-   hc06.close() # Kill HC06 binding thread   
      
    GPIO.cleanup()
    

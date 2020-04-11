@@ -18,7 +18,7 @@ apt-get update
 ./ap.sh
 pip install glob3
 ./runTank.sh
-cp runPython.sh /home/pi/Desktop/runPython.sh
+./dtOverlay.sh
 apt-get install bluetooth bluez blueman -y
 #ifup wlan0
 echo "Done in setup, Using the wifi icon on desktop:turn wifi on, and set wifi country.  Then reboot"

@@ -6,6 +6,7 @@ import os
 class HC06: 
  
    def close(self):
+      print ("HC06 cleanup and close")
       self.port.close()
       self.x.terminate()
       self.x.join()
@@ -22,7 +23,7 @@ class HC06:
       
    def __init__(self, macAddress):  
       self.macAddress = macAddress
-      self.failed = False
+      self.disconnected = False
       print ('Note you must pair with the HC05 (' + macAddress + ' via bluetooth manager before calling this procedure' )   
       self.x = multiprocessing.Process(target=self.bindRfcomm0)
       self.x.start()
@@ -41,31 +42,33 @@ class HC06:
             time.sleep (1)
             
    def readline (self):       
-      done = False
       line = ''
       try:
+         if self.port == None:
+            self.waitForSerialPort()
+         
          line = self.port.readline()
       # Turn off the bluetooth device to cause this error
       # It is the only way to kill the thread above
       except Exception as ex:
-         done = True
+         self.disconnected = True
          print ( "readline exception: " + str(ex) ) 
          # When the rf signal disappears, the serial port will disconnect
          # and a [device disconnected] exception will occurs here
          
-      return (done,line)
+      return str(line)
       
 if __name__ == '__main__':
-    hc06 = HC06('98:D3:31:20:53:D4')    
-    hc06.waitForSerialPort()
-    
-    count = 0
-    done = False
-    while not done:
-       print ( 'readline yo' )
-       (done,line) = hc06.readline()
-       print ( str(count) + ') ' + line )
-       count = count + 1
-    print ( "Done in main" )  
-    hc06.close() # Kill HC06 binding thread  
+    try:
+       hc06 = HC06('98:D3:31:20:53:D4')    
        
+       count = 0
+       while not hc06.disconnected:
+          print ( 'readline yo' )
+          line = hc06.readline()
+          print ( str(count) + ') ' + line )
+          count = count + 1
+       print ( "Done in main" )  
+    finally:
+       hc06.close()
+     
