@@ -35,7 +35,7 @@ Description=Start Backdoor
 [Service]
 Environment=DISPLAY=:0
 Environment=XAUTHORITY=/home/pi/.Xauthority
-ExecStart=/bin/bash -c 'cd /home/pi/piPair;/usr/bin/python3 main.py > /home/pi/piPair/main.log 2>&1'
+ExecStart=/bin/bash -c 'cd /home/pi/piTank;/usr/bin/python3 tank.py > /home/pi/piTank/tank.log 2>&1'
 ExecStartPre=/bin/sleep 12
 Restart=no
 RestartSec=10s

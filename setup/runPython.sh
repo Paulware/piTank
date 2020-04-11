@@ -1,2 +1,2 @@
-cd /home/pi/piPair
-/usr/bin/python3 main.py
+cd /home/pi/piTank
+/usr/bin/python3 tank.py
