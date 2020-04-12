@@ -56,7 +56,6 @@ try:
 
       if tank != lastTank:
          print ( str(count) + ') ' + tank )
-         f.write ( str(count) + ') ' + tank + '\n')
          lastTank = tank
          quitTimeout = time.time() + 10
       count = count + 1

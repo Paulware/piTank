@@ -74,7 +74,7 @@ echo "Modify /etc/dnsmasq.conf"
 
 mv /etc/dnsmasq.conf /etc/dnsmasq.conf.orig
 echo "interface=wlan0" > /etc/dnsmasq.conf
-echo "  dhcp-range=192.168.4.2,192.168.4.20,255.255.255.0,24h" >> /etc/dnsmasq.conf
+echo "dhcp-range=192.168.4.2,192.168.4.20,255.255.255.0,24h" >> /etc/dnsmasq.conf
 
 echo "Modify /etc/hostapd/hostapd.conf to create the ap1 access point"
 #press_key
@@ -83,7 +83,7 @@ cat > /etc/hostapd/hostapd.conf <<EOF
 interface=wlan0
 driver=nl80211
 ssid=Walker
-hw_mode=g
+hw_mode=b
 channel=7
 wmm_enabled=0
 macaddr_acl=0

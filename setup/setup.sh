@@ -14,13 +14,13 @@ apt-get update
 ./ssh.sh
 ./keyboard.sh
 ./timezone.sh
+./rclocal.sh
 # echo "dns-nameservers 8.8.8.8 8.8.4.4" >> /etc/network/interfaces
 ./ap.sh
 pip install glob3
+apt-get install python-pexpect -y
 ./runTank.sh
 ./dtOverlay.sh
 apt-get install bluetooth bluez blueman -y
 #ifup wlan0
 echo "Done in setup, Using the wifi icon on desktop:turn wifi on, and set wifi country.  Then reboot"
-
-
