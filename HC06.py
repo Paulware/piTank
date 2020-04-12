@@ -33,7 +33,7 @@ class HC06:
       print ( "Waiting for serial port " )
       while True:
          try:
-            self.port = serial.Serial("/dev/rfcomm0", baudrate=9600)
+            self.port = serial.Serial("/dev/rfcomm0", baudrate=9600, timeout=1)
             print ("Successfully connected serial port" ) 
             time.sleep (1)            
             break
