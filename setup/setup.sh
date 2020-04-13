@@ -3,24 +3,31 @@ if [ $(id -u) -ne 0 ]; then echo "You must use sudo: sudo ./all.sh"; exit 1; fi
 cd /home/pi
 git clone https://www.github.com/Paulware/piTank
 cd /home/pi/piTank
-touch mainConfig.txt
 chmod 777 *.*
 cd /boot/
 # Copy setup files to /boot 
 cp /home/pi/piTank/setup/*.sh .
-cp /boot/runPython.sh /home/pi/Desktop/runPython.sh
-chmod 777 /home/pi/Desktop/runPython.sh
 apt-get update
+apt-get install python-pexpect -y
+apt-get install bluetooth bluez blueman -y
+spt-get install motion
 ./ssh.sh
 ./keyboard.sh
 ./timezone.sh
 ./rclocal.sh
-# echo "dns-nameservers 8.8.8.8 8.8.4.4" >> /etc/network/interfaces
 ./ap.sh
-pip install glob3
-apt-get install python-pexpect -y
 ./runTank.sh
 ./dtOverlay.sh
-apt-get install bluetooth bluez blueman -y
+lsusb
+ls /dev/video*
+# camera: sudo modprobe bcm2835-v4l2
+# v4l2-ctl -V
+#mkdir /home/pi/Monitor
+#sudo chgrp motion /home/pi/Monitor
+#chmod g+rwx /home/pi/Monitor
+#https://tutorials-raspberrypi.com/raspberry-pi-security-camera-livestream-setup/
 #ifup wlan0
-echo "Done in setup, Using the wifi icon on desktop:turn wifi on, and set wifi country.  Then reboot"
+echo "Done in setup, Using the wifi icon on desktop:turn wifi on, and set wifi country"
+echo "Pair to hc-06 joystick transmitter, modify /etc/rc.local with mac address of hc-06"
+echo "Use raspi-config to enable the camera"
+echo "Then reboot"
