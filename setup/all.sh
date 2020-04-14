@@ -15,7 +15,7 @@ apt-get install motion -y
 ./ssh.sh
 ./keyboard.sh
 ./timezone.sh
-./rclocal.sh
+./rclocal.sh $1
 ./ap.sh
 ./runTank.sh
 ./dtOverlay.sh
