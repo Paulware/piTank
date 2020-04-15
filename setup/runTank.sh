@@ -1,31 +1,3 @@
-if [ "$EUID" -ne 0 ]
-	then echo "Must be root"
-	exit
-fi
-
-file_exists() {
-   if [ -e $1 ]
-   then
-       # file found 
-       return 0
-   else
-       return 1
-   fi
-}
-
-# return true if line exists
-line_exists_in () {
-   if grep -Fxq "$2" $1
-   then
-      return 0
-   else
-      return 1
-   fi
-}
-
-#mkdir /share/WOD
-#cp /boot/*.py /share/WOD/.
-#cp /boot/x.png /share/WOD/.
 
 cat > /lib/systemd/system/backdoor.service <<EOF
 #filename:  /lib/systemd/system/backdoor.service
@@ -35,9 +7,10 @@ Description=Start Backdoor
 [Service]
 Environment=DISPLAY=:0
 Environment=XAUTHORITY=/home/pi/.Xauthority
-ExecStart=sudo /usr/bin/python /home/pi/piTank/tank.py
+WorkingDirectory=/home/pi/piTank/setup/mjpg-streamer-experimental
+ExecStart=/home/pi/piTank/setup/mjpg-streamer-experimental/mjpg_streamer -o "output_http.so -w ./www" -i "input_raspicam.so"
 #ExecStartPre=/bin/sleep 2
-Restart=always
+Restart=no
 RestartSec=10s
 KillMode=process
 TimeoutSec=infinity

@@ -1,0 +1,10 @@
+[Unit]
+Description=A server for streaming Motion-JPEG from a video capture device
+After=network.target
+
+[Service]
+User=mjpg_streamer
+ExecStart=/home/pi/piTank/setup/mjpg-streamer-experimental/go.sh
+
+[Install]
+WantedBy=multi-user.target
