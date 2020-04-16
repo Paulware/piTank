@@ -19,7 +19,7 @@
       <li>Tracked Vehicle (I prefer heng-long scale 1/16 rc tanks)</li>
    </ul>
    
-<h1><a href="https://www.github.com/Paulware/piTank/tutorial.html">Tutorial</a></h1>
+<h1><a href="http://Paulware.github.io/repository/tutorial.html">Tutorial</a></h1>
    
 <h2>TODO</h2>
 <ul>
