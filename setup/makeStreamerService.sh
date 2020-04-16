@@ -1,16 +1,16 @@
 
-cat > /lib/systemd/system/backdoor.service <<EOF
-#filename:  /lib/systemd/system/backdoor.service
+cat > /lib/systemd/system/streamer.service <<EOF
+#filename:  /lib/systemd/system/streamer.service
 [Unit]
-Description=Start Backdoor
+Description=Start MJPG Streamer
 
 [Service]
 Environment=DISPLAY=:0
 Environment=XAUTHORITY=/home/pi/.Xauthority
-WorkingDirectory=/home/pi/piTank
-ExecStart=/usr/bin/python3 tank.py
+WorkingDirectory=/home/pi/piTank/setup/mjpg-streamer-experimental
+ExecStart=/home/pi/piTank/setup/mjpg-streamer-experimental/go.sh
 #ExecStartPre=/bin/sleep 2
-Restart=yes
+Restart=no
 RestartSec=10s
 KillMode=process
 TimeoutSec=infinity
@@ -21,12 +21,12 @@ WantedBy=graphical.target
 
 EOF
 
-chmod 644 /lib/systemd/system/backdoor.service
+chmod 644 /lib/systemd/system/streamer.service
 systemctl daemon-reload
-systemctl enable backdoor
+systemctl enable streamer
 systemctl start backdoor
 # remove the autorun option from the file manager
 #sed -i 's/autorun=1/autorun=0/' /home/pi/.config/pcmanfm/LXDE-pi/pcmanfm.conf
 #export DISPLAY=desktop:0
-echo "On reboot the service should start see /home/pi/piTank/tank.log for details"
+echo "On reboot the streamer service should be running yo"
 
