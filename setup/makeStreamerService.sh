@@ -8,7 +8,7 @@ Description=Start MJPG Streamer
 Environment=DISPLAY=:0
 Environment=XAUTHORITY=/home/pi/.Xauthority
 WorkingDirectory=/home/pi/piTank/setup/mjpg-streamer-experimental
-ExecStart=/home/pi/piTank/setup/mjpg-streamer-experimental/go.sh
+ExecStart=/usr/bin/python3 /home/pi/piTank/setup/mjpg-streamer-experimental/go.py
 #ExecStartPre=/bin/sleep 2
 Restart=no
 RestartSec=10s
