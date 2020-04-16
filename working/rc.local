@@ -1,3 +1,0 @@
-#!/bin/sh -e
-rfcomm bind 0 98:D3:31:20:53:D4 1
-exit 0
