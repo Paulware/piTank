@@ -2,7 +2,7 @@ import serial
 import time
 import multiprocessing
 import os
-import pexpect
+#import pexpect
 import subprocess
 
 class HC06: 
@@ -15,7 +15,8 @@ class HC06:
          #self.x.join()
       except Exception as ex:
          print ( "exception: " + str(ex)) 
-      
+ 
+   ''' 
    # Wait for device with macAddress to appear       
    def waitForDevice(self):
       print ( 'Waiting for device: ' + self.macAddress + ' to appear')
@@ -43,7 +44,8 @@ class HC06:
           time.sleep(1)          
       child.sendline ('scan off')           
       child.sendline ('exit')   
-
+   '''
+   
    def pythonBind (self):
       host = input()
       port = 1
