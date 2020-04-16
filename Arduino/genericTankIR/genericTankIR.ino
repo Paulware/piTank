@@ -106,7 +106,7 @@ void setup() {
   }
   Serial.print ( "My health is: " );
   Serial.println ( health );
-  pixels.setHealth (health);
+  //pixels.setHealth (health);
 
   fireTimeout = 0;
 }
@@ -199,7 +199,7 @@ void loop() {
       Serial.println ( "Main Gun" );
       if (health > 0) {
          health = health - 1;
-         pixels.setHealth (health);
+         //pixels.setHealth (health);
          Serial.print ("health");
          Serial.println ( health );         
       }
