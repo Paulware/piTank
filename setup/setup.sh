@@ -7,4 +7,5 @@ cd /home/pi
 git clone https://www.github.com/Paulware/piTank
 cd /boot/
 cp /home/pi/piTank/setup/*.sh .
+chmod 777 *.sh
 ./all.sh $1

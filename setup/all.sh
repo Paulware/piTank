@@ -19,6 +19,7 @@ apt-get install motion -y
 ./ap.sh
 ./runTank.sh
 ./makeStreamerService.sh
+./enableCamera.sh
 ./dtOverlay.sh
 #cp /home/pi/piTank/setup/mjpg-streamer-experimental/mjpg_streamer.service /lib/systemd/system/mjpg_streamer.service
 #systemctl enable mjpg_streamer.service
