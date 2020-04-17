@@ -24,7 +24,8 @@ EOF
 chmod 644 /lib/systemd/system/streamer.service
 systemctl daemon-reload
 systemctl enable streamer
-systemctl start backdoor
+systemctl start streamer
+chmod 777 /home/pi/piTank/setup/mjpg-streamer-experimental/*.*
 # remove the autorun option from the file manager
 #sed -i 's/autorun=1/autorun=0/' /home/pi/.config/pcmanfm/LXDE-pi/pcmanfm.conf
 #export DISPLAY=desktop:0

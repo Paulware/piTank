@@ -19,9 +19,4 @@
       <li>Tracked Vehicle (I prefer heng-long scale 1/16 rc tanks)</li>
    </ul>
    
-<h1><a href="http://Paulware.github.io/piTank/docs/tutorial.html">Tutorial</a></h1>
-   
-<h2>TODO</h2>
-<ul>
-   <li>dtoverlay=gpio-poweroff,gpiopin=6 for all pins [6,13,19,26,5,21,20] added to /boot/config.txt </li>
-</ul>
+<h1><a href="http://Paulware.github.io/piTank/docs/index.html">Design Docs</a></h1>
