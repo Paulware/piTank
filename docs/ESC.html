@@ -2,10 +2,18 @@
 <img src='images/ESC.jpg'><br>
 An <a href="https://en.wikipedia.org/wiki/Electronic_speed_control">electronic speed control</a> allows a microcontroller (like an Arduino or Raspberry pi)<br>
 to control a dc motor.   The protocol is similar to servo controller except there is a calibrate and an arm phase.
-
-Here is some arduino code that can be used to control one (note a <a href="https://github.com/RB-ENantel/RC_ESC/archive/master.zip">library</a> is required)
 <br>
-Also note: pin 5 is the data pin in this example.
+One advantage of this type of controller over an L298, is that this controller only needs 1 control pin to move the motor forward or reverse.
+<p>
+
+Here is some arduino code that can be used to control an ESC
+<br>
+Notes: 
+<ul>
+  <li>a <a href="https://github.com/RB-ENantel/RC_ESC/archive/master.zip">library</a> is required</li>
+  <li>pin 5 is the data pin in this example</li>
+<ul>
+
 <pre>
 /*
   ESC_Ramp
