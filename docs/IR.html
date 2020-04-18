@@ -7,8 +7,8 @@ allows an Arduino microcontroller to communicate with another arduino (which has
 To receive an ir pulse the Arduino needs to sample the data pin quickly.<br>
 A timer interrupt is created which allows the Arduino to read the data pin at a 50 microsecond rate.  <br>
 That is 20000 times a second.<br>
-A "long pulse" which is a infra-red light pulse of 750 microseconds or .75 milliseconds is considered a 1 and a 
-"short pulse"  which is shorter than 750 microseconds in duration is considered a 0. 
+A pulse is considered "long" when it is on for 750 microseconds or longer a pulse is considerd "short" when it is less than 750 microseconds in duration<br>
+The long pulses are viewed as 1 and short pulses are viewed as 0.<br> 
 In between each light pulse is an "off" or darkness which usually is always the same length of time (about 1 millisecond).
-Putting all the 1's and 0's together gives you the data value for example 1000 represents the value 8. 1101 represents 13.
+Putting all the 1's and 0's together gives you the data value.  For example 1000 represents the value 8. 1101 represents 13.
 These 1's and zeroes are <a href=https://en.wikipedia.org/wiki/Binary_number">binary numbers</a>.
