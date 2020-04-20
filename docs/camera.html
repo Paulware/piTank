@@ -1,0 +1,48 @@
+<img src="images/esp32Cam.jpg">
+<p>
+<h1>Camera Setup</h1>
+   <ul>
+       <li>Power to 5V</li>
+       <li>Gnd to Gnd</li>
+       <li>TX to UOR</li>
+       <li>RX to UOT</li>
+       <li>Gnd to IO1</li>
+       <li>Disconnect and reconnect 5V (to put unit in flash-programming mode)</li>
+   </ul>
+
+<h1>Arduino Setup</h1>
+
+<ul>
+  <li>File, preferences, Additional Board Manager URLs:</li>
+  <li>https://dl.espressif.com/dl/package_esp32_index.json, http://arduino.esp8266.com/stable/package_esp8266com_index.json</li>
+  <li>Press Ok</li>
+  <li>Tools, Board, Boards Manager</li>
+  <li>type: esp32, search</li>
+  <li>Install Esp32 by espressif</li> 
+  <li>Tools, Choose board esp32 dev module</li>
+  <li>Change // Select Camera Module to: #define CAMERA_MODEL_AI_THINKER</li>
+  <li>Set SSID and password for your wifi network</li>
+  <li>Change Tools=>Board to Esp32 WRover Module</li>
+  <li>Tools -> Partition Scheme:change "Default" to "Huge APP(3MB No OTA)"</li>
+  <li>File, Examples, Exp32, Camera, Camera Web Server</li>
+  <li>Sketch, Upload</li> 
+  <li>Disconnect IO1 to GND (Taking the unit out of flash-programming mode)</li>
+  <li>Tools-> serial monitor (Baud rate = 115200)</li>
+  <li>Press reset button (under)</li>
+  
+  <li>Sketch, Upload</li>
+</ul>
+
+<h1>Trouble Shooting</h1>
+<ul>
+   <li>File too big => Change Partition scheme as described above</li>
+   <li>Does not connect => Swap UOR and UOT pins</li>
+</ul>
+
+<h1>References</li>
+<ul>
+   <li>Video on uploading cam example: https://www.youtube.com/watch?v=-GDlk6qgQ_E</LI>
+   <li>Espressif library setup: https://randomnerdtutorials.com/installing-the-esp32-board-in-arduino-ide-windows-instructions/</li>
+   <li>Alternate setup guide: https://hackspace.raspberrypi.org/articles/esp32-cam-review</li>
+</ul>
+  
