@@ -26,6 +26,7 @@ systemctl daemon-reload
 systemctl enable streamer
 systemctl start streamer
 chmod 777 /home/pi/piTank/setup/mjpg-streamer-experimental/*.*
+chmod 777 /home/pi/piTank/setup/mjpg-streamer-experimental/mjpg_streamer
 # remove the autorun option from the file manager
 #sed -i 's/autorun=1/autorun=0/' /home/pi/.config/pcmanfm/LXDE-pi/pcmanfm.conf
 #export DISPLAY=desktop:0
