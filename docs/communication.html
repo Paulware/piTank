@@ -1,0 +1,31 @@
+<h1>Joystick and Receiver</h1>
+The pizero W has a bluetooth chip (as well as wifi chip). <br>
+ The bluetooth chip can communicate with a cheap HC-06 receiver, but some setup is required.
+ <ol>
+    <li>Once prior to communication the pi needs to pair with the HC-06 (password=1234)</li>
+    <li>Each time the pi boots up, the pi needs to bind the HC-06 to a serial port</li>
+ </ol>
+ This piHat is available from ebay for about $15.00 and has a mini joystick and buttons.<br>
+ This provides basic bluetooth communication with no noticeable lag<br>
+<img src="images/piHat.jpg" width="400px">
+<img src="images/piController.jpg" width="400px"><p>
+<img src="images/hc06.jpg" width="300px"><p>
+<p>
+
+A raspberry pi 3 or 4 is really overkill for this function because all we need to do is send a few
+characters 3 or 4 times a second.
+<br>
+<h1>Wiring</H1>
+The HC-06 has 3 pins that are connected to an arduino nano: 
+<ul>
+   <li>VCC to 5V (3.3V will not work)</li>
+   <li>Gnd to Gnd</li>
+   <li>Tx on HC-06 connected to pin D0 (Rx) on the Arduino Nano</li>
+</ul>
+
+An alternate solution is to connect the tx pin on the HC-06 to a different pin on the nano<br>
+and use the software serial library.<br> 
+
+It is a little simpler just to connect to the arduino nanos D0 (rx) pin and then use Serial.read() to<br>
+read characters.  One note is that you will need to disconnect the HC-06 when flashing the arduino as the <br>
+rx pin is used to flash the nano.
