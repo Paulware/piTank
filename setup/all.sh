@@ -27,4 +27,4 @@ apt-get install motion -y
 #systemctl start mjpg_streamer.service
 #ifup wlan0
 echo "Done in setup, Using the wifi icon on desktop:turn wifi on, and set wifi country"
-echo "Then reboot to turn camera on"
+echo "Then reboot"
