@@ -1,4 +1,6 @@
 #!/usr/bin/expect -f
+#  Filename: connect.sh
+#  Note: the mac address must be the first parameter to this command file when run
 
 set prompt "#"
 set address [lindex $argv 0]
@@ -17,11 +19,7 @@ send "scan off\r"
 expect "Controller"
 send "pair $address\r"
 sleep 2
-send "trust $address\r"
-sleep 2
-send "connect $address\r"
-send_user  "Done connecting?\r"
-sleep 3
+send "1234\r"
 send_user "\nShould be connected now.\r"
 send "quit\r"
 expect eof

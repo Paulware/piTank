@@ -3,7 +3,7 @@ The pizero W has a bluetooth chip (as well as wifi chip). <br>
  The bluetooth chip can communicate with a cheap HC-06 receiver, but some setup is required.
  <ol>
     <li>Once prior to communication the pi needs to pair with the HC-06 (password=1234)</li>
-    <li>Each time the pi boots up, the pi needs to bind the HC-06 to a serial port</li>
+    <li>Each time the pi boots up, the pi needs to <a href="https://paulware.github.io/piTank/docs/bindHc06.html">bind the HC-06 to a serial port</a></li>
  </ol>
  This piHat is available from ebay for about $15.00 and has a mini joystick and buttons.<br>
  This provides basic bluetooth communication with no noticeable lag<br>
@@ -14,6 +14,11 @@ The pizero W has a bluetooth chip (as well as wifi chip). <br>
 A raspberry pi zero is cheaper than a raspberry pi 3 or 4 which is really overkill for this type of function<br>
 All that is required is that we send a few characters 3 or 4 times a second and respond to a joystick.
 <br>
+<h1>Setup</h1>
+The facilitate the pairing with HC-06 without needing an hdmi display.  The pi's wifi<br>
+chip is used to create an access point.  A laptop can then connect to the pi and pair with <br>
+the hc-06 using a windows terminal program (like putty) on the laptop, and the bluetooth<br>
+control manager on the pi<br>
 <h1>Wiring</H1>
 The HC-06 has 3 pins that are connected to an arduino nano: 
 <ul>

@@ -1,0 +1,14 @@
+<h1>Binding HC-06 on boot up</h1>
+   Each time the raspberry pi boots up the command file: /etc/rc.local is run.<br>
+   In this file you can command the pi to bind (as long as it previously paired), but you <br>
+   need to know the mac address of the HC-06 blue tooth device.<br>
+    For example if the mac address of the HC-06 is 
+   Your /etc/rc.local file would look like this:
+<pre>
+#!/bin/sh -e
+rfcomm bind 0 98:D3:31:20:53:D4 1
+exit 0
+</pre>
+
+This code above binds the HC-06 with mac address: 98:D3:31:20:53:D4 to rfcomm0 on channel 1<br>
+This occurs everytime the raspberry pi boots up.
