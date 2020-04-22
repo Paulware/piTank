@@ -3,8 +3,11 @@ chmod 777 *.*
 cd /boot/
 # Copy setup files to /boot 
 apt-get update
+apt-get install expect -y
 apt-get install python-pexpect -y
-apt-get install bluetooth bluez blueman -y
+apt-get install bluetooth bluez -y
+# Bluetooth manager
+# apt-get install blueman -y
 apt-get install motion -y
 # Note: raspberry pi camera is preferred due to less lag, using mjpg-streamer
 # For raspberry pi camera 
@@ -27,4 +30,6 @@ apt-get install motion -y
 #systemctl start mjpg_streamer.service
 #ifup wlan0
 echo "Done in setup, Using the wifi icon on desktop:turn wifi on, and set wifi country"
-echo "Then reboot"
+echo "Then with raspi-config enable SPI and I2C, then shutdown"
+echo "Move sd card to pi-zero w, connect to Walker (SSID) with password 1234ABCD, "
+echo " and run /boot/connect.sh from putty" 
