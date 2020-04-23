@@ -33,4 +33,4 @@ apt-get install bluetooth bluez -y
 echo "Done in setup, Using the wifi icon on desktop:turn wifi on, and set wifi country"
 echo "Then with raspi-config enable SPI and I2C, then shutdown"
 echo "Move sd card to pi-zero w, connect to Walker (SSID) with password 1234ABCD, "
-echo " and run /boot/connect.sh from putty" 
+echo " Turn on HC-06, and run /boot/connect.sh from putty to pair with HC-06 receiver" 

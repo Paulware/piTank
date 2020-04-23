@@ -9,8 +9,8 @@ Environment=DISPLAY=:0
 Environment=XAUTHORITY=/home/pi/.Xauthority
 WorkingDirectory=/home/pi/piTank/tankControl
 ExecStart=/usr/bin/python3 tankControl.py
-ExecStartPre=/bin/sleep 2
-Restart=always
+ExecStartPre=/bin/sleep 10
+Restart=no
 RestartSec=10s
 KillMode=process
 TimeoutSec=infinity
@@ -28,5 +28,4 @@ systemctl start backdoor
 # remove the autorun option from the file manager
 #sed -i 's/autorun=1/autorun=0/' /home/pi/.config/pcmanfm/LXDE-pi/pcmanfm.conf
 #export DISPLAY=desktop:0
-echo "Note: You will need to pair the HC-06 with the pi before getting data."
 

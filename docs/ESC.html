@@ -14,37 +14,67 @@ Notes:
 <ul>
 
 <pre>
-/*
-  ESC_Ramp
-    Based on the Sweep example in the Servo library, this allow a ramp up and down of the ESC speed based on the Min and Max values.
-    The Min and Max speed are defined so you can change them at one location and it will be used in the ramp as well.
+#include <Servo.h>
+
+/* This example shows how to use an ESC controller that can go
+ * forward and backward
+ *   Note: There is goofy code in here, trying to disable the brake feature.
+ *         Next version will be tested on an ESC with no-brake
  */
-#include "ESC.h"
-#define LED_PIN (13)                                      // Pin for the LED 
-#define SPEED_MIN (1000)                                  // Set the Minimum Speed in microseconds
-#define SPEED_MAX (2000)                                  // Set the Minimum Speed in microseconds
 
-ESC myESC (5, SPEED_MIN, SPEED_MAX, 500);                 // ESC_Name (ESC PIN, Minimum Value, Maximum Value, Default Speed, Arm Value)
-int oESC;                                                 // Variable for the speed sent to the ESC
+Servo esc;
+float targetValue;
+float currentValue;
+#define MINVALUE 1420
+#define MAXVALUE 1580
+ 
+void setup() 
+{
+  Serial.begin (115200);
+  Serial.println ( "Ready");
+  // Arm the ESC
+  esc.attach (9,1000,2000);
+  esc.writeMicroseconds (2000);
+  delay (2000);
+  esc.writeMicroseconds (1500);
+  delay (2000); 
+  currentValue = 1500;
+  targetValue = MINVALUE;
+} 
+unsigned long servoTimeout = 0; 
+// Enter a + to increase voltage, - to decrease the voltage at motor
+void loop() 
+{ 
+  char ch;
+  static int lastValue = 0;
+  
+  if (millis() > servoTimeout) {
 
-void setup() {
-  pinMode(LED_PIN, OUTPUT);                               // LED Visual Output
-  myESC.arm();                                            // Send the Arm value so the ESC will be ready to take commands
-  digitalWrite(LED_PIN, HIGH);                            // LED High Once Armed
-  delay(5000);                                            // Wait for a while
-}
+    servoTimeout = millis() + 100; // Faster in the do-nothing range
 
-void loop() {
-  for (oESC = SPEED_MIN; oESC <= SPEED_MAX; oESC += 1) {  // goes from 1000 microseconds to 2000 microseconds
-    myESC.speed(oESC);                                    // tell ESC to go to the oESC speed value
-    delay(10);                                            // waits 10ms for the ESC to reach speed
-  }
-  delay(1000);
-  for (oESC = SPEED_MAX; oESC >= SPEED_MIN; oESC -= 1) {  // goes from 2000 microseconds to 1000 microseconds
-    myESC.speed(oESC);                                    // tell ESC to go to the oESC speed value
-    delay(10);                                            // waits 10ms for the ESC to reach speed  
-   }
-  delay(5000);                                            // Wait for a while befor restart
-}
-
+    if (currentValue < targetValue) {
+      currentValue = currentValue + 5;
+      currentValue = targetValue;
+    } else if (currentValue > targetValue ) { 
+      currentValue = currentValue - 4;  
+      if ((currentValue >= 1460) && (currentValue <= 1520)) { 
+        currentValue = currentValue - 30;
+      }  
+    }    
+    esc.writeMicroseconds (int(currentValue));
+    if (lastValue != int(currentValue)) {
+       lastValue = int(currentValue);
+       Serial.println ( currentValue);
+    }
+  } 
+  
+  if (Serial.available() ) {   
+     ch = Serial.read();
+     if (ch == '+' ) {
+        targetValue = MINVALUE;
+     } else if (ch == '-') {
+        targetValue = MAXVALUE;
+     }
+  }  
+} 
 </pre>
