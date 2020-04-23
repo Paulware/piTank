@@ -1,10 +1,10 @@
 //  NRF24L01 truck or tank
 #include <MemoryFree.h>
 #include <EEPROM.h>
-#include <TimerOne.h>
-#include <IR.h>
-#include <IRTank.h>
-#include <Pixel.h>
+#include "TimerOne.h"
+#include "IR.h"
+#include "IRTank.h"
+#include "Pixel.h"
 
 #define FULLSPEED 255
 #define PIXELPIN 2

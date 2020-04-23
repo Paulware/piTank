@@ -10,9 +10,8 @@ f.write ( 'Current Time: ' + currentTime + '\n')
 
 print ( "bind to bluetooth joystick")
 f.write ( 'bind to bluetooth joystick\n' )
-hc06 = HC06.HC06('98:D3:31:20:53:D4') 
-print ( "now do the bind") 
-#hc06.bindRfcomm0()
+hc06 = HC06.HC06() 
+
 print ('hc 06 has been created...now connect gpio pins')  
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(6, GPIO.OUT)

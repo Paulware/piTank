@@ -85,8 +85,8 @@ cat > /etc/hostapd/hostapd.conf <<EOF
 interface=wlan0
 driver=nl80211
 ssid=Walker
-hw_mode=g
-channel=6
+hw_mode=b
+channel=3
 wmm_enabled=0
 macaddr_acl=0
 auth_algs=1

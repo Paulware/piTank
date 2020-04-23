@@ -7,8 +7,8 @@ Description=Start Backdoor
 [Service]
 Environment=DISPLAY=:0
 Environment=XAUTHORITY=/home/pi/.Xauthority
-WorkingDirectory=/home/pi/piTank
-ExecStart=/usr/bin/python3 tank.py
+WorkingDirectory=/home/pi/piTank/tankControl
+ExecStart=/usr/bin/python3 tankControl.py
 ExecStartPre=/bin/sleep 2
 Restart=always
 RestartSec=10s

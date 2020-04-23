@@ -20,7 +20,8 @@ apt-get install motion -y
 ./timezone.sh
 ./rclocal.sh $1
 ./ap.sh
-#./runTank.sh
+# Run /home/pi/piTank/tankControl/tankControl.py on boot up
+./runTank.sh
 #./makeStreamerService.sh
 #./enableCamera.sh
 ./dtOverlay.sh
