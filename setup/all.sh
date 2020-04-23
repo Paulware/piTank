@@ -8,7 +8,7 @@ apt-get install python-pexpect -y
 apt-get install bluetooth bluez -y
 # Bluetooth manager
 # apt-get install blueman -y
-apt-get install motion -y
+#apt-get install motion -y
 # Note: raspberry pi camera is preferred due to less lag, using mjpg-streamer
 # For raspberry pi camera 
 #   enable camera using raspi-config
@@ -24,7 +24,7 @@ apt-get install motion -y
 ./runTank.sh
 #./makeStreamerService.sh
 #./enableCamera.sh
-./dtOverlay.sh
+#./dtOverlay.sh
 #cp /home/pi/piTank/setup/mjpg-streamer-experimental/mjpg_streamer.service /lib/systemd/system/mjpg_streamer.service
 #systemctl enable mjpg_streamer.service
 #systemctl disable mjpg-streamer.service
