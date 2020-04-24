@@ -11,20 +11,36 @@ float targetValue;
 float currentValue;
 #define MINVALUE 1420
 #define MAXVALUE 1580
- 
+
+void arm(int pin) {
+  // Arm the ESC
+  esc.attach (pin,1000,2000);
+  esc.writeMicroseconds (2000); // Full Throttle
+  delay (2000);
+  esc.writeMicroseconds (1500); // Neutral
+  delay (2000); 
+}
+void escUpdate (float & currentValue, float targetValue) { 
+  if (currentValue < targetValue) {
+    currentValue = targetValue; // Can increase value quickly
+  } else if (currentValue > targetValue ) { 
+    // Must decrease slowly to avoid automatic brake
+    currentValue = currentValue - 4;  
+    if ((currentValue >= 1460) && (currentValue <= 1520)) { 
+      currentValue = currentValue - 30;
+    }  
+  }    
+}
+
 void setup() 
 {
   Serial.begin (115200);
   Serial.println ( "Ready");
-  // Arm the ESC
-  esc.attach (9,1000,2000);
-  esc.writeMicroseconds (2000);
-  delay (2000);
-  esc.writeMicroseconds (1500);
-  delay (2000); 
+  arm(5);
   currentValue = 1500;
-  targetValue = MINVALUE;
+  targetValue = MAXVALUE;
 } 
+
 unsigned long servoTimeout = 0; 
 // Enter a + to increase voltage, - to decrease the voltage at motor
 void loop() 
@@ -33,18 +49,9 @@ void loop()
   static int lastValue = 0;
   
   if (millis() > servoTimeout) {
-
-    servoTimeout = millis() + 100; // Faster in the do-nothing range
-
-    if (currentValue < targetValue) {
-      currentValue = currentValue + 5;
-      currentValue = targetValue;
-    } else if (currentValue > targetValue ) { 
-      currentValue = currentValue - 4;  
-      if ((currentValue >= 1460) && (currentValue <= 1520)) { 
-        currentValue = currentValue - 30;
-      }  
-    }    
+    servoTimeout = millis() + 100;
+    escUpdate (currentValue, targetValue);
+    
     esc.writeMicroseconds (int(currentValue));
     if (lastValue != int(currentValue)) {
        lastValue = int(currentValue);

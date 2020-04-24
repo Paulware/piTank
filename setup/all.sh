@@ -17,7 +17,7 @@ apt-get install bluetooth bluez -y
 #./mjpgStreamer.sh
 ./ssh.sh
 ./keyboard.sh
-./timezone.sh
+timedatectl set-timezone America/Chicago
 ./rclocal.sh $1
 ./ap.sh
 # Run /home/pi/piTank/tankControl/tankControl.py on boot up
