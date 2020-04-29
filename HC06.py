@@ -66,18 +66,18 @@ if __name__ == '__main__':
        
        count = 0       
        while not hc06.disconnected:
-          time.sleep (1)
-          if (count % 3) == 0: 
-             hc06.writeline ( 'LRu')
-          elif (count % 3 ) == 1:
-             hc06.writeline ( 'lrV')
-          else:
-             hc06.writeline ( 'SsuF')           
+          #time.sleep (.1)
+          #if (count % 3) == 0: 
+          #   hc06.writeline ( 'LRu')
+          #elif (count % 3 ) == 1:
+          #   hc06.writeline ( 'lrV')
+          #else:
+          #   hc06.writeline ( 'SsuF')           
           
                    
-          #line = hc06.readline()
-          #if line != '':
-          #   print ( str(count) + ') ' + line.strip() )
+          line = hc06.readline()
+          if line != '':
+             print ( str(count) + ') ' + line.strip() )
           count = count + 1
 
        print ( "Done in main" )  
