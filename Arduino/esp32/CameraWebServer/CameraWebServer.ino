@@ -1,9 +1,10 @@
 #include "esp_camera.h"
 #include <WiFi.h>
 
-//
-// WARNING!!! Make sure that you have either selected ESP32 Wrover Module,
-//            or another board which has PSRAM enabled
+// Tools
+//   Board => ESP32 Wrover Module
+//   Partition Scheme => Huge App
+//   Reset power with io0 grounded to put in program mode 
 //
 
 // Select camera model
@@ -15,8 +16,9 @@
 
 #include "camera_pins.h"
 
-const char* ssid = "*********";
-const char* password = "*********";
+// Connect to existing wifi network
+const char* ssid = "ssid";
+const char* password = "password";
 
 void startCameraServer();
 
