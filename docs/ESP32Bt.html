@@ -9,8 +9,9 @@
     <li>Reset button press is required to change to programming or normal mode</li>
     <li>ESP32 does not have a usb connector so you need to use cp2102 or CH340</li>
     <li>cp2102 doesn't provide adequate power, so disconnect 5V and connect 3.7V li-ion battery to ESP32 3.3V</li>
+    <li>usb-to-serial should be connected to UORXD (GPIO 3) and UOTXD (GPIO 1)</li>
     <li>Bluetooth of the address of the ESP32 must be determined.  Use the arduino sketch below to find it</li>
-    <li>Raspberry pi should bind to the bluetooth address of the esp32 on startup, use /etc/rc.local</li>
+    <li>Raspberry pi should bind to the bluetooth address of the esp32 on startup, use /etc/rc.local (code below)</li>
     <li>Raspberry pi python code should close the serial port when finished</li>
  </ul>
 
