@@ -1,0 +1,82 @@
+<h1>Bluetooth on ESP32</h1>
+ The raspberry pi can connect to the bluetooth on the esp32-cam<br>
+ 
+ Notes:
+ <ul>
+    <li>ESP32 does not have a usb connector so you need to use cp2102 or CH340</li>
+    <li>cp2102 doesn't provide adequate power, so disconnect 5V and connect 3.7V li-ion battery to ESP32 3.3V</li>
+    <li>Bluetooth of the address of the ESP32 must be determined.  Use the arduino sketch below to find it</li>
+    <li>Raspberry pi should bind to the bluetooth address of the esp32 on startup, use /etc/rc.local</li>
+    <li>Raspberry pi python code should close the serial port when finished</li>
+ </ul>
+
+<h2>References</h2>
+<a href="https://youtu.be/RStncO3zb8g">Youtube video</a>
+
+<h2>Arduino code (with python snippet in comments) </h2>
+<pre>
+/*
+ * On the raspberry pi, 
+ /etc/rc.local should look like: 
+   (With the proper BT address displayed by arduino code below)
+#!/bin/sh -e
+rfcomm bind 0 BT:AD:RE:SS:BE:LO 1
+exit 0
+
+Note: On the pi, you can use the command:
+rfcomm release 0
+to release rfcomm0
+
+Example python test code on pi to write to esp32-cam:
+import serial
+try:
+   port = serial.Serial("/dev/rfcomm0", baudrate=9600, timeout=1)
+   port.write (str.encode("Hello Yo")) 
+finally:
+   port.close() 
+ 
+*/
+
+#include "BluetoothSerial.h"
+#include "esp_bt_main.h"
+#include "esp_bt_device.h"
+
+#if !defined(CONFIG_BT_ENABLED) || !defined(CONFIG_BLUEDROID_ENABLED)
+#error Bluetooth is not enabled! Please run `make menuconfig` to and enable it
+#endif
+
+BluetoothSerial SerialBT;
+
+void printDeviceAddress() { 
+  const uint8_t* point = esp_bt_dev_get_address(); 
+  Serial.print ( "Blue tooth Address: " );
+  for (int i = 0; i < 6; i++) { 
+    char str[3]; 
+    sprintf(str, "%02X", (int)point[i]);
+    Serial.print(str);
+ 
+    if (i < 5){
+      Serial.print(":");
+    } 
+  }
+}
+
+void setup() {
+  Serial.begin(115200);
+  SerialBT.begin("ESP32test"); //Bluetooth device name
+  Serial.println("The device started, now you can pair it with bluetooth!");
+  printDeviceAddress();
+}
+
+void loop() {
+  if (Serial.available()) {
+    SerialBT.write(Serial.read());
+  }
+  if (SerialBT.available()) {
+    Serial.write(SerialBT.read());
+  }
+  delay(20);
+}
+</pre>
+
+
