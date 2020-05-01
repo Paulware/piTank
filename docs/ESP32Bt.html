@@ -1,8 +1,12 @@
 <h1>Bluetooth on ESP32</h1>
+
  The raspberry pi can connect to the bluetooth on the esp32-cam<br>
- 
+
+ <img src="images/esp32CamPinout.png" width="700"><br> 
  Notes:
  <ul>
+    <li>GPIO0 needs to be connected to gnd for programming, removed for normal mode</li>
+    <li>Reset button press is required to change to programming or normal mode</li>
     <li>ESP32 does not have a usb connector so you need to use cp2102 or CH340</li>
     <li>cp2102 doesn't provide adequate power, so disconnect 5V and connect 3.7V li-ion battery to ESP32 3.3V</li>
     <li>Bluetooth of the address of the ESP32 must be determined.  Use the arduino sketch below to find it</li>
