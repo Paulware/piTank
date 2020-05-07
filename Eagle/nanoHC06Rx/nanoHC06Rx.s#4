@@ -14870,14 +14870,12 @@ http://www.kemet.com/Lists/ProductCatalog/Attachments/254/KEM_T2005_T491.pdf</de
 <part name="J27" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" deviceset="CONN_11" device="" package3d_urn="urn:adsk.eagle:package:38251/1"/>
 <part name="GND8" library="SparkFun" deviceset="GND" device=""/>
 <part name="P+5" library="SparkFun" deviceset="VCC" device=""/>
-<part name="JP19" library="SparkFun-Connectors" deviceset="M15" device=""/>
 <part name="J8" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" deviceset="CONN_01" device="" package3d_urn="urn:adsk.eagle:package:38028/1"/>
 <part name="J11" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" deviceset="CONN_01" device="" package3d_urn="urn:adsk.eagle:package:38028/1"/>
 <part name="J31" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" deviceset="CONN_14" device="" package3d_urn="urn:adsk.eagle:package:38183/1"/>
 <part name="J32" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" deviceset="CONN_10" device="&quot;" package3d_urn="urn:adsk.eagle:package:38157/1"/>
 <part name="J1" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" deviceset="CONN_04" device="" package3d_urn="urn:adsk.eagle:package:38085/1"/>
 <part name="J23" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" deviceset="CONN_10" device="&quot;" package3d_urn="urn:adsk.eagle:package:38157/1"/>
-<part name="J24" library="SparkFun-Connectors" deviceset="CONN_08" device="&quot;"/>
 <part name="J29" library="SparkFun-Connectors" deviceset="CONN_06" device="NO_SILK_FEMALE_PTH"/>
 <part name="Q1" library="transistor-npn" library_urn="urn:adsk.eagle:library:398" deviceset="2N5088" device="" package3d_urn="urn:adsk.eagle:package:28523/2"/>
 <part name="R1" library="resistor-power" library_urn="urn:adsk.eagle:library:344" deviceset="R" device="CA0001" package3d_urn="urn:adsk.eagle:package:25128/1" value="1K"/>
@@ -14919,6 +14917,11 @@ http://www.kemet.com/Lists/ProductCatalog/Attachments/254/KEM_T2005_T491.pdf</de
 <part name="S4" library="switch-omron" library_urn="urn:adsk.eagle:library:377" deviceset="40-XX" device="" package3d_urn="urn:adsk.eagle:package:27483/1"/>
 <part name="U$1" library="SparkFun-IC-Power" deviceset="V_REG_LD1117VXX" device=""/>
 <part name="C1" library="SparkFun-Capacitors" deviceset="10UF-POLAR" device="-RADIAL-2.5MM-KIT-25V-20%" value="10uF"/>
+<part name="J20" library="SparkFun-Connectors" deviceset="CONN_06" device="NO_SILK_FEMALE_PTH"/>
+<part name="J21" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" deviceset="CONN_01" device="" package3d_urn="urn:adsk.eagle:package:38028/1"/>
+<part name="J22" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" deviceset="CONN_01" device="" package3d_urn="urn:adsk.eagle:package:38028/1"/>
+<part name="J24" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" deviceset="CONN_01" device="" package3d_urn="urn:adsk.eagle:package:38028/1"/>
+<part name="J36" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" deviceset="CONN_01" device="" package3d_urn="urn:adsk.eagle:package:38028/1"/>
 </parts>
 <sheets>
 <sheet>
@@ -15010,10 +15013,6 @@ http://www.kemet.com/Lists/ProductCatalog/Attachments/254/KEM_T2005_T491.pdf</de
 <instance part="P+5" gate="1" x="86.36" y="143.51" smashed="yes" rot="R270">
 <attribute name="VALUE" x="89.916" y="144.526" size="1.778" layer="96" rot="R270"/>
 </instance>
-<instance part="JP19" gate="G$1" x="359.41" y="208.28" smashed="yes" rot="R90">
-<attribute name="VALUE" x="382.27" y="208.28" size="1.778" layer="96" rot="R90"/>
-<attribute name="NAME" x="338.328" y="208.28" size="1.778" layer="95" rot="R90"/>
-</instance>
 <instance part="J8" gate="G$1" x="231.14" y="389.89" smashed="yes">
 <attribute name="VALUE" x="228.6" y="385.064" size="1.778" layer="96" font="vector"/>
 <attribute name="NAME" x="228.6" y="392.938" size="1.778" layer="95" font="vector"/>
@@ -15037,10 +15036,6 @@ http://www.kemet.com/Lists/ProductCatalog/Attachments/254/KEM_T2005_T491.pdf</de
 <instance part="J23" gate="G$1" x="331.47" y="252.73" smashed="yes">
 <attribute name="VALUE" x="331.47" y="230.124" size="1.778" layer="96" font="vector"/>
 <attribute name="NAME" x="331.47" y="260.858" size="1.778" layer="95" font="vector"/>
-</instance>
-<instance part="J24" gate="G$1" x="321.31" y="224.79" smashed="yes">
-<attribute name="VALUE" x="316.23" y="212.344" size="1.778" layer="96" font="vector"/>
-<attribute name="NAME" x="316.23" y="237.998" size="1.778" layer="95" font="vector"/>
 </instance>
 <instance part="J29" gate="G$1" x="43.18" y="137.16" smashed="yes" rot="R270">
 <attribute name="VALUE" x="33.274" y="142.24" size="1.778" layer="96" font="vector" rot="R270"/>
@@ -15192,6 +15187,26 @@ http://www.kemet.com/Lists/ProductCatalog/Attachments/254/KEM_T2005_T491.pdf</de
 <instance part="C1" gate="G$1" x="57.15" y="347.98" smashed="yes">
 <attribute name="NAME" x="58.166" y="348.615" size="1.778" layer="95" font="vector"/>
 <attribute name="VALUE" x="58.166" y="343.789" size="1.778" layer="96" font="vector"/>
+</instance>
+<instance part="J20" gate="G$1" x="21.59" y="289.56" smashed="yes" rot="R180">
+<attribute name="VALUE" x="26.67" y="299.466" size="1.778" layer="96" font="vector" rot="R180"/>
+<attribute name="NAME" x="26.67" y="278.892" size="1.778" layer="95" font="vector" rot="R180"/>
+</instance>
+<instance part="J21" gate="G$1" x="200.66" y="276.86" smashed="yes">
+<attribute name="VALUE" x="198.12" y="272.034" size="1.778" layer="96" font="vector"/>
+<attribute name="NAME" x="198.12" y="279.908" size="1.778" layer="95" font="vector"/>
+</instance>
+<instance part="J22" gate="G$1" x="-21.59" y="285.75" smashed="yes" rot="R180">
+<attribute name="VALUE" x="-19.05" y="290.576" size="1.778" layer="96" font="vector" rot="R180"/>
+<attribute name="NAME" x="-19.05" y="282.702" size="1.778" layer="95" font="vector" rot="R180"/>
+</instance>
+<instance part="J24" gate="G$1" x="-21.59" y="298.45" smashed="yes" rot="R180">
+<attribute name="VALUE" x="-19.05" y="303.276" size="1.778" layer="96" font="vector" rot="R180"/>
+<attribute name="NAME" x="-19.05" y="295.402" size="1.778" layer="95" font="vector" rot="R180"/>
+</instance>
+<instance part="J36" gate="G$1" x="-21.59" y="267.97" smashed="yes" rot="R180">
+<attribute name="VALUE" x="-19.05" y="272.796" size="1.778" layer="96" font="vector" rot="R180"/>
+<attribute name="NAME" x="-19.05" y="264.922" size="1.778" layer="95" font="vector" rot="R180"/>
 </instance>
 </instances>
 <busses>
@@ -15889,6 +15904,21 @@ http://www.kemet.com/Lists/ProductCatalog/Attachments/254/KEM_T2005_T491.pdf</de
 <wire x1="57.15" y1="342.9" x2="57.15" y2="337.82" width="0.1524" layer="91"/>
 <label x="57.15" y="337.82" size="1.778" layer="95"/>
 </segment>
+<segment>
+<pinref part="J20" gate="G$1" pin="4"/>
+<wire x1="16.51" y1="287.02" x2="7.62" y2="287.02" width="0.1524" layer="91"/>
+<label x="7.62" y="287.02" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="J20" gate="G$1" pin="6"/>
+<wire x1="16.51" y1="281.94" x2="7.62" y2="281.94" width="0.1524" layer="91"/>
+<label x="7.62" y="281.94" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="J21" gate="G$1" pin="1"/>
+<wire x1="208.28" y1="276.86" x2="217.17" y2="276.86" width="0.1524" layer="91"/>
+<label x="217.17" y="276.86" size="1.778" layer="95"/>
+</segment>
 </net>
 <net name="VCC_B" class="0">
 <segment>
@@ -16033,6 +16063,11 @@ http://www.kemet.com/Lists/ProductCatalog/Attachments/254/KEM_T2005_T491.pdf</de
 <wire x1="57.15" y1="350.52" x2="57.15" y2="359.41" width="0.1524" layer="91"/>
 <label x="57.15" y="359.41" size="1.778" layer="95"/>
 </segment>
+<segment>
+<pinref part="J36" gate="G$1" pin="1"/>
+<wire x1="-29.21" y1="267.97" x2="-45.72" y2="267.97" width="0.1524" layer="91"/>
+<label x="-45.72" y="267.97" size="1.778" layer="95"/>
+</segment>
 </net>
 <net name="GPIO12_B" class="0">
 <segment>
@@ -16074,6 +16109,11 @@ http://www.kemet.com/Lists/ProductCatalog/Attachments/254/KEM_T2005_T491.pdf</de
 <wire x1="139.7" y1="260.35" x2="139.7" y2="247.65" width="0.1524" layer="91"/>
 <label x="139.7" y="247.65" size="1.778" layer="95" rot="R90"/>
 </segment>
+<segment>
+<pinref part="J20" gate="G$1" pin="2"/>
+<wire x1="16.51" y1="292.1" x2="3.81" y2="292.1" width="0.1524" layer="91"/>
+<label x="3.81" y="292.1" size="1.778" layer="95"/>
+</segment>
 </net>
 <net name="GPIO14_B" class="0">
 <segment>
@@ -16086,6 +16126,11 @@ http://www.kemet.com/Lists/ProductCatalog/Attachments/254/KEM_T2005_T491.pdf</de
 <wire x1="142.24" y1="260.35" x2="142.24" y2="247.65" width="0.1524" layer="91"/>
 <label x="142.24" y="247.65" size="1.778" layer="95" rot="R90"/>
 </segment>
+<segment>
+<pinref part="J20" gate="G$1" pin="1"/>
+<wire x1="16.51" y1="294.64" x2="3.81" y2="294.64" width="0.1524" layer="91"/>
+<label x="3.81" y="294.64" size="1.778" layer="95"/>
+</segment>
 </net>
 <net name="GPIO02_B" class="0">
 <segment>
@@ -16097,6 +16142,11 @@ http://www.kemet.com/Lists/ProductCatalog/Attachments/254/KEM_T2005_T491.pdf</de
 <pinref part="J12" gate="G$1" pin="5"/>
 <wire x1="107.95" y1="274.32" x2="96.52" y2="274.32" width="0.1524" layer="91"/>
 <label x="96.52" y="274.32" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="J20" gate="G$1" pin="5"/>
+<wire x1="16.51" y1="284.48" x2="3.81" y2="284.48" width="0.1524" layer="91"/>
+<label x="3.81" y="284.48" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="GPIO04_B" class="0">
@@ -16137,6 +16187,11 @@ http://www.kemet.com/Lists/ProductCatalog/Attachments/254/KEM_T2005_T491.pdf</de
 <wire x1="38.1" y1="327.66" x2="26.67" y2="327.66" width="0.1524" layer="91"/>
 <label x="26.67" y="327.66" size="1.778" layer="95"/>
 </segment>
+<segment>
+<pinref part="J20" gate="G$1" pin="3"/>
+<wire x1="16.51" y1="289.56" x2="7.62" y2="289.56" width="0.1524" layer="91"/>
+<label x="7.62" y="289.56" size="1.778" layer="95"/>
+</segment>
 </net>
 <net name="D4_D" class="0">
 <segment>
@@ -16160,6 +16215,18 @@ http://www.kemet.com/Lists/ProductCatalog/Attachments/254/KEM_T2005_T491.pdf</de
 <pinref part="S4" gate="1" pin="P"/>
 <wire x1="196.85" y1="387.35" x2="196.85" y2="377.19" width="0.1524" layer="91"/>
 <label x="196.85" y="377.19" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="BATT3.3V_B" class="0">
+<segment>
+<pinref part="J24" gate="G$1" pin="1"/>
+<wire x1="-29.21" y1="298.45" x2="-45.72" y2="298.45" width="0.1524" layer="91"/>
+<label x="-44.45" y="298.45" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="J22" gate="G$1" pin="1"/>
+<wire x1="-29.21" y1="285.75" x2="-45.72" y2="285.75" width="0.1524" layer="91"/>
+<label x="-45.72" y="285.75" size="1.778" layer="95"/>
 </segment>
 </net>
 </nets>

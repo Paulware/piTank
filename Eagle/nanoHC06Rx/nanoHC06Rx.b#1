@@ -218,8 +218,8 @@
 <text x="30.734" y="31.75" size="1.9304" layer="121">16</text>
 <text x="24.13" y="34.036" size="1.9304" layer="121">12</text>
 <text x="94.742" y="41.656" size="1.9304" layer="121" rot="R180">5V&lt;-&gt;VCC</text>
-<text x="83.058" y="38.354" size="1.9304" layer="121" rot="R180">GND</text>
-<text x="9.144" y="41.91" size="1.9304" layer="121" rot="R180">BATT+</text>
+<text x="89.408" y="37.592" size="1.9304" layer="121" rot="R180">BATT -</text>
+<text x="13.97" y="41.402" size="1.9304" layer="121" rot="R180">BATT+</text>
 <text x="10.16" y="73.914" size="1.9304" layer="121" rot="R180">BATT+</text>
 <text x="20.574" y="34.036" size="1.9304" layer="121">13</text>
 <text x="17.018" y="34.036" size="1.9304" layer="121">15</text>
@@ -1106,6 +1106,18 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <text x="-1.27" y="1.397" size="0.6096" layer="25" font="vector" ratio="20">&gt;NAME</text>
 <text x="-1.27" y="-2.032" size="0.6096" layer="27" font="vector" ratio="20">&gt;VALUE</text>
 </package>
+<package name="1X01_2MM" urn="urn:adsk.eagle:footprint:37643/1" library_version="1">
+<description>&lt;h3&gt;Plated Through Hole - 2mm&lt;/h3&gt;
+&lt;p&gt;Specifications:
+&lt;ul&gt;&lt;li&gt;Pin count:1&lt;/li&gt;
+&lt;/ul&gt;&lt;/p&gt;
+&lt;p&gt;Example device(s):
+&lt;ul&gt;&lt;li&gt;CONN_01&lt;/li&gt;
+&lt;/ul&gt;&lt;/p&gt;</description>
+<pad name="1" x="0" y="0" drill="2" diameter="3.302" rot="R90"/>
+<text x="-1.651" y="1.778" size="0.6096" layer="25" font="vector" ratio="20">&gt;NAME</text>
+<text x="-1.651" y="-2.413" size="0.6096" layer="27" font="vector" ratio="20">&gt;VALUE</text>
+</package>
 </packages>
 <packages3d>
 <package3d name="1X01" urn="urn:adsk.eagle:package:38028/1" type="box" library_version="1">
@@ -1210,6 +1222,18 @@ CONN_10
 </description>
 <packageinstances>
 <packageinstance name="1X10"/>
+</packageinstances>
+</package3d>
+<package3d name="1X01_2MM" urn="urn:adsk.eagle:package:38029/1" type="box" library_version="1">
+<description>Plated Through Hole - 2mm
+Specifications:
+Pin count:1
+
+Example device(s):
+CONN_01
+</description>
+<packageinstances>
+<packageinstance name="1X01_2MM"/>
 </packageinstances>
 </package3d>
 </packages3d>
@@ -1932,22 +1956,22 @@ design rules under a new name.</description>
 <attribute name="PROD_ID" value="CAP-08440" x="32.004" y="47.498" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" x="34.671" y="47.498" size="0.6096" layer="27" font="vector" ratio="20" rot="R90" align="top-center"/>
 </element>
-<element name="J20" library="SparkFun-Connectors" package="1X06_NO_SILK" value="" x="11.43" y="40.64" smashed="yes" rot="R270">
-<attribute name="NAME" x="12.827" y="41.91" size="0.6096" layer="25" font="vector" ratio="20" rot="R270"/>
-<attribute name="PROD_ID" value="CONN-08437" x="11.43" y="40.64" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="VALUE" x="9.398" y="41.91" size="0.6096" layer="27" font="vector" ratio="20" rot="R270"/>
+<element name="J20" library="SparkFun-Connectors" package="1X06_NO_SILK" value="" x="2.794" y="45.212" smashed="yes" rot="R270">
+<attribute name="NAME" x="4.191" y="46.482" size="0.6096" layer="25" font="vector" ratio="20" rot="R270"/>
+<attribute name="PROD_ID" value="CONN-08437" x="2.794" y="45.212" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="VALUE" x="0.762" y="46.482" size="0.6096" layer="27" font="vector" ratio="20" rot="R270"/>
 </element>
-<element name="J21" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" package="1X01" package3d_urn="urn:adsk.eagle:package:38028/1" value="" x="86.106" y="37.592" smashed="yes">
-<attribute name="NAME" x="84.836" y="38.989" size="0.6096" layer="25" font="vector" ratio="20"/>
-<attribute name="VALUE" x="84.836" y="36.068" size="0.6096" layer="27" font="vector" ratio="20" align="top-left"/>
+<element name="J21" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" package="1X01" package3d_urn="urn:adsk.eagle:package:38028/1" value="" x="92.456" y="37.084" smashed="yes">
+<attribute name="NAME" x="91.186" y="38.481" size="0.6096" layer="25" font="vector" ratio="20"/>
+<attribute name="VALUE" x="91.186" y="35.56" size="0.6096" layer="27" font="vector" ratio="20" align="top-left"/>
 </element>
 <element name="J22" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" package="1X01" package3d_urn="urn:adsk.eagle:package:38028/1" value="" x="2.54" y="50.8" smashed="yes">
 <attribute name="NAME" x="1.27" y="52.197" size="0.6096" layer="25" font="vector" ratio="20"/>
 <attribute name="VALUE" x="1.27" y="49.276" size="0.6096" layer="27" font="vector" ratio="20" align="top-left"/>
 </element>
-<element name="J24" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" package="1X01" package3d_urn="urn:adsk.eagle:package:38028/1" value="" x="2.54" y="38.354" smashed="yes">
-<attribute name="NAME" x="1.27" y="39.751" size="0.6096" layer="25" font="vector" ratio="20"/>
-<attribute name="VALUE" x="1.27" y="36.83" size="0.6096" layer="27" font="vector" ratio="20" align="top-left"/>
+<element name="J24" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" package="1X01" package3d_urn="urn:adsk.eagle:package:38028/1" value="" x="7.366" y="37.846" smashed="yes">
+<attribute name="NAME" x="6.096" y="39.243" size="0.6096" layer="25" font="vector" ratio="20"/>
+<attribute name="VALUE" x="6.096" y="36.322" size="0.6096" layer="27" font="vector" ratio="20" align="top-left"/>
 </element>
 <element name="J36" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" package="1X01" package3d_urn="urn:adsk.eagle:package:38028/1" value="" x="2.54" y="27.94" smashed="yes">
 <attribute name="NAME" x="1.27" y="29.337" size="0.6096" layer="25" font="vector" ratio="20"/>
@@ -1970,6 +1994,14 @@ design rules under a new name.</description>
 <attribute name="NAME" x="19.939" y="33.274" size="0.6096" layer="25" font="vector" ratio="20" rot="R270"/>
 <attribute name="PROD_ID" value="XXX-00000" x="18.542" y="32.004" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" x="16.51" y="33.274" size="0.6096" layer="27" font="vector" ratio="20" rot="R270"/>
+</element>
+<element name="J44" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" package="1X01_2MM" package3d_urn="urn:adsk.eagle:package:38029/1" value="" x="6.096" y="70.104" smashed="yes">
+<attribute name="NAME" x="4.445" y="71.882" size="0.6096" layer="25" font="vector" ratio="20"/>
+<attribute name="VALUE" x="4.445" y="67.691" size="0.6096" layer="27" font="vector" ratio="20"/>
+</element>
+<element name="J45" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" package="1X01_2MM" package3d_urn="urn:adsk.eagle:package:38029/1" value="" x="93.726" y="71.374" smashed="yes">
+<attribute name="NAME" x="92.075" y="73.152" size="0.6096" layer="25" font="vector" ratio="20"/>
+<attribute name="VALUE" x="92.075" y="68.961" size="0.6096" layer="27" font="vector" ratio="20"/>
 </element>
 </elements>
 <signals>
@@ -2137,6 +2169,8 @@ design rules under a new name.</description>
 <contactref element="J1" pad="2"/>
 <contactref element="S3" pad="1"/>
 <contactref element="S4" pad="1"/>
+<contactref element="J45" pad="1"/>
+<wire x1="90.424" y1="71.374" x2="93.726" y2="71.374" width="0" layer="19" extent="1-1"/>
 <wire x1="72.9996" y1="67.5132" x2="90.424" y2="71.374" width="0" layer="19" extent="1-1"/>
 <wire x1="63.5" y1="66.04" x2="72.9996" y2="67.5132" width="0" layer="19" extent="1-1"/>
 <wire x1="55.88" y1="60.96" x2="63.5" y2="66.04" width="0" layer="19" extent="1-1"/>
@@ -2255,8 +2289,8 @@ design rules under a new name.</description>
 <contactref element="J21" pad="1"/>
 <contactref element="J41" pad="1"/>
 <contactref element="J43" pad="3"/>
-<wire x1="86.106" y1="37.592" x2="96.52" y2="43.942" width="0" layer="19" extent="1-1"/>
-<wire x1="69.85" y1="49.53" x2="86.106" y2="37.592" width="0" layer="19" extent="1-1"/>
+<wire x1="92.456" y1="37.084" x2="96.52" y2="43.942" width="0" layer="19" extent="1-1"/>
+<wire x1="69.85" y1="49.53" x2="92.456" y2="37.084" width="0" layer="19" extent="1-1"/>
 <wire x1="36.83" y1="41.91" x2="69.85" y2="49.53" width="0" layer="19" extent="1-1"/>
 <wire x1="36.83" y1="39.37" x2="36.83" y2="41.91" width="0" layer="19" extent="1-1"/>
 <wire x1="36.83" y1="36.83" x2="36.83" y2="39.37" width="0" layer="19" extent="1-1"/>
@@ -2269,9 +2303,9 @@ design rules under a new name.</description>
 <wire x1="27.94" y1="26.924" x2="36.83" y2="29.21" width="0" layer="19" extent="1-1"/>
 <wire x1="24.892" y1="26.924" x2="27.94" y2="26.924" width="0" layer="19" extent="1-1"/>
 <wire x1="21.844" y1="26.924" x2="24.892" y2="26.924" width="0" layer="19" extent="1-1"/>
-<wire x1="11.43" y1="27.94" x2="21.844" y2="26.924" width="0" layer="19" extent="1-1"/>
-<wire x1="11.43" y1="33.02" x2="11.43" y2="27.94" width="0" layer="19" extent="1-1"/>
-<wire x1="18.542" y1="26.924" x2="11.43" y2="27.94" width="0" layer="19" extent="1-1"/>
+<wire x1="18.542" y1="26.924" x2="21.844" y2="26.924" width="0" layer="19" extent="1-1"/>
+<wire x1="2.794" y1="37.592" x2="16.002" y2="46.99" width="0" layer="19" extent="1-1"/>
+<wire x1="2.794" y1="32.512" x2="2.794" y2="37.592" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="VCC_B">
 <contactref element="J15" pad="1"/>
@@ -2330,7 +2364,7 @@ design rules under a new name.</description>
 <contactref element="J36" pad="1"/>
 <wire x1="47.498" y1="50.038" x2="52.07" y2="49.53" width="0" layer="19" extent="1-1"/>
 <wire x1="47.498" y1="47.498" x2="47.498" y2="50.038" width="0" layer="19" extent="1-1"/>
-<wire x1="32.004" y1="48.748" x2="47.498" y2="47.498" width="0" layer="19" extent="1-1"/>
+<wire x1="32.004" y1="48.748" x2="47.498" y2="50.038" width="0" layer="19" extent="1-1"/>
 <wire x1="24.892" y1="48.768" x2="32.004" y2="48.748" width="0" layer="19" extent="1-1"/>
 <wire x1="2.54" y1="27.94" x2="24.892" y2="48.768" width="0" layer="19" extent="1-1"/>
 </signal>
@@ -2355,21 +2389,21 @@ design rules under a new name.</description>
 <contactref element="J43" pad="1"/>
 <wire x1="41.91" y1="36.83" x2="62.23" y2="26.67" width="0" layer="19" extent="1-1"/>
 <wire x1="18.542" y1="32.004" x2="41.91" y2="36.83" width="0" layer="19" extent="1-1"/>
-<wire x1="11.43" y1="38.1" x2="18.542" y2="32.004" width="0" layer="19" extent="1-1"/>
+<wire x1="2.794" y1="42.672" x2="18.542" y2="32.004" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="GPIO14_B">
 <contactref element="J12" pad="4"/>
 <contactref element="J15" pad="6"/>
 <contactref element="J20" pad="1"/>
 <wire x1="41.91" y1="34.29" x2="64.77" y2="26.67" width="0" layer="19" extent="1-1"/>
-<wire x1="11.43" y1="40.64" x2="41.91" y2="34.29" width="0" layer="19" extent="1-1"/>
+<wire x1="2.794" y1="45.212" x2="41.91" y2="34.29" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="GPIO02_B">
 <contactref element="J15" pad="7"/>
 <contactref element="J12" pad="5"/>
 <contactref element="J20" pad="5"/>
 <wire x1="41.91" y1="31.75" x2="67.31" y2="26.67" width="0" layer="19" extent="1-1"/>
-<wire x1="11.43" y1="30.48" x2="41.91" y2="31.75" width="0" layer="19" extent="1-1"/>
+<wire x1="2.794" y1="35.052" x2="41.91" y2="31.75" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="GPIO04_B">
 <contactref element="J15" pad="8"/>
@@ -2389,9 +2423,9 @@ design rules under a new name.</description>
 <wire x1="24.892" y1="29.464" x2="27.94" y2="29.464" width="0" layer="19" extent="1-1"/>
 <wire x1="21.844" y1="29.464" x2="24.892" y2="29.464" width="0" layer="19" extent="1-1"/>
 <wire x1="18.542" y1="29.464" x2="21.844" y2="29.464" width="0" layer="19" extent="1-1"/>
-<wire x1="11.43" y1="35.56" x2="18.542" y2="29.464" width="0" layer="19" extent="1-1"/>
-<wire x1="16.002" y1="44.45" x2="11.43" y2="35.56" width="0" layer="19" extent="1-1"/>
+<wire x1="16.002" y1="44.45" x2="18.542" y2="29.464" width="0" layer="19" extent="1-1"/>
 <wire x1="24.892" y1="51.308" x2="16.002" y2="44.45" width="0" layer="19" extent="1-1"/>
+<wire x1="2.794" y1="40.132" x2="16.002" y2="44.45" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="D4_D">
 <contactref element="JP4" pad="7"/>
@@ -2406,12 +2440,14 @@ design rules under a new name.</description>
 <signal name="BATT3.3V_B">
 <contactref element="J24" pad="1"/>
 <contactref element="J22" pad="1"/>
-<wire x1="2.54" y1="38.354" x2="2.54" y2="50.8" width="0" layer="19" extent="1-1"/>
+<wire x1="7.366" y1="37.846" x2="2.54" y2="50.8" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="BATT_3V3_D">
 <contactref element="J39" pad="1"/>
 <contactref element="J38" pad="1"/>
-<wire x1="9.652" y1="69.85" x2="8.636" y2="82.042" width="0" layer="19" extent="1-1"/>
+<contactref element="J44" pad="1"/>
+<wire x1="6.096" y1="70.104" x2="8.636" y2="82.042" width="0" layer="19" extent="1-1"/>
+<wire x1="9.652" y1="69.85" x2="6.096" y2="70.104" width="0" layer="19" extent="1-1"/>
 </signal>
 </signals>
 <mfgpreviewcolors>
