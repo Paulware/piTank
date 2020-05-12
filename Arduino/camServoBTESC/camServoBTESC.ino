@@ -95,6 +95,8 @@ void setup() {
   }
 
 // TODO: Use pin 13 and 14 for something? 
+pinMode (13,OUTPUT);
+pinMode (14,OUTPUT);
 /*
 #if defined(CAMERA_MODEL_ESP_EYE)
   pinMode(13, INPUT_PULLUP);
@@ -162,11 +164,13 @@ void loop() {
         if (leftValue < 120) { 
           leftValue = leftValue + 5;
         }
+        digitalWrite (13,1);
         Serial.print ( "Left +" );
      } else if (ch == 'l') {
         if (leftValue > 90) { 
           leftValue = leftValue - 5;
         }
+        digitalWrite (13,0);
         Serial.print ( "Left -" );  
      } else if (ch == 'S') { 
         if (leftValue > 105) { 
@@ -181,10 +185,12 @@ void loop() {
         if (rightValue < 120) { 
           rightValue = rightValue + 5;
         }
+        digitalWrite (14,1);
      } else if (ch == 'r') {
         if (rightValue > 90) { 
           rightValue = rightValue - 5;
         }
+        digitalWrite (14,0);
      } else if (ch == 's') {
         if (rightValue < 105) { 
            rightValue = rightValue + 5; 
