@@ -14930,6 +14930,7 @@ http://www.kemet.com/Lists/ProductCatalog/Attachments/254/KEM_T2005_T491.pdf</de
 <part name="J45" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" deviceset="CONN_01" device="PTH_2MM" package3d_urn="urn:adsk.eagle:package:38029/1"/>
 <part name="J46" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" deviceset="CONN_01" device="PTH_2MM" package3d_urn="urn:adsk.eagle:package:38029/1"/>
 <part name="J47" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" deviceset="CONN_01" device="PTH_2MM" package3d_urn="urn:adsk.eagle:package:38029/1"/>
+<part name="J48" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" deviceset="CONN_04" device="" package3d_urn="urn:adsk.eagle:package:38085/1"/>
 </parts>
 <sheets>
 <sheet>
@@ -15247,6 +15248,10 @@ http://www.kemet.com/Lists/ProductCatalog/Attachments/254/KEM_T2005_T491.pdf</de
 <instance part="J47" gate="G$1" x="200.66" y="265.43" smashed="yes">
 <attribute name="VALUE" x="198.12" y="260.604" size="1.778" layer="96" font="vector"/>
 <attribute name="NAME" x="198.12" y="268.478" size="1.778" layer="95" font="vector"/>
+</instance>
+<instance part="J48" gate="G$1" x="321.31" y="408.94" smashed="yes" rot="R90">
+<attribute name="VALUE" x="328.676" y="403.86" size="1.778" layer="96" font="vector" rot="R90"/>
+<attribute name="NAME" x="313.182" y="403.86" size="1.778" layer="95" font="vector" rot="R90"/>
 </instance>
 </instances>
 <busses>
@@ -15705,12 +15710,22 @@ http://www.kemet.com/Lists/ProductCatalog/Attachments/254/KEM_T2005_T491.pdf</de
 <wire x1="260.35" y1="411.48" x2="260.35" y2="417.83" width="0.1524" layer="91"/>
 <label x="261.62" y="416.56" size="1.778" layer="95" rot="R90"/>
 </segment>
+<segment>
+<pinref part="J48" gate="G$1" pin="2"/>
+<wire x1="321.31" y1="414.02" x2="321.31" y2="421.64" width="0.1524" layer="91"/>
+<label x="321.31" y="421.64" size="1.778" layer="95" rot="R90"/>
+</segment>
 </net>
 <net name="D10_D" class="0">
 <segment>
 <pinref part="JP4" gate="G$1" pin="13"/>
 <wire x1="248.92" y1="367.03" x2="248.92" y2="377.19" width="0.1524" layer="91"/>
 <label x="248.92" y="377.19" size="1.778" layer="95" rot="R270"/>
+</segment>
+<segment>
+<pinref part="J48" gate="G$1" pin="1"/>
+<wire x1="323.85" y1="414.02" x2="323.85" y2="421.64" width="0.1524" layer="91"/>
+<label x="323.85" y="421.64" size="1.778" layer="95" rot="R90"/>
 </segment>
 </net>
 <net name="D9_D" class="0">
@@ -15733,12 +15748,22 @@ http://www.kemet.com/Lists/ProductCatalog/Attachments/254/KEM_T2005_T491.pdf</de
 <wire x1="246.38" y1="367.03" x2="246.38" y2="377.19" width="0.1524" layer="91"/>
 <label x="246.38" y="377.19" size="1.778" layer="95" rot="R270"/>
 </segment>
+<segment>
+<pinref part="J48" gate="G$1" pin="3"/>
+<wire x1="318.77" y1="414.02" x2="318.77" y2="421.64" width="0.1524" layer="91"/>
+<label x="318.77" y="421.64" size="1.778" layer="95" rot="R90"/>
+</segment>
 </net>
 <net name="D12_D" class="0">
 <segment>
 <pinref part="JP4" gate="G$1" pin="15"/>
 <wire x1="243.84" y1="367.03" x2="243.84" y2="377.19" width="0.1524" layer="91"/>
 <label x="243.84" y="377.19" size="1.778" layer="95" rot="R270"/>
+</segment>
+<segment>
+<pinref part="J48" gate="G$1" pin="4"/>
+<wire x1="316.23" y1="414.02" x2="316.23" y2="421.64" width="0.1524" layer="91"/>
+<label x="316.23" y="421.64" size="1.778" layer="95" rot="R90"/>
 </segment>
 </net>
 <net name="A1_D" class="0">
@@ -16091,11 +16116,6 @@ http://www.kemet.com/Lists/ProductCatalog/Attachments/254/KEM_T2005_T491.pdf</de
 <wire x1="107.95" y1="292.1" x2="96.52" y2="292.1" width="0.1524" layer="91"/>
 <label x="96.52" y="292.1" size="1.778" layer="95"/>
 </segment>
-<segment>
-<pinref part="J16" gate="J$1" pin="3"/>
-<wire x1="59.69" y1="259.08" x2="63.5" y2="259.08" width="0.1524" layer="91"/>
-<label x="63.5" y="259.08" size="1.778" layer="95"/>
-</segment>
 </net>
 <net name="3.3V_B" class="0">
 <segment>
@@ -16217,6 +16237,11 @@ http://www.kemet.com/Lists/ProductCatalog/Attachments/254/KEM_T2005_T491.pdf</de
 <pinref part="J20" gate="G$1" pin="5"/>
 <wire x1="16.51" y1="284.48" x2="3.81" y2="284.48" width="0.1524" layer="91"/>
 <label x="3.81" y="284.48" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="J16" gate="J$1" pin="3"/>
+<wire x1="59.69" y1="259.08" x2="63.5" y2="259.08" width="0.1524" layer="91"/>
+<label x="63.5" y="259.08" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="GPIO04_B" class="0">

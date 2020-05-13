@@ -40,6 +40,7 @@ void readLeftRight() {
     } else {
        value = 'U';
     }
+    last5 = val;
   }
   leftRightTurret = value;    
 }
@@ -142,9 +143,9 @@ void loop () {
   if (val3 != lastD3) {
     lastD3 = val3;
     if (val3 == 0) { 
-       upDownTurret = 'V';
+       fire = 'F';
     } else {
-       upDownTurret = 'u';
+       fire = 'f';
     }
     changed = true;
   }

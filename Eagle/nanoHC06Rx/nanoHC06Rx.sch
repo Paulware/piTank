@@ -13843,6 +13843,9 @@ diameter 3.5 mm, horizontal, grid 15.24 mm</description>
 <part name="D5" library="diode" library_urn="urn:adsk.eagle:library:210" deviceset="1N5333" device="" package3d_urn="urn:adsk.eagle:package:43351/1"/>
 <part name="D6" library="diode" library_urn="urn:adsk.eagle:library:210" deviceset="1N5333" device="" package3d_urn="urn:adsk.eagle:package:43351/1"/>
 <part name="J21" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" deviceset="CONN_04" device="" package3d_urn="urn:adsk.eagle:package:38085/1"/>
+<part name="J20" library="SparkFun-Connectors" deviceset="CONN_03" device="" value="Relay"/>
+<part name="GND8" library="SparkFun" deviceset="GND" device=""/>
+<part name="P+4" library="SparkFun" deviceset="VCC" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -14122,7 +14125,7 @@ diameter 3.5 mm, horizontal, grid 15.24 mm</description>
 <attribute name="VALUE" x="-13.462" y="259.969" size="1.778" layer="96" rot="R180"/>
 </instance>
 <instance part="D5" gate="1" x="21.59" y="157.48" smashed="yes">
-<attribute name="NAME" x="19.812" y="159.385" size="1.778" layer="95"/>
+<attribute name="NAME" x="19.812" y="156.845" size="1.778" layer="95"/>
 <attribute name="VALUE" x="19.812" y="154.051" size="1.778" layer="96"/>
 </instance>
 <instance part="D6" gate="1" x="46.99" y="157.48" smashed="yes" rot="R180">
@@ -14132,6 +14135,16 @@ diameter 3.5 mm, horizontal, grid 15.24 mm</description>
 <instance part="J21" gate="G$1" x="59.69" y="298.45" smashed="yes">
 <attribute name="VALUE" x="54.61" y="291.084" size="1.778" layer="96" font="vector"/>
 <attribute name="NAME" x="54.61" y="306.578" size="1.778" layer="95" font="vector"/>
+</instance>
+<instance part="J20" gate="J$1" x="85.09" y="153.67" smashed="yes" rot="R90">
+<attribute name="VALUE" x="92.456" y="151.13" size="1.778" layer="96" font="vector" rot="R90"/>
+<attribute name="NAME" x="79.502" y="151.13" size="1.778" layer="95" font="vector" rot="R90"/>
+</instance>
+<instance part="GND8" gate="1" x="80.01" y="165.1" smashed="yes" rot="R270">
+<attribute name="VALUE" x="77.47" y="167.64" size="1.778" layer="96" rot="R270"/>
+</instance>
+<instance part="P+4" gate="1" x="85.09" y="168.91" smashed="yes">
+<attribute name="VALUE" x="84.074" y="172.466" size="1.778" layer="96"/>
 </instance>
 </instances>
 <busses>
@@ -14197,6 +14210,11 @@ diameter 3.5 mm, horizontal, grid 15.24 mm</description>
 <pinref part="J6" gate="G$1" pin="2"/>
 <pinref part="GND7" gate="1" pin="GND"/>
 <wire x1="160.02" y1="196.85" x2="163.83" y2="196.85" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="J20" gate="J$1" pin="3"/>
+<pinref part="GND8" gate="1" pin="GND"/>
+<wire x1="82.55" y1="165.1" x2="82.55" y2="161.29" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="D3" class="0">
@@ -14328,12 +14346,22 @@ diameter 3.5 mm, horizontal, grid 15.24 mm</description>
 <pinref part="P+2" gate="1" pin="VCC"/>
 <wire x1="41.91" y1="157.48" x2="44.45" y2="157.48" width="0.1524" layer="91"/>
 </segment>
+<segment>
+<pinref part="J20" gate="J$1" pin="2"/>
+<pinref part="P+4" gate="1" pin="VCC"/>
+<wire x1="85.09" y1="168.91" x2="85.09" y2="161.29" width="0.1524" layer="91"/>
+</segment>
 </net>
 <net name="D4" class="0">
 <segment>
 <pinref part="JP5" gate="G$1" pin="7"/>
 <wire x1="165.1" y1="156.21" x2="158.75" y2="156.21" width="0.1524" layer="91"/>
 <label x="158.75" y="156.21" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="J3" gate="G$1" pin="1"/>
+<wire x1="82.55" y1="181.61" x2="86.36" y2="181.61" width="0.1524" layer="91"/>
+<label x="86.36" y="181.61" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="D1" class="0">
@@ -14352,7 +14380,7 @@ diameter 3.5 mm, horizontal, grid 15.24 mm</description>
 <segment>
 <pinref part="J3" gate="G$1" pin="2"/>
 <wire x1="82.55" y1="184.15" x2="88.9" y2="184.15" width="0.1524" layer="91"/>
-<label x="92.71" y="184.15" size="1.778" layer="95"/>
+<label x="86.36" y="184.15" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="D2" class="0">
@@ -14365,6 +14393,11 @@ diameter 3.5 mm, horizontal, grid 15.24 mm</description>
 <pinref part="J14" gate="J$1" pin="1"/>
 <wire x1="1.27" y1="147.32" x2="5.08" y2="147.32" width="0.1524" layer="91"/>
 <label x="5.08" y="147.32" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="J20" gate="J$1" pin="1"/>
+<wire x1="87.63" y1="161.29" x2="91.44" y2="161.29" width="0.1524" layer="91"/>
+<label x="91.44" y="161.29" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="D12" class="0">
