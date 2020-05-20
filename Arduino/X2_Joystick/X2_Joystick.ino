@@ -13,6 +13,12 @@ void setup () {
   pinMode (3,INPUT_PULLUP);
   pinMode (4,INPUT_PULLUP);
   pinMode (5,INPUT_PULLUP);
+  pinMode (10,OUTPUT);
+  digitalWrite (10,1); // Red
+  pinMode (11,OUTPUT);
+  digitalWrite (11,0); // Green
+  pinMode (12,OUTPUT);
+  digitalWrite (12,1); // Blue
   Serial.begin (9600);
   txTimeout = 1;
 }

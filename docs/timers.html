@@ -1,0 +1,31 @@
+<h1>What is a timer?</h1>
+<pre>
+A timer or to be more precise a timer / counter is a piece of hardware builtin the Arduino controller  (other controllers have timer hardware, too). It is like a clock, and can be used to measure time events.
+The timer can be programmed by some special registers. You can configure the prescaler for the timer, or the mode of operation and many other things.
+The controller of the Arduino is the Atmel AVR ATmega168 or the ATmega328. These chips are pin compatible and only differ in the size of internal memory. Both have 3 timers, called timer0, timer1 and timer2. Timer0 and timer2 are 8bit timer, where timer1 is a 16bit timer. The most important difference  between 8bit and 16bit timer is the timer resolution. 8bits means 256 values where 16bit means 65536 values for higher resolution.
+The controller for the Arduino Mega series is the Atmel AVR ATmega1280 or the ATmega2560.  Also identical only differs in memory size. These controllers have 6 timers. Timer 0, timer1 and timer2 are identical to the ATmega168/328. The timer3, timer4 and timer5 are all 16bit timers, similar to timer1.
+All timers depends on the system clock of your Arduino system. Normally the system clock is 16MHz, but for the Arduino Pro 3,3V it is 8Mhz. So be careful when writing your own timer functions.
+The timer hardware can be configured with some special timer registers. In the Arduino firmware all timers were configured to a 1kHz frequency and interrupts are gerally enabled.
+
+Timer0:
+Timer0 is a 8bit timer.
+In the Arduino world timer0 is been used for the timer functions, like delay() 591, millis() 1.3k and micros() 593. If you change timer0 registers, this may influence the Arduino timer function. So you should know what you are doing.
+
+Timer1:
+Timer1 is a 16bit timer.
+In the Arduino world the Servo library 942 uses timer1 on Arduino Uno (timer5 on Arduino Mega).
+
+Timer2:
+Timer2 is a 8bit timer like timer0.
+In the Arduino work the tone() 771 function uses timer2.
+
+Timer3, Timer4, Timer5:
+Timer 3,4,5 are only available on Arduino Mega boards. These timers are all 16bit timers.
+</pre>
+<h2>Timer Conflict Resolution</h2>
+<ul>
+  <li>Alternate servo library that uses timer2: <a href="https://github.com/nabontra/ServoTimer2">here</a></li>
+  <li>Alternate servo library that does not use timers: <a href="https://playground.arduino.cc/ComponentLib/Servo/">here</a></li>
+  <li>Alternate software serial library: <a href="https://www.pjrc.com/teensy/td_libs_AltSoftSerial.html">here</a></li>
+</ul>
+For more info: <a href="https://www.robotshop.com/community/forum/t/arduino-101-timers-and-interrupts/13072">https://www.robotshop.com/community/forum/t/arduino-101-timers-and-interrupts/13072</a> 
