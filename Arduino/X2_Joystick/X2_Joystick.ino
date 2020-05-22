@@ -7,19 +7,33 @@ char fire = 'f';
 unsigned long txTimeout = 0;
 bool changed;
 
+void red() {
+  digitalWrite (11,1); // Green
+  digitalWrite (12,1); // Blue 
+  digitalWrite (10,0); // Red
+}
+void blue() {
+  digitalWrite (11,1); // Green
+  digitalWrite (10,1); // Red
+  digitalWrite (12,0); // Blue 
+}
+void green() {
+  digitalWrite (12,1); // Blue 
+  digitalWrite (10,1); // Red
+  digitalWrite (11,0); // Green
+}
 void setup () {
   pinMode (6,INPUT_PULLUP);  
   pinMode (2,INPUT_PULLUP);
   pinMode (3,INPUT_PULLUP);
   pinMode (4,INPUT_PULLUP);
   pinMode (5,INPUT_PULLUP);
+  
   pinMode (10,OUTPUT);
-  digitalWrite (10,1); // Red
   pinMode (11,OUTPUT);
-  digitalWrite (11,0); // Green
   pinMode (12,OUTPUT);
-  digitalWrite (12,1); // Blue
   Serial.begin (9600);
+  green();
   txTimeout = 1;
 }
 
@@ -33,6 +47,7 @@ void readLeftRight() {
   if (val != last4) { 
     if (val == 0) {
        value = 'T'; 
+       green();
     } else {
        value = 'U';
     }
@@ -43,6 +58,7 @@ void readLeftRight() {
   if (val != last5) {
     if (val == 0) {
        value = 't';
+       blue();
     } else {
        value = 'U';
     }
@@ -96,11 +112,13 @@ void readJoystick() {
      case 'L':
      case 'S':
         leftSide = returnValue;
+        green();
         break;
     
      case 'r':
      case 'R':
      case 's':
+        blue();
         rightSide = returnValue;
         break;
      default:
@@ -130,6 +148,7 @@ void loop () {
     lastD6 = val6;
     if (val6 == 0) { 
        fire = 'F';
+       red();
     } else { 
        fire = 'f';
     }
@@ -140,6 +159,7 @@ void loop () {
     lastD2 = val2;
     if (val2 == 0) { 
       upDownTurret = 'V';
+      blue();
     } else {
       upDownTurret = 'u';
     }
@@ -150,6 +170,7 @@ void loop () {
     lastD3 = val3;
     if (val3 == 0) { 
        fire = 'F';
+       red();
     } else {
        fire = 'f';
     }

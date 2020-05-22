@@ -1,0 +1,13 @@
+Partlist exported from C:/piTank/Eagle/JDY-40 Rx/JDY-40 Rx.sch at 5/22/2020 2:47 PM
+
+Qty Value   Device                           Package                 Parts  Description                                                                                                      POPULARITY PROD_ID    VALUE
+2           CONN_01                          1X01                    J4, J5 Single connection point. Often used as Generic Header-pin footprint for 0.1 inch spaced/style header connections                            
+2           CONN_02                          1X02                    J6, J8 Multi connection point. Often used as Generic Header-pin footprint for 0.1 inch spaced/style header connections                             
+2           CONN_03                          1X03                    J2, J3 Multi connection point. Often used as Generic Header-pin footprint for 0.1 inch spaced/style header connections                             
+1           CONN_04                          1X04                    J7     Multi connection point. Often used as Generic Header-pin footprint for 0.1 inch spaced/style header connections             CONN-09696      
+1           CONN_08"                         1X08                    J1     Multi connection point. Often used as Generic Header-pin footprint for 0.1 inch spaced/style header connections             CONN-08438      
+1   100uF   100UF-POLAR-RADIAL-2.5MM-25V-20% CPOL-RADIAL-2.5MM-6.5MM C1     100µF polarized capacitors                                                                                                  CAP-08439  100uF
+1   1N821   1N821                            DO35Z10                 D1     Reference DIODE                                                                                                  1                          
+1   1X6     1X6                              1X6                     U$1                                                                                                                                                
+1   1X8     1X8                              1X8                     U$2                                                                                                                                                
+1   LD117AV LD117AV                          TO220L1                 IC1    Low drop fixed and adjustable positive voltage regulators 1 A                                                    0                          

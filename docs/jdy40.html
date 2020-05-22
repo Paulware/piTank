@@ -10,10 +10,17 @@ This device has a 120M range and is configured via AT commands
 <li>AT+RFC (Show the channel 1..128</li>
 <li>AT+POWE (Transmit power) (0..9) 
 </ul>
+<h2>Purchasing</h2>
+    This item is available on ebay for less than $2.00.   Search for "10Pcs JDY-40"
 <h2>Reference</h2>
    <a href="pdf/JDY40.pdf">Users Manual</a>
 <h2>Notes:</h2>
    The UwTerminalX (See setup directory) is the only known terminal program that can interface with this device <br>
    I used a cp2102 configured for 3.3V output<br>
    Here is a snapshot of a working configuration:<br>
+   Don't use nano 3.3V to power device(not enough power)<br>
+   DVID and RFID should match for two units to communicate<br>
+   Can use TX of Nano to transmit to other device <br>
+   Can use Diode to reduce voltage of 18650 within range<br>
+   Tx pin actually receives data, if only receiving, ground rx pin<br>
    <img src="images/uxTerminalConfig.jpg">
