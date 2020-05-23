@@ -1,1 +1,13 @@
 <H1>Intra-red tx, rx and pixel (health)</h1>
+<h2>Overview</h2>
+This component is an optional component that does inhibit or affect the other components if it is missing.
+It will allow the tank to fire a infra-red pulse, and will detect an infra-red pulse.
+
+<h2>Wiring</h2>
+5V, Gnd, Fire, Hit Detected
+<h2>Operation</h2>
+When the unit powers up the pixels health will be set to 4<br>
+When the fire line transitions from gnd to 5V, the unit will fire its infra-red.<br>
+When the unit detects an infra red hit, it will transition the Hit Detected line from gnd to 5V and back to Gnd, 100ms in between transitions<br>
+<H2>Layout</h2>
+<img src="images/irComponent.jpg">
