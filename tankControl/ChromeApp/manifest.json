@@ -1,0 +1,21 @@
+{
+   "name": "Tank Control",
+   "version": "0.1",
+   "manifest_version": 2,
+   "description": "Control a tank using UDP yo", 
+   "app": {
+    "background": {
+       "scripts": [ "main.js" ]
+    }
+   },
+   "icons": {
+       "128":"tankControl.ico",
+       "48":"tank48.ico"
+   },
+   "sockets": {
+      "udp": {
+        "send": ["*"],
+        "bind": ["*"]
+      }
+   }
+}

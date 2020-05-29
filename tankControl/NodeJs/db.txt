@@ -1,0 +1,4 @@
+Next Session|This will awesome session Dealing with cool stuff today|9/20/2015|12:14|23:51|true|true|
+Future Session|This will awesome session Dealing with cool stuff tomorrow|9/24/2015|12:14|23:51|false|true|
+Closer Session|This will awesome session closer to actual time|9/24/2015|12:13|23:51|true|false|
+Wednesday Sesion|The description for wednesday session|9/23/2015|00:15|9:15|true|false|

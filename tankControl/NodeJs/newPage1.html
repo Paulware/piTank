@@ -1,0 +1,33 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="flipclock.css">
+		<script src="jquery.min.js"></script>
+		<script src="flipclock.js"></script>		
+	</head>
+	<body>
+	<div class="clock" style="margin:2em;"></div>
+	<div class="message"></div>
+
+	<script type="text/javascript">
+    var clock;    
+    $(document).ready(function() {  
+       clock = $('.clock').FlipClock(5, {
+          clockFace: 'MinuteCounter',
+          autoStart: true,
+          countdown: true, 
+          callbacks: {
+             interval: function() {
+                var time = this.factory.getTime().time;                
+                if(time) {
+                  console.log('interval', time);
+                } else {
+                  alert ( 'run callback' );
+                } 
+             }
+          }
+       });
+    });
+	</script>
+	
+	</body>
+</html>
