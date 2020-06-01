@@ -5,7 +5,7 @@
    "description": "Control a tank using UDP yo", 
    "app": {
     "background": {
-       "scripts": [ "main.js" ]
+       "scripts": [ "main.js","background.js" ]
     }
    },
    "icons": {
