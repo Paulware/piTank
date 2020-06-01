@@ -1,25 +1,13 @@
 var socket;
 var socketInfo;
-
 document.addEventListener ('DOMContentLoaded', function () { 
    console.log ( 'Adding DOMContentLoaded Listener' );
    
    socket = chrome.sockets.udp;
    socket.create({}, function(_socketInfo) {
       socketInfo = _socketInfo;
-
-      bindAddress = '0.0.0.0';
-      socket.bind(socketInfo.socketId, bindAddress, 0, function(connectResult) {
-        connected = (connectResult == 0);
-
-        socket.onReceive.addListener(function(result) {
-          console.log ( 'onReceive.addListener: ' + result );
-          //if (callbacks.length > 0) {
-          //  callbacks.shift()(result);
-          //}
-        });
-
-        console.log ( 'callback(connected);' );
+      socket.bind(socketInfo.socketId, '0.0.0.0', 0, function(connectResult) {
+        chrome.sockets.udp.setBroadcast(socketInfo.socketId, true, function broadcastResult(result){});
       });
       
    });   
@@ -47,13 +35,9 @@ function sendData (command, parameter) {
   for (var i = 0; i < msg.length; i++) {
       data.push(msg.charCodeAt(i));
   }  
-  sendAddress = '10.3.141.255';
-  socket.send(socketInfo.socketId, new Uint8Array(data).buffer, sendAddress, 3333, function(sendResult) {   
-    //console.log ( 'Got a send result: ' + sendResult );
-    // callback(sendResult);
-  });  
+  sendAddress = '255.255.255.255';
+  socket.send(socketInfo.socketId, new Uint8Array(data).buffer, sendAddress, 3333, function(sendResult) {});  
 }
-
 function left() {
    sendData ( 'left'  );
 }
@@ -72,6 +56,3 @@ function stop() {
 function fire() {
    sendData ( 'fire' );
 }
-
-
-
