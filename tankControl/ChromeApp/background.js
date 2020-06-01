@@ -26,7 +26,8 @@ document.addEventListener ('DOMContentLoaded', function () {
    socket = chrome.sockets.udp;
    socket.create({}, function(_socketInfo) {
       socketInfo = _socketInfo;
-      socket.bind(socketInfo.socketId, '0.0.0.0', 0, function(connectResult) {
+      allLocalIpAddresses = '0.0.0.0'; 
+      socket.bind(socketInfo.socketId, allLocalIpAddresses, 0, function(connectResult) {
         chrome.sockets.udp.setBroadcast(socketInfo.socketId, true, function broadcastResult(result){});
       });
       
@@ -55,7 +56,7 @@ function sendData (msg) {
   for (var i = 0; i < msg.length; i++) {
       data.push(msg.charCodeAt(i));
   }  
-  sendAddress = '255.255.255.255';
+  sendAddress = '255.255.255.255'; // broadcast address
   socket.send(socketInfo.socketId, new Uint8Array(data).buffer, sendAddress, 3333, function(sendResult) {});  
 }
 function left() {
