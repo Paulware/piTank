@@ -1,0 +1,24 @@
+{
+    "Header": {
+        "Comment": "All values are metric (mm)",
+        "CreationDate": "2020-06-01T21:24:14Z",
+        "GenerationSoftware": {
+            "Application": "EAGLE",
+            "Vendor": "Autodesk",
+            "Version": "9.5.1"
+        },
+        "Part": "Single"
+    },
+    "Overall": {
+        "BoardThickness": 1.57,
+        "LayerNumber": 2,
+        "Name": {
+            "ProjectId": "wemosRx"
+        },
+        "Owner": "Paulware Paulware <paulware@hotmail.com>",
+        "Size": {
+            "X": 30.15,
+            "Y": 40.64
+        }
+    }
+}
