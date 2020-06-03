@@ -37,34 +37,18 @@
                 font-size: 2em;
             }
         </style>
-    </head>
-    <body>
-        <div class="buttons">
-            <div class="minus button">-</div>
-            <div class="value">?</div>
-            <div class="plus button">+</div>
-        </div>
-        <div class="state">
-            <span class="users">?</span> online
-        </div>
         <script>
-            var minus = document.querySelector('.minus'),
-                plus = document.querySelector('.plus'),
-                value = document.querySelector('.value'),
-                users = document.querySelector('.users'),
-                websocket = new WebSocket("ws://10.3.141.118:5678/");
+            var serverAddress = '10.13.7.79'
+            var websocket = new WebSocket("ws://" + serverAddress + ":5678/");
                 
-            minus.onclick = function (event) {
-                websocket.send(JSON.stringify({action: 'minus'}));
-            }
-            plus.onclick = function (event) {
-                websocket.send(JSON.stringify({action: 'plus'}));
-            }
             websocket.onmessage = function (event) {
+                users = document.querySelector('.users');
+                value = document.querySelector('.value');
+               
                 data = JSON.parse(event.data);
                 switch (data.type) {
                     case 'state':
-                        value.textContent = data.value;
+                        //value.textContent = data.value;
                         break;
                     case 'users':
                         users.textContent = (
@@ -76,9 +60,61 @@
                             "unsupported event", data);
                 }
             };
+            
+            document.addEventListener ('DOMContentLoaded', function () { 
+               console.log ( 'Adding mouse down/up Listeners' );
+               document.getElementById ("forward").addEventListener ("mousedown", forward);
+               document.getElementById ("forward").addEventListener ("mouseup", stop);
+               document.getElementById ("reverse").addEventListener ("mousedown", reverse);
+               document.getElementById ("reverse").addEventListener ("mouseup", stop);
+               document.getElementById ("left"   ).addEventListener ("mousedown", left);
+               document.getElementById ("left"   ).addEventListener ("mouseup", stop);
+               document.getElementById ("right"  ).addEventListener ("mousedown", right);
+               document.getElementById ("right"  ).addEventListener ("mouseup", stop);
+               document.getElementById ("fire"   ).addEventListener ("mousedown", fire);
+            });     
+
+            function sendData (msg) {
+              console.log ( 'sendData [' + msg + ']');
+              websocket.send(JSON.stringify({action: msg}));              
+            }
+            function left() {
+               sendData ('left');
+            }
+            function right(){
+               sendData ('right');
+            }
+            function forward () {
+               sendData ('forward');
+            }
+            function reverse() {
+               sendData ('reverse');
+            }
+            function stop() {
+               sendData ('stop');
+            }
+            function fire() {
+               sendData ('fire');
+            }       
         </script>
-        <Hr>
-        <h1>References</h1>
-        See <a href="https://websockets.readthedocs.io/en/stable/intro.html">https://websockets.readthedocs.io/en/stable/intro.html</a> for more info yo.
-    </body>
+      </head>
+    <body>
+      <div style="text-align:center">
+        <img src="images/forward.jpg" id="forward"> 
+        <br>
+        <img src="images/left.jpg" id="left"> 
+        <img src="images/right.jpg" id="right"> 
+        <br>
+        <img src="images/reverse.jpg" id="reverse">
+        <br>
+        <img src="images/fire.jpg" id="fire">
+      </div>
+   
+      <div class="state">
+        <span class="users">?</span> online
+      </div>
+      <Hr>
+      <h1>References</h1>
+      See <a href="https://websockets.readthedocs.io/en/stable/intro.html">https://websockets.readthedocs.io/en/stable/intro.html</a> for more info.
+   </body>
 </html>

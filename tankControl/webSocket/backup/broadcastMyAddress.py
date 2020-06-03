@@ -1,5 +1,4 @@
 import socket
-import sys
 
 def broadcastAddress(): 
    port = 3333
