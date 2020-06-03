@@ -1,9 +1,9 @@
 local SSID
 local Password
 local filename = "ssidPassword.txt"
-
 local timer1 = tmr.create()
 
+sensorAddress = nil
 command = ""
 ip = nil
 MAC = wifi.sta.getmac()
@@ -38,7 +38,6 @@ function joinNetwork()
       print ("?")
    else   
       print (ip) 
-      dofile ("sensor.lua") -- ready
    end
 end
 
@@ -85,9 +84,18 @@ end
 function startListening()
   -- Listen on udp port 3333 for a broadcast of server address
   srv=net.createServer(net.UDP)
-  srv:on("receive", function(connection, pl) 
-     command = pl     
-     print (pl)
+  srv:on("receive", function(connection, pl)
+     print("Command Received "..pl)
+     
+     -- Get server address
+     if string.sub (pl,0,6) == "server" then
+         print ("Server address received.") 
+         if serverAddress == nil then          
+            serverAddress = string.sub (pl, 8) 
+            print ("serverAddress:"..serverAddress )
+            dofile ("sensor.lua")
+         end
+     end
    end)
   srv:listen(3333) -- port == 3333
 end 
@@ -107,5 +115,6 @@ function initReceiver()
   wifi.setmode(wifi.STATION)
   loginNetwork()
 end 
--- startListening()
+
+startListening()
 print ("login if you are ready")
