@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>WebSocket demo</title>
+        <title>Tank Control Using WebSockets</title>
         <style type="text/css">
             body {
                 font-family: "Courier New", sans-serif;
@@ -38,28 +38,8 @@
             }
         </style>
         <script>
-            var serverAddress = '10.13.7.79'
-            var websocket = new WebSocket("ws://" + serverAddress + ":5678/");
-                
-            websocket.onmessage = function (event) {
-                users = document.querySelector('.users');
-                value = document.querySelector('.value');
-               
-                data = JSON.parse(event.data);
-                switch (data.type) {
-                    case 'state':
-                        //value.textContent = data.value;
-                        break;
-                    case 'users':
-                        users.textContent = (
-                            data.count.toString() + " user" +
-                            (data.count == 1 ? "" : "s"));
-                        break;
-                    default:
-                        console.error(
-                            "unsupported event", data);
-                }
-            };
+            var serverAddress; // = '10.13.7.79'
+            var websocket; // = new WebSocket("ws://" + serverAddress + ":5678/");
             
             document.addEventListener ('DOMContentLoaded', function () { 
                console.log ( 'Adding mouse down/up Listeners' );
@@ -72,7 +52,43 @@
                document.getElementById ("right"  ).addEventListener ("mousedown", right);
                document.getElementById ("right"  ).addEventListener ("mouseup", stop);
                document.getElementById ("fire"   ).addEventListener ("mousedown", fire);
+               document.getElementById ("connectToServer" ).addEventListener ("mousedown", serverConnect);
+               document.getElementById ("connectCamera" ).addEventListener ("mousedown", cameraConnect);
             });     
+            
+            function cameraConnect() {
+              var cameraFrame = document.getElementById ( 'cameraFrame')
+              var address = 'http://' + document.all.cameraAddress.value + ':81/stream';
+              console.log ( 'New Address: ' + address)
+              cameraFrame.src = address;
+            }
+            
+            function serverConnect () {
+               if (serverAddress == undefined) {
+                  serverAddress = document.all.ipAddress.value; // '10.13.7.79'
+                  websocket = new WebSocket("ws://" + serverAddress + ":5678/");
+                  
+                  websocket.onmessage = function (event) {
+                      users = document.querySelector('.users');
+                      value = document.querySelector('.value');
+                     
+                      data = JSON.parse(event.data);
+                      switch (data.type) {
+                          case 'state':
+                              //value.textContent = data.value;
+                              break;
+                          case 'users':
+                              users.textContent = (
+                                  data.count.toString() + " user" +
+                                  (data.count == 1 ? "" : "s"));
+                              break;
+                          default:
+                              console.error(
+                                  "unsupported event", data);
+                      }
+                  };                  
+               }
+            }
 
             function sendData (msg) {
               console.log ( 'sendData [' + msg + ']');
@@ -99,6 +115,8 @@
         </script>
       </head>
     <body>
+      Camera Ip Address: http://<input value="10.3.141.173" id="cameraAddress">:81/stream<input type="button" value="connect" id="connectCamera"><br>
+      <iframe src="http://10.3.141.173:81/stream" width="320px" height="240px" id="cameraFrame"></iframe>
       <div style="text-align:center">
         <img src="images/forward.jpg" id="forward"> 
         <br>
@@ -109,6 +127,7 @@
         <br>
         <img src="images/fire.jpg" id="fire">
       </div>
+      IpAddress: <input value='10.3.141.206' id="ipAddress">:5678<input type="button" value="connect" id="connectToServer">
    
       <div class="state">
         <span class="users">?</span> online

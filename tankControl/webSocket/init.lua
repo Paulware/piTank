@@ -3,7 +3,7 @@ local Password
 local filename = "ssidPassword.txt"
 local timer1 = tmr.create()
 
-sensorAddress = nil
+serverAddress = nil
 command = ""
 ip = nil
 MAC = wifi.sta.getmac()
@@ -117,4 +117,4 @@ function initReceiver()
 end 
 
 startListening()
-print ("login if you are ready")
+print ("joinNetwork if you are ready this will call sensor.lua")
