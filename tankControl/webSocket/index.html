@@ -36,6 +36,8 @@
             .state {
                 font-size: 2em;
             }
+
+            
         </style>
         <script>
             var serverAddress; // = '10.13.7.79'
@@ -115,25 +117,39 @@
         </script>
       </head>
     <body>
-      Camera Ip Address: http://<input value="10.3.141.173" id="cameraAddress">:81/stream<input type="button" value="connect" id="connectCamera"><br>
-      <iframe src="http://10.3.141.173:81/stream" width="320px" height="240px" id="cameraFrame"></iframe>
-      <div style="text-align:center">
-        <img src="images/forward.jpg" id="forward"> 
-        <br>
-        <img src="images/left.jpg" id="left"> 
-        <img src="images/right.jpg" id="right"> 
-        <br>
-        <img src="images/reverse.jpg" id="reverse">
-        <br>
-        <img src="images/fire.jpg" id="fire">
-      </div>
-      IpAddress: <input value='10.3.141.206' id="ipAddress">:5678<input type="button" value="connect" id="connectToServer">
-   
-      <div class="state">
-        <span class="users">?</span> online
-      </div>
-      <Hr>
-      <h1>References</h1>
-      See <a href="https://websockets.readthedocs.io/en/stable/intro.html">https://websockets.readthedocs.io/en/stable/intro.html</a> for more info.
+      <div style="float:center">
+      <p>
+      <hr>
+
+          <p>
+            Note: For best frame rate, use vga 640x480<br>
+            Camera Ip Address: http://<input value="10.3.141.173" id="cameraAddress">:81/stream<input type="button" value="connect" id="connectCamera"><br>
+           
+            Server Ip Address: <input value='10.3.141.206' id="ipAddress">:5678<input type="button" value="connect" id="connectToServer">
+         
+            <div class="state">
+              <span class="users">?</span> online
+            </div>
+            See <a href="https://websockets.readthedocs.io/en/stable/intro.html">https://websockets.readthedocs.io/en/stable/intro.html</a> for more info.
+            <hr>            
+       </div    
+      <div>
+          <div style="float:left">
+              <span>source list</span>
+              <iframe src="http://10.3.141.173:81/stream" width="640px" height="480px" id="cameraFrame"></iframe>     
+          </div>
+          <div style="float:center">
+              <img src="images/forward.jpg" id="forward" width="100px"> 
+              <br>
+              <img src="images/left.jpg" id="left" width="100px"> 
+              <img src="images/right.jpg" id="right" width="100px"> 
+              <br>
+              <img src="images/reverse.jpg" id="reverse" width="100px">
+              <br>
+              <img src="images/fire.jpg" id="fire" width="100px">
+          </div>
+      </div> 
+
+      
    </body>
 </html>
