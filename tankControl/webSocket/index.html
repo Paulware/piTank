@@ -45,6 +45,7 @@
             
             document.addEventListener ('DOMContentLoaded', function () { 
                console.log ( 'Adding mouse down/up Listeners' );
+               // Move tank
                document.getElementById ("forward").addEventListener ("mousedown", forward);
                document.getElementById ("forward").addEventListener ("mouseup", stop);
                document.getElementById ("reverse").addEventListener ("mousedown", reverse);
@@ -53,9 +54,19 @@
                document.getElementById ("left"   ).addEventListener ("mouseup", stop);
                document.getElementById ("right"  ).addEventListener ("mousedown", right);
                document.getElementById ("right"  ).addEventListener ("mouseup", stop);
-               document.getElementById ("fire"   ).addEventListener ("mousedown", fire);
-               document.getElementById ("connectToServer" ).addEventListener ("mousedown", serverConnect);
-               document.getElementById ("connectCamera" ).addEventListener ("mousedown", cameraConnect);
+               // Turret
+               document.getElementById ("leftTurret"  ).addEventListener ("mousedown", leftTurret);
+               document.getElementById ("leftTurret"  ).addEventListener ("mouseup",   stopTurret);
+               document.getElementById ("rightTurret" ).addEventListener ("mousedown", rightTurret);
+               document.getElementById ("rightTurret" ).addEventListener ("mouseup",   stopTurret);
+               document.getElementById ("upTurret"    ).addEventListener ("mousedown", upTurret);
+               document.getElementById ("upTurret"    ).addEventListener ("mouseup",   stopTurret);
+               document.getElementById ("downTurret"  ).addEventListener ("mousedown", downTurret);
+               document.getElementById ("downTurret"  ).addEventListener ("mouseup",   stopTurret);
+               document.getElementById ("fire"        ).addEventListener ("mouseup",   fire);
+               // Connections
+               document.getElementById ("connectToServer" ).addEventListener ("mouseup", serverConnect);
+               document.getElementById ("connectCamera"   ).addEventListener ("mouseup", cameraConnect);
             });     
             
             function cameraConnect() {
@@ -96,6 +107,21 @@
               console.log ( 'sendData [' + msg + ']');
               websocket.send(JSON.stringify({action: msg}));              
             }
+            function leftTurret() {
+               sendData ('left turret');
+            }            
+            function rightTurret() {
+               sendData ('right turret');
+            }            
+            function upTurret() {
+               sendData ('up turret');
+            }            
+            function downTurret() {
+               sendData ('down turret');
+            }            
+            function stopTurret() {
+               sendData ('stop turret');
+            }            
             function left() {
                sendData ('left');
             }
@@ -117,7 +143,7 @@
         </script>
       </head>
     <body>
-      <div style="float:center">
+      <div style="align:left">
       <p>
       <hr>
 
@@ -137,16 +163,27 @@
           <div style="float:left">
               <iframe src="http://192.168.0.231:81/stream" width="640px" height="480px" id="cameraFrame"></iframe>     
           </div>
-          <div style="float:center">
+          <div style="float:right;width:400px;">
+              <H1>Turret</H1>
+              <img src="images/forward.jpg" id="upTurret" width="100px"> 
+              <br>
+              <img src="images/left.jpg" id="leftTurret" width="100px"> 
+              <img src="images/right.jpg" id="rightTurret" width="100px"> 
+              <br>
+              <img src="images/reverse.jpg" id="downTurret" width="100px">
+              <br>
+              <img src="images/fire.jpg" id="fire" width="100px">
+          </div>
+          <div style="margin:0 auto">
+              <H1>Tank</H1>
               <img src="images/forward.jpg" id="forward" width="100px"> 
               <br>
               <img src="images/left.jpg" id="left" width="100px"> 
               <img src="images/right.jpg" id="right" width="100px"> 
               <br>
               <img src="images/reverse.jpg" id="reverse" width="100px">
-              <br>
-              <img src="images/fire.jpg" id="fire" width="100px">
           </div>
+          
       </div> 
 
       

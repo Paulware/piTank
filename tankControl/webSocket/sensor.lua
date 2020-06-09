@@ -14,24 +14,49 @@ ws:on("receive", function(_, msg, opcode)
      if i ~= nil then 
         print ("lr")   
      else
-        i,j = string.find (msg, "stop")
+        i,j = string.find (msg, "fire")
         if i ~= nil then
-           print ("Ss")
-        else 
-           i,j = string.find (msg, "right")
-           if i ~= nil then
-              print ("Lr")
-           else
-              i,j = string.find (msg, "left")
-              if i ~= nil then
-                 print ("lR")
-              else 
-                 i,j = string.find (msg, "fire")
-                 if i ~= nil then
-                    print ("F")
-                 end
-              end
-           end 
+           print ("F")
+        else
+           i,j = string.find (msg, "left turret")
+           if i ~= nil then 
+              print ("T")
+           else 
+              i,j = string.find (msg, "right turret")
+              if i ~= nil then 
+                 print ("t")
+              else
+                 i,j = string.find (msg, "up turret")
+                 if i ~= nil then 
+                    print ("V")
+                 else 
+                    i,j = string.find (msg, "down turret")
+                    if i ~= nil then 
+                       print ("V")
+                    else 
+                       i,j = string.find (msg, "stop turret")
+                       if i ~= nil then 
+                          print ("Uu")
+                       else 
+                          i,j = string.find (msg, "right")
+                          if i ~= nil then
+                             print ("Lr")
+                          else
+                             i,j = string.find (msg, "left")
+                             if i ~= nil then
+                                print ("lR")   
+                             else 
+                                i,j = string.find (msg, "stop")
+                                if i ~= nil then
+                                   print ("Ss")
+                                end                            
+                             end
+                          end                           
+                       end
+                    end 
+                 end 
+              end                        
+           end
         end 
      end      
   end 

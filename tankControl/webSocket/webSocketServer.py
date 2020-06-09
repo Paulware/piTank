@@ -68,7 +68,7 @@ async def counter(websocket, path):
                if 'action' in data:
                   action = data['action']
                   print ( 'got action: ' + str(action)) 
-                  if (action in ['left','right','forward','reverse','stop']):
+                  if (action in ['left','right','forward','reverse','stop','fire','left turret','right turret', 'up turret', 'down turret', 'stop turret']):
                      await asyncio.wait([user.send(action) for user in USERS])
             except Exception as ex: 
                print ( 'Not a json object: ' + message)
