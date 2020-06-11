@@ -1,5 +1,7 @@
-Partlist exported from C:/piTank/Eagle/wemosRx/wemosRx.sch at 6/1/2020 4:24 PM
+Partlist exported from C:/piTank/Eagle/wemosRx/wemosRx.sch at 6/10/2020 10:49 PM
 
-Qty Value Device      Package         Parts    Description 
-1         M04LONGPADS 1X04_LONGPADS@1 ALTCOMM  Header 4    
-2         M08LONGPADS 1X08_LONGPADS   JP3, JP5 Header 8    
+Qty Value     Device                           Package                 Parts    Description                                                   POPULARITY PROD_ID   VALUE
+1             M04LONGPADS                      1X04_LONGPADS@1         ALTCOMM  Header 4                                                                                
+2             M08LONGPADS                      1X08_LONGPADS           JP3, JP5 Header 8                                                                                
+1   100uF     100UF-POLAR-RADIAL-2.5MM-25V-20% CPOL-RADIAL-2.5MM-6.5MM C1       100µF polarized capacitors                                               CAP-08439 100uF
+1   LD117AV18 LD117AV18                        TO220L1                 IC1      Low drop fixed and adjustable positive voltage regulators 1 A 0                         

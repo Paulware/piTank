@@ -45,8 +45,7 @@ async def notify_users():
 
 
 async def register(websocket):
-    USERS.add(websocket)
-    
+    USERS.add(websocket)    
     print ('user registered'+str(websocket))
     await notify_users()
 
@@ -67,13 +66,22 @@ async def counter(websocket, path):
                #print ( 'got data: ' + str(data)) 
                if 'action' in data:
                   action = data['action']
-                  print ( 'got action: ' + str(action)) 
-                  if (action in ['left','right','forward','reverse','stop','fire','left turret','right turret', 'up turret', 'down turret', 'stop turret']):
-                     await asyncio.wait([user.send(action) for user in USERS])
+                  print ( 'got action: ' + str(action))
+                  if (action in ['left','right','forward','reverse','stop','fire','left turret','right turret', 'up turret', 'down turret', 'stop turret', 'start']):
+                     for user in USERS:
+                        print ( 'send action ' + action + ' to ' + str(user)) 
+                        await asyncio.wait([user.send(action)])
+               elif 'tank' in data:
+                  print ( 'This tank is joining the webserver: ' + str(data['tank']) ) 
             except Exception as ex: 
-               print ( 'Not a json object: ' + message)
+               print ( 'Not a json object: ' + message + ' ex: ' + str(ex) )
+    except Exception as ex:
+        print ( 'perhaps disconnected?' + str(ex) )  
     finally:
-        await unregister(websocket)
+        try: 
+            await unregister(websocket)
+        except Exception as ex:
+            print ( "Cannot unregister, perhaps it is disconnected yo" + str(ex)) 
         quit = True 
 
 def broadcastServerAddress(): 
@@ -84,6 +92,8 @@ def broadcastServerAddress():
          broadcastAddress ()
          startTime = time.time()
       time.sleep (1)         
+      
+   print ("broadcastServerAddress done quit: " + str(quit))
       
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         

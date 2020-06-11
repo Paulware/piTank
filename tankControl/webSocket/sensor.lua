@@ -2,7 +2,9 @@ print ( 'MAC:'..MAC)
 local ws = websocket.createClient()
 ws:on("connection", function(ws)
   print ( 'SsUu' )
-  ws:send ("Hello")
+  print ( 'SsUu' )
+  print ( 'SsUu' )
+  ws:send ("{\"tank\":\"Tiger\"}")
 end)
 ws:on("receive", function(_, msg, opcode)
   -- print('got message:', msg, opcode) -- opcode is 1 for text message, 2 for binary
@@ -49,6 +51,11 @@ ws:on("receive", function(_, msg, opcode)
                                 i,j = string.find (msg, "stop")
                                 if i ~= nil then
                                    print ("Ss")
+                                else
+                                   i,j = string.find (msg, "start")
+                                   if i~= nil then 
+                                     print ("SsUu")
+                                   end
                                 end                            
                              end
                           end                           

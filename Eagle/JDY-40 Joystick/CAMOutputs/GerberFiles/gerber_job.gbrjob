@@ -1,7 +1,7 @@
 {
     "Header": {
         "Comment": "All values are metric (mm)",
-        "CreationDate": "2020-06-11T03:49:01Z",
+        "CreationDate": "2020-06-09T20:48:56Z",
         "GenerationSoftware": {
             "Application": "EAGLE",
             "Vendor": "Autodesk",
@@ -13,12 +13,12 @@
         "BoardThickness": 1.57,
         "LayerNumber": 2,
         "Name": {
-            "ProjectId": "wemosRx"
+            "ProjectId": "nanoHC06Rx"
         },
         "Owner": "Paulware Paulware <paulware@hotmail.com>",
         "Size": {
-            "X": 30.15,
-            "Y": 44.45
+            "X": 99.314,
+            "Y": 53.594
         }
     }
 }

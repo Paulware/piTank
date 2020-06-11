@@ -46,14 +46,15 @@
             document.addEventListener ('DOMContentLoaded', function () { 
                console.log ( 'Adding mouse down/up Listeners' );
                // Move tank
+               document.getElementById ("start"  ).addEventListener ("mouseup",   start);
                document.getElementById ("forward").addEventListener ("mousedown", forward);
-               document.getElementById ("forward").addEventListener ("mouseup", stop);
+               document.getElementById ("forward").addEventListener ("mouseup",   stop);
                document.getElementById ("reverse").addEventListener ("mousedown", reverse);
-               document.getElementById ("reverse").addEventListener ("mouseup", stop);
+               document.getElementById ("reverse").addEventListener ("mouseup",   stop);
                document.getElementById ("left"   ).addEventListener ("mousedown", left);
-               document.getElementById ("left"   ).addEventListener ("mouseup", stop);
+               document.getElementById ("left"   ).addEventListener ("mouseup",   stop);
                document.getElementById ("right"  ).addEventListener ("mousedown", right);
-               document.getElementById ("right"  ).addEventListener ("mouseup", stop);
+               document.getElementById ("right"  ).addEventListener ("mouseup",   stop);
                // Turret
                document.getElementById ("leftTurret"  ).addEventListener ("mousedown", leftTurret);
                document.getElementById ("leftTurret"  ).addEventListener ("mouseup",   stopTurret);
@@ -137,6 +138,9 @@
             function stop() {
                sendData ('stop');
             }
+            function start() {
+               sendData ('start');
+            }
             function fire() {
                sendData ('fire');
             }       
@@ -176,6 +180,7 @@
           </div>
           <div style="margin:0 auto">
               <H1>Tank</H1>
+              <img src="images/start.jpg" id="start" width="100px"><br>
               <img src="images/forward.jpg" id="forward" width="100px"> 
               <br>
               <img src="images/left.jpg" id="left" width="100px"> 
