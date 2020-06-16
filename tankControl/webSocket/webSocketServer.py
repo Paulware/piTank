@@ -67,12 +67,20 @@ async def counter(websocket, path):
                if 'action' in data:
                   action = data['action']
                   print ( 'got action: ' + str(action))
-                  if (action in ['left','right','forward','reverse','stop','fire','left turret','right turret', 'up turret', 'down turret', 'stop turret', 'start']):
+                  if len(USERS) == 0: 
+                     print ( 'No USERS registered yet' )
+                  elif (action in ['left','right','forward','reverse','stop','fire','left turret','right turret', 'up turret', 'down turret', 'stop turret', 'start']):
                      for user in USERS:
                         print ( 'send action ' + action + ' to ' + str(user)) 
                         await asyncio.wait([user.send(action)])
-               elif 'tank' in data:
-                  print ( 'This tank is joining the webserver: ' + str(data['tank']) ) 
+                  else:
+                     print ( 'action: [' + action + '] not found in list')
+               elif 'tank' in data:                  
+                  name = str(data['tank'])
+                  print ( 'This tank is joining the webserver: ' + name ) 
+                  for user in USERS: 
+                     action = json.dumps({"type": "tankonline", "name": name})                  
+                     await asyncio.wait ([user.send (action)]);
             except Exception as ex: 
                print ( 'Not a json object: ' + message + ' ex: ' + str(ex) )
     except Exception as ex:
@@ -82,7 +90,6 @@ async def counter(websocket, path):
             await unregister(websocket)
         except Exception as ex:
             print ( "Cannot unregister, perhaps it is disconnected yo" + str(ex)) 
-        quit = True 
 
 def broadcastServerAddress(): 
    global quit

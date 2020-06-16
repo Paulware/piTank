@@ -4,7 +4,7 @@ ws:on("connection", function(ws)
   print ( 'SsUu' )
   print ( 'SsUu' )
   print ( 'SsUu' )
-  ws:send ("{\"tank\":\"Tiger\"}")
+  ws:send ("{\"tank\":\"King Tiger\"}")
 end)
 ws:on("receive", function(_, msg, opcode)
   -- print('got message:', msg, opcode) -- opcode is 1 for text message, 2 for binary

@@ -87,6 +87,7 @@
                       value = document.querySelector('.value');
                      
                       data = JSON.parse(event.data);
+                      console.log ( 'Got a JSON datatype: ' + data.type)
                       switch (data.type) {
                           case 'state':
                               //value.textContent = data.value;
@@ -95,6 +96,10 @@
                               users.textContent = (
                                   data.count.toString() + " user" +
                                   (data.count == 1 ? "" : "s"));
+                              break;
+                          case 'tankonline': 
+                              console.log ( 'Got tankonline: ' + data.name);
+                              addCombo (data.name);
                               break;
                           default:
                               console.error(
@@ -106,7 +111,7 @@
 
             function sendData (msg) {
               console.log ( 'sendData [' + msg + ']');
-              websocket.send(JSON.stringify({action: msg}));              
+              websocket.send(JSON.stringify({"action": msg }));              
             }
             function leftTurret() {
                sendData ('left turret');
@@ -143,14 +148,42 @@
             }
             function fire() {
                sendData ('fire');
-            }       
+            }  
+
+            function addCombo(value) {
+               var tankStatus = document.getElementById ( 'tankStatus')
+               tankStatus.value = 'New Tank Available'
+               var cameraFrame = document.getElementById ( 'cameraFrame')
+            
+               var combo = document.getElementById("combo");              
+               var option = document.createElement("option");
+               option.text = value;
+               option.value = value;
+               try {
+                  combo.add(option, null); //Standard 
+               } catch(error) {
+                  combo.add(option); // IE only
+               }
+            } 
+
+            function tankSelected (value) {
+               alert ( 'Tank selected: ' + value);
+               if (value == "Tiger") {
+                  alert ( 'Set the src yo');
+                  cameraFrame.src = "http://192.168.0.231:81/stream";
+                  alert ( 'Camera source is set' );
+               }
+
+            }            
         </script>
       </head>
     <body>
+      Tanks: <select name="combo" id="combo" onclick="tankSelected(this.value);">
+                 <option value="none">No Tanks Registered</option>      
+              </select><input id="tankStatus" value=" ">     
       <div style="align:left">
       <p>
       <hr>
-
           <p>
             Note: For best frame rate, use vga 640x480<br>
             Camera Ip Address: http://<input value="192.168.0.231" id="cameraAddress">:81/stream<input type="button" value="connect" id="connectCamera"><br>
@@ -165,7 +198,8 @@
        </div    
       <div>
           <div style="float:left">
-              <iframe src="http://192.168.0.231:81/stream" width="640px" height="480px" id="cameraFrame"></iframe>     
+              <! src="http://192.168.0.231:81/stream"> 
+              <iframe width="640px" height="480px" id="cameraFrame"></iframe>     
           </div>
           <div style="float:right;width:400px;">
               <H1>Turret</H1>
