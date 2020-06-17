@@ -10,36 +10,19 @@
        The address of the Default Gateway is the local ip address of your router <br>                
   </li>
   <li><h2>Login to the router config page</h2><br>
-       At this point you will probably need to call Media Com.  Have a recent copy of your bill because they will ask for your pin.  <br>
+       Open a browser and enter the ip address of your router (probably 192.168.0.1), ignore the not-secure messages, if they appear<br>
+       At this point you will probably need to call Media Com.  Let them know you are trying to "port forward".  Have a recent copy of your bill because they will ask for your pin.  <br>
        Also if you are not 18, have your parents nearby, because Media Com will need their permission to continue<br>
        Media will let you know your user name and password, stay on the line with them as you login<br>
        <img src="images/mediaComLogin.jpg"><br>
   </li>
   <li><h2>Media Com control panel and port forward</h2>
+      Press the port forward on the control panel under Advanced<br>
       <img src="images/mediaComControlPanel.jpg"><br>
+      This will list your current port forwards  
       <img src="images/mediaComPortForward.jpg"><br>
+      Press Add Port Forward, and select the computer that you want to make visible to the outside world and its port.
       <img src="images/mediaComAddPortForward.jpg"><br>
+      Press Save
   </li>
-</ul>
-Raspberry pi setup is done by running the setup.sh file located in the setup directory:
-<ul>
-   <li>Download the latest raspbian .img file from <a href="https://downloads.raspberrypi.org/raspbian_full_latest">here</a></li>
-   <li>Copy the raspbian .img file to an sd card using <a href="https://sourceforge.net/projects/win32diskimager/files/latest/download">win32diskimager</a></li>
-   <li>Copy setup/setup.sh from this github repo to the /boot directory on the pi sd card</li>
-   <li>Insert the sd card into the pi</li>
-   <li>Connect the raspberry pi to an hdmi terminal, mouse and keyboard</li>
-   <li>Power up the raspberry pi</li>
-   <li>Execute these commands from a line terminal on the pi</li>
-   <ul>
-      <li>sudo bash</li>
-      <li>cd /boot</li>
-      <li>./setup.sh</li>
-   </ul>
-   <li>After the setup file completes perform these actions from the pi desktop:</li>
-   <ul>
-      <li>Turn on wifi</li>
-      <li>Select wifi country</li>
-      <li>Pair with your bt keyboard (if applicable)</li>
-      <li>Turn on the joystick and pair with the joystick using bluetooth manager</li>
-   </ul>
 </ul>
