@@ -8,7 +8,6 @@ from threading import Thread
 import socket
 import time
 
-
 udpCount = 0
 quit = False 
 def broadcastAddress(): 
