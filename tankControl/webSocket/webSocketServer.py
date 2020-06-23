@@ -114,7 +114,7 @@ broadcastThread.start()
 print ( 'ident: ' + str(broadcastThread.ident ))
         
 print ( "Serve 0.0.0.0:5678")
-start_server = websockets.serve(counter, "rctankonline.ddns.net", 5678)
+start_server = websockets.serve(counter, "0.0.0.0", 8080)
 
 asyncio.get_event_loop().run_until_complete(start_server)
 try: 
