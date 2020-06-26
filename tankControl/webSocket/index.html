@@ -80,7 +80,8 @@
             function serverConnect () {
                if (serverAddress == undefined) {
                   serverAddress = document.all.ipAddress.value; // '10.13.7.79'
-                  websocket = new WebSocket("ws://" + serverAddress + ":5678/");
+                  alert ( 'connect to ' + serverAddress + ':8080');
+                  websocket = new WebSocket("ws://" + serverAddress + ":8080");
                   
                   websocket.onmessage = function (event) {
                       users = document.querySelector('.users');
@@ -190,7 +191,7 @@
             <br>
             Also:from a cmd windows: nslookup rctankonline.ddns.net<br>
             Try: rctankonline.ddns.net for server address<br>
-            Server Ip Address: <input value='192.168.0.127' id="ipAddress">:5678<input type="button" value="connect" id="connectToServer">
+            Server Ip Address: <input value='173.21.241.23' id="ipAddress">:8080<input type="button" value="connect" id="connectToServer">
          
             <div class="state">
               <span class="users">?</span> online
