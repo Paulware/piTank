@@ -22,6 +22,8 @@
 #include "fd_forward.h"
 #include "fr_forward.h"
 
+#define CAMPORT 83
+
 #define ENROLL_CONFIRM_TIMES 5
 #define FACE_ID_SAVE_NUMBER 7
 
@@ -653,8 +655,8 @@ void startCameraServer(){
         httpd_register_uri_handler(camera_httpd, &capture_uri);
     }
 
-    config.server_port += 1;
-    config.ctrl_port += 1;
+    config.server_port = CAMPORT;
+    config.ctrl_port = CAMPORT;
     Serial.printf("Starting stream server on port: '%d'\n", config.server_port);
     if (httpd_start(&stream_httpd, &config) == ESP_OK) {
         httpd_register_uri_handler(stream_httpd, &stream_uri);

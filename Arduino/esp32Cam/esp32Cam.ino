@@ -18,8 +18,8 @@
 #include "camera_pins.h"
 
 // Connect to an existing wifi network
-const char* ssid = "PiRx001"; // piPair"; //"PiRx062"; // "RichardsWiFi";
-const char* password = "heartland1";  // "ABCD1234"; // "heartland62"; // "Star123!";
+const char* ssid = "SBG6700AC-958C3"; //"canDebugger"; // "SBG6700AC-958C3"; // piPair"; //"PiRx062"; // "RichardsWiFi";
+const char* password = "Star123!?";  //"ABCD1234"; // "Star123!?";  // "ABCD1234"; // "heartland62"; // "Star123!";
 
 void startCameraServer();
 
@@ -55,7 +55,7 @@ void setup() {
   ledcSetup(4, 50, 16);
   ledcAttachPin(12, 4);
   
-  Serial.begin(9600);
+  Serial.begin(115200);
   Serial.setDebugOutput(true);
   Serial.println();
 
@@ -120,6 +120,7 @@ void setup() {
 
   WiFi.begin(ssid, password);
 
+  Serial.println ( "Attempt to login yo" );
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
     Serial.print(".");

@@ -2239,6 +2239,17 @@ design rules under a new name.</description>
 <contactref element="J45" pad="1"/>
 <contactref element="U$1" pad="6"/>
 <contactref element="U$1" pad="5"/>
+<wire x1="85.09" y1="24.638" x2="90.932" y2="23.876" width="0" layer="19" extent="1-1"/>
+<wire x1="71.7296" y1="20.2692" x2="85.09" y2="24.638" width="0" layer="19" extent="1-1"/>
+<wire x1="64.008" y1="18.542" x2="71.7296" y2="20.2692" width="0" layer="19" extent="1-1"/>
+<wire x1="56.388" y1="13.462" x2="64.008" y2="18.542" width="0" layer="19" extent="1-1"/>
+<wire x1="71.4756" y1="33.7312" x2="71.7296" y2="20.2692" width="0" layer="19" extent="1-1"/>
+<wire x1="58.928" y1="33.782" x2="71.4756" y2="33.7312" width="0" layer="19" extent="1-1"/>
+<wire x1="52.498" y1="37.592" x2="58.928" y2="33.782" width="0" layer="19" extent="1-1"/>
+<wire x1="50.498" y1="37.592" x2="52.498" y2="37.592" width="0" layer="19" extent="1-1"/>
+<wire x1="36.068" y1="13.462" x2="56.388" y2="13.462" width="0" layer="19" extent="1-1"/>
+<wire x1="27.0764" y1="15.0368" x2="36.068" y2="13.462" width="0" layer="19" extent="1-1"/>
+<wire x1="27.0764" y1="28.4988" x2="27.0764" y2="15.0368" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="VCC_D">
 <contactref element="JP3" pad="12"/>
@@ -2247,10 +2258,16 @@ design rules under a new name.</description>
 <contactref element="J11" pad="1"/>
 <contactref element="J48" pad="2"/>
 <contactref element="U$1" pad="1"/>
+<wire x1="58.928" y1="18.542" x2="93.472" y2="42.672" width="0" layer="19" extent="1-1"/>
+<wire x1="58.928" y1="13.462" x2="58.928" y2="18.542" width="0" layer="19" extent="1-1"/>
+<wire x1="38.608" y1="13.462" x2="58.928" y2="13.462" width="0" layer="19" extent="1-1"/>
+<wire x1="42.498" y1="37.592" x2="38.608" y2="13.462" width="0" layer="19" extent="1-1"/>
+<wire x1="9.144" y1="12.7" x2="38.608" y2="13.462" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="D10_D">
 <contactref element="JP4" pad="13"/>
 <contactref element="R3" pad="2"/>
+<wire x1="36.068" y1="33.782" x2="96.012" y2="29.972" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="D9_D">
 <contactref element="JP4" pad="12"/>
@@ -2261,47 +2278,59 @@ design rules under a new name.</description>
 <signal name="D11_D">
 <contactref element="JP4" pad="14"/>
 <contactref element="R2" pad="2"/>
+<wire x1="33.528" y1="33.782" x2="91.186" y2="29.972" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="D12_D">
 <contactref element="JP4" pad="15"/>
 <contactref element="R1" pad="2"/>
+<wire x1="30.988" y1="33.782" x2="87.884" y2="29.972" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="A1_D">
 <contactref element="JP3" pad="5"/>
 <contactref element="J18" pad="4"/>
+<wire x1="43.688" y1="13.462" x2="41.148" y2="18.542" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="A3_D">
 <contactref element="J19" pad="4"/>
 <contactref element="JP3" pad="7"/>
+<wire x1="46.228" y1="18.542" x2="64.008" y2="13.462" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="D6_D">
 <contactref element="JP4" pad="9"/>
 <contactref element="J18" pad="5"/>
 <contactref element="J19" pad="5"/>
+<wire x1="46.228" y1="13.462" x2="46.228" y2="33.782" width="0" layer="19" extent="1-1"/>
+<wire x1="66.548" y1="13.462" x2="46.228" y2="13.462" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="D2_D">
 <contactref element="S1" pad="3"/>
 <contactref element="JP4" pad="5"/>
+<wire x1="27.0764" y1="33.4772" x2="56.388" y2="33.782" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="D3_D">
 <contactref element="JP4" pad="6"/>
 <contactref element="S2" pad="3"/>
+<wire x1="53.848" y1="33.782" x2="71.4756" y2="28.7528" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="A2_D">
 <contactref element="JP3" pad="6"/>
 <contactref element="J18" pad="3"/>
+<wire x1="41.148" y1="13.462" x2="43.688" y2="18.542" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="A4_D">
 <contactref element="JP3" pad="8"/>
 <contactref element="J19" pad="3"/>
+<wire x1="48.768" y1="18.542" x2="61.468" y2="13.462" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="TX_D">
-<contactref element="JP4" pad="1"/>
 <contactref element="U$1" pad="3"/>
+<contactref element="JP4" pad="2"/>
+<wire x1="46.498" y1="37.592" x2="64.008" y2="33.782" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="RX_D">
-<contactref element="JP4" pad="2"/>
 <contactref element="U$1" pad="2"/>
+<contactref element="JP4" pad="1"/>
+<wire x1="44.498" y1="37.592" x2="66.548" y2="33.782" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="A6_D">
 <contactref element="JP3" pad="10"/>
@@ -2309,67 +2338,84 @@ design rules under a new name.</description>
 <signal name="D4_D">
 <contactref element="JP4" pad="7"/>
 <contactref element="S3" pad="3"/>
+<wire x1="27.0764" y1="20.0152" x2="51.308" y2="33.782" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="D5_D">
 <contactref element="JP4" pad="8"/>
 <contactref element="S4" pad="3"/>
+<wire x1="48.768" y1="33.782" x2="71.7296" y2="15.2908" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="BATT_3V3_D">
 <contactref element="J39" pad="1"/>
 <contactref element="J44" pad="1"/>
 <contactref element="D1" pad="A"/>
+<wire x1="8.382" y1="23.114" x2="13.462" y2="24.384" width="0" layer="19" extent="1-1"/>
+<wire x1="2.286" y1="23.114" x2="8.382" y2="23.114" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$1">
 <contactref element="J38" pad="1"/>
 <contactref element="D1" pad="C"/>
+<wire x1="2.286" y1="33.274" x2="9.144" y2="34.544" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="D7_D">
 <contactref element="JP4" pad="10"/>
 <contactref element="U$1" pad="4"/>
+<wire x1="43.688" y1="33.782" x2="48.498" y2="37.592" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$2">
 <contactref element="J48" pad="4"/>
 <contactref element="R1" pad="1"/>
+<wire x1="87.884" y1="40.132" x2="88.392" y2="42.672" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$3">
 <contactref element="J48" pad="3"/>
 <contactref element="R2" pad="1"/>
+<wire x1="91.186" y1="40.132" x2="90.932" y2="42.672" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$4">
 <contactref element="J48" pad="1"/>
 <contactref element="R3" pad="1"/>
+<wire x1="96.012" y1="40.132" x2="96.012" y2="42.672" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$5">
 <contactref element="U$2" pad="1"/>
 <contactref element="J1" pad="1"/>
+<wire x1="35.56" y1="38.608" x2="40.64" y2="38.974" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$6">
 <contactref element="U$2" pad="2"/>
 <contactref element="J1" pad="2"/>
+<wire x1="35.56" y1="41.148" x2="40.64" y2="40.974" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$7">
 <contactref element="U$2" pad="3"/>
 <contactref element="J1" pad="3"/>
+<wire x1="35.56" y1="43.688" x2="40.64" y2="42.974" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$8">
 <contactref element="U$2" pad="4"/>
 <contactref element="J1" pad="4"/>
+<wire x1="35.56" y1="46.228" x2="40.64" y2="44.974" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$9">
 <contactref element="U$2" pad="5"/>
 <contactref element="J1" pad="5"/>
+<wire x1="35.56" y1="48.768" x2="40.64" y2="46.974" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$10">
 <contactref element="U$2" pad="6"/>
 <contactref element="J1" pad="6"/>
+<wire x1="35.56" y1="51.308" x2="40.64" y2="48.974" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$11">
 <contactref element="U$2" pad="7"/>
 <contactref element="J1" pad="7"/>
+<wire x1="35.56" y1="53.848" x2="40.64" y2="50.974" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$12">
 <contactref element="U$2" pad="8"/>
 <contactref element="J1" pad="8"/>
+<wire x1="35.56" y1="56.388" x2="40.64" y2="52.974" width="0" layer="19" extent="1-1"/>
 </signal>
 </signals>
 <mfgpreviewcolors>

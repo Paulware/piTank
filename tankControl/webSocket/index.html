@@ -40,8 +40,39 @@
             
         </style>
         <script>
-            var serverAddress; // = '10.13.7.79'
+            var serverAddress = '192.168.0.143'; // = '10.13.7.79'
             var websocket; // = new WebSocket("ws://" + serverAddress + ":5678/");
+            websocket = new WebSocket("ws://" + serverAddress + ":9876");   
+            
+            websocket.onmessage = function (event) {
+                      users = document.querySelector('.users');
+                      value = document.querySelector('.value');
+                     
+                      try { 
+                         data = JSON.parse(event.data);
+                         console.log ( 'Got a JSON datatype: ' + data.type)
+                         switch (data.type) {
+                             case 'state':
+                                 //value.textContent = data.value;
+                                 break;
+                             case 'users':
+                                 users.textContent = (
+                                     data.count.toString() + " user" +
+                                     (data.count == 1 ? "" : "s"));
+                                 break;
+                             case 'tankonline': 
+                                 console.log ( 'Got tankonline: ' + data.name);
+                                 addCombo (data.name);
+                                 break;
+                             default:
+                                 console.error(
+                                     "unsupported event", data);
+                         }
+                      } catch (e) {
+                          console.log ( 'Could not JSON.parse: ' + event.data);
+                      }
+                  };                              
+            
             
             document.addEventListener ('DOMContentLoaded', function () { 
                console.log ( 'Adding mouse down/up Listeners' );
@@ -78,10 +109,11 @@
             }
             
             function serverConnect () {
+               /*
                if (serverAddress == undefined) {
-                  serverAddress = document.all.ipAddress.value; // '10.13.7.79'
-                  alert ( 'connect to ' + serverAddress + ':8080');
-                  websocket = new WebSocket("ws://" + serverAddress + ":8080");
+                  // serverAddress = document.all.ipAddress.value; // '10.13.7.79'
+                  alert ( 'connect to ' + serverAddress + ':9876');
+                  websocket = new WebSocket("ws://" + serverAddress + ":9876");
                   
                   websocket.onmessage = function (event) {
                       users = document.querySelector('.users');
@@ -108,6 +140,7 @@
                       }
                   };                  
                }
+               */
             }
 
             function sendData (msg) {
@@ -191,7 +224,7 @@
             <br>
             Also:from a cmd windows: nslookup rctankonline.ddns.net<br>
             Try: rctankonline.ddns.net for server address<br>
-            Server Ip Address: <input value='173.21.241.23' id="ipAddress">:8080<input type="button" value="connect" id="connectToServer">
+            Server Ip Address: <input value='192.168.0.143' id="ipAddress">:9876<input type="button" value="connect" id="connectToServer">
          
             <div class="state">
               <span class="users">?</span> online
