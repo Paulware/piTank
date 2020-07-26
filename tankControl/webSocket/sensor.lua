@@ -4,7 +4,11 @@ ws:on("connection", function(ws)
   print ( 'SsUu' )
   print ( 'SsUu' )
   print ( 'SsUu' )
-  ws:send ("{\"tank\":\"King Tiger\"}")
+  if (vehicle == nil) then 
+     print ( 'ERR, vehicle not specified, use config () and restart' )
+  else 
+     ws:send ("{\""..vehicle.."\":\""..vehicleName.."\"}")
+  end
 end)
 ws:on("receive", function(_, msg, opcode)
   -- print('got message:', msg, opcode) -- opcode is 1 for text message, 2 for binary

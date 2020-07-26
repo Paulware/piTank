@@ -3,10 +3,14 @@ local Password
 local filename = "ssidPassword.txt"
 local timer1 = tmr.create()
 
+--Globals
+vehicle = nil
+vehicleName = nil 
 serverAddress = nil
 command = ""
 ip = nil
 MAC = wifi.sta.getmac()
+
 uart.setup (0,9600,8,0,1) -- Setup to read from usb port 
 wifi.setmode(wifi.STATION)
 
@@ -48,6 +52,31 @@ function writeInfo()
   file.writeline (Password)
   file.close()
 end 
+
+function readConfig() 
+   f = file.open ("config.txt", "r")
+   if (f ~= nil) then 
+      line = file.readline() 
+      if (line == nil) then 
+         print ( "Cannot readConfig, use config to set vehicle and type")
+      else
+         vehicle = trim(line)
+         vehicleName = trim(file.readline())
+         print ("[vehicle,vehicleName]: ["..vehicle..","..vehicleName.."]")
+      end 
+      file.close()
+   end    
+end
+
+
+function config(vehicle, vehicleName) 
+  print ("Writing info to config.txt" )
+  file.open ("config.txt", "w")
+  file.writeline (vehicle)
+  file.writeline (vehicleName)
+  file.close()
+end 
+
 
 function login (ssid,password) 
   SSID = ssid
@@ -115,5 +144,6 @@ function initReceiver()
   loginNetwork()
 end 
 
+readConfig()
 startListening()
 print ("joinNetwork if you are ready this will call sensor.lua")

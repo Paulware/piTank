@@ -8,13 +8,12 @@ from threading import Thread
 import socket
 import time
 from subprocess import check_output
-
+import sys
 udpCount = 0
 quit = False 
 def broadcastAddress(): 
    global sock
    global udpCount
-   
    port = 3333
    myAddress = check_output (['hostname','-I']).decode().strip()
    # myAddress = socket.gethostbyname(socket.gethostname())
@@ -27,7 +26,6 @@ def broadcastAddress():
    sock.sendto(msg.encode(), (clientIp, port))  
    
 def state_event():
-    print ( "STATE: " + str(STATE)) 
     return json.dumps({"type": "state", **STATE})
 
 def users_event():
@@ -35,8 +33,6 @@ def users_event():
 
 async def notify_state():
     if USERS:  # asyncio.wait doesn't accept an empty list
-        # print ( "USERS: " + str(USERS)) 
-        # print ( "STATE: " + str(STATE)) 
         message = state_event()
         print (message)
         await asyncio.wait([user.send(message) for user in USERS])
@@ -105,12 +101,17 @@ def broadcastServerAddress():
       time.sleep (1)         
       
    print ("broadcastServerAddress done quit: " + str(quit))
-      
-sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
-sock.setsockopt (socket.SOL_SOCKET, socket.SO_REUSEPORT, 1)
-sock.setsockopt (socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
-#sock = socket.socket(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
-        
+
+platform = sys.platform
+   
+if platform == 'win32': 
+   print ( "windows platform win32" )
+   sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+else: #if linux 
+   print ( "linux platform: " + platform)
+   sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROT_UDP)
+   sock.setsockopt (socket.SOL_SOCKET, socket.SO_REUSEPORT, 1)
+   sock.setsockopt (socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
 logging.basicConfig()
 STATE = {"value": 0}
 USERS = set()        

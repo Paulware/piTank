@@ -40,9 +40,40 @@
             
         </style>
         <script>
-            var serverAddress; //  = '192.168.4.1'; // '173.21.121.125'; // '192.168.0.143'; // = '10.13.7.79'
+            var serverAddress = '192.168.0.15'; // '173.21.121.125'; // '192.168.0.143'; // = '10.13.7.79'
             var websocket; // = new WebSocket("ws://" + serverAddress + ":5678/");
-
+            websocket = new WebSocket("ws://" + serverAddress + ":9876");   
+            
+            websocket.onmessage = function (event) {
+                      users = document.querySelector('.users');
+                      value = document.querySelector('.value');
+                     
+                      try { 
+                         data = JSON.parse(event.data);
+                         console.log ( 'Got a JSON datatype: ' + data.type)
+                         switch (data.type) {
+                             case 'state':
+                                 //value.textContent = data.value;
+                                 break;
+                             case 'users':
+                                 users.textContent = (
+                                     data.count.toString() + " user" +
+                                     (data.count == 1 ? "" : "s"));
+                                 break;
+                             case 'tankonline': 
+                                 console.log ( 'Got tankonline: ' + data.name);
+                                 addCombo (data.name);
+                                 break;
+                             default:
+                                 console.error(
+                                     "unsupported event", data);
+                         }
+                      } catch (e) {
+                          console.log ( 'Could not JSON.parse: ' + event.data);
+                      }
+                  };                              
+            
+            
             document.addEventListener ('DOMContentLoaded', function () { 
                console.log ( 'Adding mouse down/up Listeners' );
                // Move tank
@@ -72,62 +103,44 @@
             
             function cameraConnect() {
               var cameraFrame = document.getElementById ( 'cameraFrame')
-              value = '192.168.0.7';
-              var address = 'http://' + value + ':83/stream';
+              var address = 'http://' + document.all.cameraAddress.value + ':81/stream';
               console.log ( 'New Address: ' + address)
               cameraFrame.src = address;
             }
             
-            function serverConnect () {              
+            function serverConnect () {
+               /*
                if (serverAddress == undefined) {
-                  serverAddress = document.all.ipAddress.value; // '10.13.7.79'
-                  // alert ( 'connect to ' + serverAddress + ':9876');
+                  // serverAddress = document.all.ipAddress.value; // '10.13.7.79'
+                  alert ( 'connect to ' + serverAddress + ':9876');
                   websocket = new WebSocket("ws://" + serverAddress + ":9876");
                   
-                  // This event occurs when a message is received from the server
                   websocket.onmessage = function (event) {
                       users = document.querySelector('.users');
                       value = document.querySelector('.value');
-                      console.log ( 'event.data: [' + event.data + ']')
-                      switch (event.data) {
-                         case 'start':
-                         case 'stop':
-                         case 'forward':
-                         case 'reverse':
-                         case 'left':
-                         case 'right':
-                         case 'up turret':
-                         case 'down turret':
-                         case 'left turret':
-                         case 'right turret':
-                         case 'stop turret':
-                            break;
-                            
-                         default:
-                            data = JSON.parse(event.data);
-                            console.log ( 'Got a JSON datatype: ' + data.type)
-                            switch (data.type) {
-                                case 'state':
-                                    //value.textContent = data.value;
-                                    break;
-                                case 'users':
-                                    users.textContent = (
-                                        data.count.toString() + " user" +
-                                        (data.count == 1 ? "" : "s"));
-                                    break;
-                                case 'tankonline': 
-                                    console.log ( 'Got tankonline: ' + data.name);
-                                    addCombo (data.name);
-                                    break;
-                                default:
-                                    console.error("unsupported event", data);
-                                    break;
-                            }
-                            break;
+                     
+                      data = JSON.parse(event.data);
+                      console.log ( 'Got a JSON datatype: ' + data.type)
+                      switch (data.type) {
+                          case 'state':
+                              //value.textContent = data.value;
+                              break;
+                          case 'users':
+                              users.textContent = (
+                                  data.count.toString() + " user" +
+                                  (data.count == 1 ? "" : "s"));
+                              break;
+                          case 'tankonline': 
+                              console.log ( 'Got tankonline: ' + data.name);
+                              addCombo (data.name);
+                              break;
+                          default:
+                              console.error(
+                                  "unsupported event", data);
                       }
                   };                  
                }
-               
+               */
             }
 
             function sendData (msg) {
@@ -187,32 +200,19 @@
                }
             } 
 
-            function tankSelected () {
-               var e = document.getElementById("combo");
-               var index = e.selectedIndex; 
-               alert ( 'index: ' + index );
-               var value = e.options[index].text            
-               alert ( 'Tank selected: [' + value + ']');
-               if (value != "none") {
-                  alert ( 'Got a value :[' + value + ']'
-                  
-                  )
-                  if (value == "KingTiger") {
-                     alert ( 'Set the src yo');
-                     var cameraFrame = document.getElementById ( 'cameraFrame')                     
-                     cameraFrame.src = "http://192.168.0.7:83/stream";
-                     alert ( 'Camera source is set' );
-                  } else {
-                     alert ( 'Err unhandled tank: [' + value +"]")
-                  }
-               } else {
-                  alert ( 'value is none');
+            function tankSelected (value) {
+               alert ( 'Tank selected: ' + value);
+               if (value == "Tiger") {
+                  alert ( 'Set the src yo');
+                  cameraFrame.src = "http://192.168.0.7:83/stream";
+                  alert ( 'Camera source is set' );
                }
+
             }            
         </script>
       </head>
     <body>
-      Tanks: <select name="combo" id="combo" onchange="tankSelected();">
+      Tanks: <select name="combo" id="combo" onclick="tankSelected(this.value);">
                  <option value="none">No Tanks Registered</option>      
               </select><input id="tankStatus" value=" ">     
       <div style="align:left">
@@ -224,11 +224,7 @@
             <br>
             Also:from a cmd windows: nslookup rctankonline.ddns.net<br>
             Try: rctankonline.ddns.net for server address<br>
-            Server Ip Address: <Select name="ipAddress" id="ipAddress"> 
-                                   <option value="192.168.4.1">192.168.4.1</option>
-                                   <option value="173.21.121.125">173.21.121.125</option>
-                                   <option value="192.168.0.15">192.168.0.15</option>
-                               </Select>:9876<input type="button" onclick=";" value="connect" id="connectToServer">
+            Server Ip Address: <input value='192.168.0.15' id="ipAddress">:9876<input type="button" value="connect" id="connectToServer">
          
             <div class="state">
               <span class="users">?</span> online
@@ -238,8 +234,8 @@
        </div    
       <div>
           <div style="float:left">
-              <!src="http://192.168.0.7:83/stream"> 
-              <iframe width="640px" height="480px" id="cameraFrame" ></iframe>     
+              <! src="http://192.168.0.7:83/stream"> 
+              <iframe width="640px" height="480px" id="cameraFrame"></iframe>     
           </div>
           <div style="float:right;width:400px;">
               <H1>Turret</H1>

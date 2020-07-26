@@ -1,4 +1,28 @@
 <h1>Heng Long</h1>
 Heng long is a popular brand that we use almost exclusively<br>
 Here is the pinout for the turret<br>
-<img src="images/hengLongTurret.jpg">
+We will reuse these wires for our purposes<br>
+<ul>
+   <li>Yellow can be a common ground </li>
+   <li>Led - (White) will be a common gnd</li>
+   <li>Led + (Green) will becommon a 3.3V power +.  We will also power the esp32 cam with this line.   Since 3.3V is required.   We will add a 3.3V regulator</li>
+   <LI>TODO: Find the a wire to use as 7.4V + </li>
+   <li>Note: on king tiger, Brown is used as Up/down line</li>
+   <li>Blue +/Yellow- is correct for Firing.   There is also a light on this circuit</li>
+   <li>Brown + / Yellow- is correct for turret up/down</li>
+   <li>Orange is available and could be used for 7.4V + , this frees up Green/ White as well</li>   
+</ul> 
+<img src="images/hengLongTurret.jpg"><br>
+Current plan: <br>
+<ul>
+  <li>Yellow is the common ground</li>
+  <li>Left/Right Turret is Red/Black</li>
+  <li>Up/Down Turret is Brown/Yellow is Up/Down (only brown is connected at base)</li>
+  <li>EspCam is Orange/Yellow to voltage regulator</li>
+  <li>Fire/hit can be green/white passed to another board which will also need the 3.3V</li>
+  <li>ESPCam could be mounted in the cupola</li>
+  <li>Blue is not connected for firing</li>
+</ul>
+or<br>
+Green could be 3.3V power and set in base with a regulator. Then you could tap the green wire for esp32 power<br>
+You could also set the white as another ground at the base <br>
