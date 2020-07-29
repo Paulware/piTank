@@ -1,0 +1,19 @@
+<h1>H-Bridge for Treads</h1>
+
+<h2>Requirements</h2>
+<ul>
+   <li>The HBridge <b>shall</b> be powered by a 7.4V (2S LIPO) or a 11.1 (3S LIPO)</li>
+   <li>The HBridge <b>shall</b> be controlled via 4 PWM outputs from the nano microcontroller</li>
+   <li>The HBridge <b>shall</b> be located in the rear of the chasis between the 2 gears</li>
+</ul>
+<h2>Discussion</h2>
+  When an 11.1V battery powers this device, a pin-jumper should be removed <br>
+<hr>
+<img src="images/l298HBridge.jpg"><br>
+<hr>
+<hr>
+<h2>Circuit Diagram</h2>
+Batt + => 12V <br>
+Batt - => GND <br>
+Not Connected (5V output of this device)<br>
+4 PWM outputs of nano => 4 pin connector<br>

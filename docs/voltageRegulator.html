@@ -1,0 +1,20 @@
+<h1>Voltage Regulator</h1>
+
+<h2>Requirements</h2>
+<ul>
+   <li>The voltage regulator <b>shall</b> convert battery voltage (7.4 V) to 5V</li>
+   <li>The voltage regulator <b>shall</b> be rated for a maximum output of 2A</li>
+   <li>The voltage regulator <b>shall</b> power the nano microcontroller, the esp32 camera, the turret h-bridge and the ir emitter/detector</li>
+</ul>
+<h2>Discussion</h2>
+  The voltage regulator is a switching voltage regulator which is adjustable via a set-screw (attached to a potentiometer)<br>
+  <b>The output must be calibrated with a voltmeter to 5V before attaching it to any other electronics.</b>
+<hr>
+<img src="images/voltageRegulator.jpg"><br>
+<hr>
+<hr>
+<h2>Circuit Diagram</h2>
+Batt + => In + <br>
+Batt - => In - <br>
+Out + => All 5V devices<br>
+Out - => All 5V devices<br>
