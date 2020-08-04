@@ -65,10 +65,12 @@ function readConfig()
          print ("[vehicle,vehicleName]: ["..vehicle..","..vehicleName.."]")
       end 
       file.close()
+   else
+      print ("ERR, config.txt is nil")
    end    
 end
 
-
+-- config ('tank', 'Tiger')
 function config(vehicle, vehicleName) 
   print ("Writing info to config.txt" )
   file.open ("config.txt", "w")
@@ -140,10 +142,15 @@ end
 -- This function only needs to be called once to login to the network
 function initReceiver()
   readInfo()
+  readConfig()
   wifi.setmode(wifi.STATION)
   loginNetwork()
 end 
 
+print ('readInfo')
+readInfo()
+print ('readConfig')
 readConfig()
+print ('startListening')
 startListening()
 print ("joinNetwork if you are ready this will call sensor.lua")

@@ -67,21 +67,11 @@
                document.getElementById ("fire"        ).addEventListener ("mouseup",   fire);
                // Connections
                document.getElementById ("connectToServer" ).addEventListener ("mouseup", serverConnect);
-               document.getElementById ("connectCamera"   ).addEventListener ("mouseup", cameraConnect);
             });     
-            
-            function cameraConnect() {
-              var cameraFrame = document.getElementById ( 'cameraFrame')
-              value = '192.168.0.7';
-              var address = 'http://' + value + ':83/stream';
-              console.log ( 'New Address: ' + address)
-              cameraFrame.src = address;
-            }
-            
+                        
             function serverConnect () {              
                if (serverAddress == undefined) {
-                  serverAddress = document.all.ipAddress.value; // '10.13.7.79'
-                  // alert ( 'connect to ' + serverAddress + ':9876');
+                  serverAddress = document.all.ipAddress.value;
                   websocket = new WebSocket("ws://" + serverAddress + ":9876");
                   
                   // This event occurs when a message is received from the server
@@ -115,9 +105,21 @@
                                         data.count.toString() + " user" +
                                         (data.count == 1 ? "" : "s"));
                                     break;
+                                // Get a tank that has joined. 
                                 case 'tankonline': 
-                                    console.log ( 'Got tankonline: ' + data.name);
-                                    addCombo (data.name);
+                                    cameraAddress = data.cameraAddress;
+                                    if (cameraAddress == undefined) {
+                                       console.log ( 'Got tankonline: ' + data.name);
+                                       addCombo (data.name);
+                                    } else {
+                                       var cameraIpAddress = document.getElementById ( 'cameraAddress')
+                                       cameraIpAddress.value = cameraAddress;                                       
+                                       var cameraFrame = document.getElementById ( 'cameraFrame')                     
+                                       cameraFrame.src = cameraAddress;
+                                                                        
+                                       console.log ( 'Got tankonline: ' + data.name + ' cameraAddress: ' + cameraAddress);
+                                       addCombo (data.name + ' ' + cameraAddress);
+                                    }
                                     break;
                                 default:
                                     console.error("unsupported event", data);
@@ -193,21 +195,7 @@
                alert ( 'index: ' + index );
                var value = e.options[index].text            
                alert ( 'Tank selected: [' + value + ']');
-               if (value != "none") {
-                  alert ( 'Got a value :[' + value + ']'
-                  
-                  )
-                  if (value == "KingTiger") {
-                     alert ( 'Set the src yo');
-                     var cameraFrame = document.getElementById ( 'cameraFrame')                     
-                     cameraFrame.src = "http://192.168.0.7:83/stream";
-                     alert ( 'Camera source is set' );
-                  } else {
-                     alert ( 'Err unhandled tank: [' + value +"]")
-                  }
-               } else {
-                  alert ( 'value is none');
-               }
+               
             }            
         </script>
       </head>
@@ -220,7 +208,7 @@
       <hr>
           <p>
             Note: For best frame rate, use vga 640x480<br>
-            Camera Ip Address: http://<input value="192.168.0.7" id="cameraAddress">:83/stream<input type="button" value="connect" id="connectCamera"><br>
+            Camera Ip Address: http://<input value="Unknown" id="cameraAddress"><br>
             <br>
             Also:from a cmd windows: nslookup rctankonline.ddns.net<br>
             Try: rctankonline.ddns.net for server address<br>

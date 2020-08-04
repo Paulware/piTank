@@ -10,11 +10,6 @@ import time
 from subprocess import check_output
 import sys
 
-cameraIpAddresses = {}
-cameraIpAddresses ['Tiger']  = '192.168.0.4:81/stream'
-cameraIpAddresses ['King Tiger'] = '192.168.0.7:82/stream'
-cameraIpAddresses ['Other'] = '192.168.0.8:83/stream'
-
 udpCount = 0
 quit = False 
 def broadcastAddress(): 
@@ -22,10 +17,8 @@ def broadcastAddress():
    global udpCount
    
    port = 3333
-   if sys.platform == 'win32': 
-      myAddress = socket.gethostbyname(socket.gethostname())   
-   else:
-      myAddress = check_output (['hostname','-I']).decode().strip()
+   myAddress = check_output (['hostname','-I']).decode().strip()
+   # myAddress = socket.gethostbyname(socket.gethostname())
    print (myAddress)
    index = myAddress.rfind ('.')
    clientIp = myAddress[0:index] + '.255'
@@ -62,12 +55,7 @@ async def register(websocket):
 
     for tank in TANKS:
        print ( 'This tank has already joined the webserver: ' + tank ) 
-       
-       if tank in cameraIpAddresses.keys():
-          cameraAddress = cameraIpAddresses[tank]
-          action = json.dumps({"type": "tankonline", "name": tank, "cameraAddress":cameraAddress})
-       else:
-          action = json.dumps({"type": "tankonline", "name": tank})                  
+       action = json.dumps({"type": "tankonline", "name": tank})                  
        await asyncio.wait ([websocket.send (action)]);    
     
     await notify_users() # Update all users with the new count of users
@@ -103,11 +91,7 @@ async def counter(websocket, path):
                   TANKS.add (name)
                   print ( 'This tank is joining the webserver: ' + name ) 
                   for user in USERS:# Notify users that a tank has joined. 
-                     if name in cameraIpAddresses.keys():
-                        cameraAddress = cameraIpAddresses[name]
-                        action = json.dumps({"type": "tankonline", "name": name, "cameraAddress":cameraAddress})
-                     else:
-                        action = json.dumps({"type": "tankonline", "name": name})                  
+                     action = json.dumps({"type": "tankonline", "name": name})                  
                      await asyncio.wait ([user.send (action)]);
             except Exception as ex: 
                print ( 'Not a json object: ' + message + ' ex: ' + str(ex) )
@@ -130,13 +114,12 @@ def broadcastServerAddress():
       
    print ("broadcastServerAddress done quit: " + str(quit))
       
-if sys.platform == 'linux': 
-   print ( "linux platform: ")
-   sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
+sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
+if sys.platform == 'linux':       
    sock.setsockopt (socket.SOL_SOCKET, socket.SO_REUSEPORT, 1)
-   sock.setsockopt (socket.SOL_SOCKET, socket.SO_BROADCAST, 1)      
-else: # Windows 
-   sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+else:
+   sock.setsockopt (socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
+#sock = socket.socket(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
         
 logging.basicConfig()
 STATE = {"value": 0}
