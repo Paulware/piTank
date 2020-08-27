@@ -9,8 +9,15 @@
    <li>The ESP32 Web Cam <b>shall</b> stream its output to a web-page</li>   
    <li>The ESP32 Web Cam <b>shall</b> be located in the tank-commander's cupola</li>   
 </ul>
-<h2>Discussion</h2>
-   This device's streaming port is located in the arduino sketch.<br>
+<h2>What you need to know:</h2>
+<ol>
+  <li>When this web-cam logs into the network, the router will tell it its ip address.</li>
+  <li>Each web-cam will have its own port where the camera page is visible</li>
+  <li>This port and ip address needs to be "port-forwarded" to the outside internet</li>   
+</ol>
+<h2>Extra info</h2>
+   The arduino sketch contains the port for each web-cam and must be modified and "flashed" on each device.<br>
+   This device requires a 3.3V power supply which comes from the chasis<br>
 <hr>
 <img src="images/esp32WebCam.jpg"><br>
 <hr>
