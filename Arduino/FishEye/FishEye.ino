@@ -12,13 +12,22 @@
 #define I2C_SCL 13
 SSD1306Wire display(OLED_ADDRESS, I2C_SDA, I2C_SCL, GEOMETRY_128_32);
 #endif
-#define PORT 82
+
+// Set IpAddress and port 
+#define PORT 84
+IPAddress local_IP(192, 168, 0, 17);
+// Set your Gateway IP address
+IPAddress gateway(192, 168, 0, 1);
+
+IPAddress subnet(255, 255, 0, 0);
+IPAddress primaryDNS(8, 8, 8, 8);   //optional
+IPAddress secondaryDNS(8, 8, 4, 4); //optional
 
 OV2640 cam;
 WebServer server(PORT);
 
-const char* ssid = "SBG6700AC-958C3"; //"canDebugger"; // "SBG6700AC-958C3"; // piPair"; //"PiRx062"; // "RichardsWiFi";
-const char* password = "Star123!?";  //"ABCD1234"; // "Star123!?";  // "ABCD1234"; // "heartland62"; // "Star123!";
+const char* ssid = "ssid";
+const char* password = "password";
 
 void handle_jpg_stream(void)
 {
@@ -103,32 +112,40 @@ void setup()
   camera_config.pixel_format = CAMERA_PF_JPEG;
   camera_config.frame_size = CAMERA_FS_SVGA;
 
-  cam.init(camera_config);
+  cam.init(camera_config); 
+  //cam.setVflip(true);
 
   WiFi.mode(WIFI_STA);
-  WiFi.begin(ssid, password);
-  while (WiFi.status() != WL_CONNECTED)
-  {
-    delay(500);
-    Serial.print(F("."));
+
+  // Configures static IP address
+  if (!WiFi.config(local_IP, gateway, subnet, primaryDNS, secondaryDNS)) {
+    Serial.println("STA Failed to configure");
+  } else {
+    
+    WiFi.begin(ssid, password);
+    while (WiFi.status() != WL_CONNECTED)
+    {
+      delay(500);
+      Serial.print(F("."));
+    }
+    Serial.println(F("WiFi connected"));
+    Serial.println("");
+    Serial.println(WiFi.localIP());
+  
+  #ifdef ENABLE_OLED
+    display.init();
+    display.flipScreenVertically();
+    display.setFont(ArialMT_Plain_16);
+    display.setTextAlignment(TEXT_ALIGN_CENTER);
+    display.drawString(128 / 2, 32 / 2, WiFi.localIP().toString());
+    display.display();
+  #endif
+  
+    server.on("/", HTTP_GET, handle_jpg_stream);
+    server.on("/jpg", HTTP_GET, handle_jpg);
+    server.onNotFound(handleNotFound);
+    server.begin();
   }
-  Serial.println(F("WiFi connected"));
-  Serial.println("");
-  Serial.println(WiFi.localIP());
-
-#ifdef ENABLE_OLED
-  display.init();
-  display.flipScreenVertically();
-  display.setFont(ArialMT_Plain_16);
-  display.setTextAlignment(TEXT_ALIGN_CENTER);
-  display.drawString(128 / 2, 32 / 2, WiFi.localIP().toString());
-  display.display();
-#endif
-
-  server.on("/", HTTP_GET, handle_jpg_stream);
-  server.on("/jpg", HTTP_GET, handle_jpg);
-  server.onNotFound(handleNotFound);
-  server.begin();
 }
 
 void loop()

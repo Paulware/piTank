@@ -115,10 +115,12 @@
                                        var cameraIpAddress = document.getElementById ( 'cameraAddress')
                                        cameraIpAddress.value = cameraAddress;                                       
                                        var cameraFrame = document.getElementById ( 'cameraFrame')                     
-                                       cameraFrame.src = cameraAddress;
+                                       //cameraFrame.src = 'http://' + cameraAddress;
                                                                         
                                        console.log ( 'Got tankonline: ' + data.name + ' cameraAddress: ' + cameraAddress);
                                        addCombo (data.name + ' ' + cameraAddress);
+                                       console.log ( 'cameraFrame.src set to : http://' + cameraAddress);
+                                       //cameraFrame.style.visibility = 'visible';
                                     }
                                     break;
                                 default:
@@ -192,10 +194,17 @@
             function tankSelected () {
                var e = document.getElementById("combo");
                var index = e.selectedIndex; 
-               alert ( 'index: ' + index );
-               var value = e.options[index].text            
-               alert ( 'Tank selected: [' + value + ']');
+               var value = e.options[index].text                          
+               var ind = value.indexOf ( ' ' );
+               var cameraAddress = value.substring (ind+1);
+               // alert ( 'Got a tank cameraAddress: ' + cameraAddress);
+               var cameraFrame = document.getElementById ( 'cameraFrame')                     
+               cameraFrame.src = 'http://' + cameraAddress;
+               cameraFrame.style.display = '';
+               cameraFrame.style.visibility = 'visible';               
                
+               var pleaseStandBy = document.getElementById ( 'pleaseStandBy');
+               pleaseStandBy.style.visibility = 'hidden';               
             }            
         </script>
       </head>
@@ -224,11 +233,13 @@
             See <a href="https://websockets.readthedocs.io/en/stable/intro.html">https://websockets.readthedocs.io/en/stable/intro.html</a> for more info.
             <hr>            
        </div    
-      <div>
-          <div style="float:left">
-              <!src="http://192.168.0.7:83/stream"> 
-              <iframe width="640px" height="480px" id="cameraFrame" ></iframe>     
+ 
+          <div style="float:left"> 
+              <iframe width="800px" height="600px" id="cameraFrame" style="display:none"></iframe><!<iframe src="http://192.168.0.16:83"> 
+              <img src="images/pleaseStandBy.jpg" id="pleaseStandBy"><br>             
           </div>
+          <hr>
+      <div>
           <div style="float:right;width:400px;">
               <H1>Turret</H1>
               <img src="images/forward.jpg" id="upTurret" width="100px"> 

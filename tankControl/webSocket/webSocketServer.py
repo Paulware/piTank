@@ -12,7 +12,7 @@ import sys
 
 cameraIpAddresses = {}
 cameraIpAddresses ['Tiger']  = '192.168.0.4:81/stream'
-cameraIpAddresses ['King Tiger'] = '192.168.0.8:82/stream'
+cameraIpAddresses ['KingTiger'] = '192.168.0.16:83'
 cameraIpAddresses ['Other'] = '192.168.0.9:83/stream'
 
 udpCount = 0
