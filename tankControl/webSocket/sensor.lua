@@ -7,7 +7,7 @@ ws:on("connection", function(ws)
   if (vehicle == nil) then 
      print ( 'ERR, vehicle not specified, use config () and restart' )
   else 
-     ws:send ("{\""..vehicle.."\":\""..vehicleName.."\"}")
+     ws:send ("{\""..vehicle.."\":\""..vehicleName.."\",\"cameraIp\":\""..cameraIp.."\",\"cameraPort\":\""..cameraPort.."\"}")
   end
 end)
 ws:on("receive", function(_, msg, opcode)

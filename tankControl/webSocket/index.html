@@ -109,7 +109,7 @@
                                 case 'tankonline': 
                                     cameraAddress = data.cameraAddress;
                                     if (cameraAddress == undefined) {
-                                       console.log ( 'Got tankonline: ' + data.name);
+                                       console.log ( 'No cameraAddress...Got tankonline: ' + data.name);
                                        addCombo (data.name);
                                     } else {
                                        var cameraIpAddress = document.getElementById ( 'cameraAddress')
@@ -222,6 +222,7 @@
             Also:from a cmd windows: nslookup rctankonline.ddns.net<br>
             Try: rctankonline.ddns.net for server address<br>
             Server Ip Address: <Select name="ipAddress" id="ipAddress"> 
+                                   <option value="192.168.0.4">192.168.0.4</option>            
                                    <option value="192.168.0.15">192.168.0.15</option>
                                    <option value="192.168.4.1">192.168.4.1</option>
                                    <option value="173.21.121.125">173.21.121.125</option>

@@ -1,9 +1,8 @@
-Partlist exported from C:/piTank/Eagle/nanoController/nanoController.sch at 7/20/2020 10:15 AM
+Partlist exported from C:/piTank/Eagle/nanoController/nanoController.sch at 9/21/2020 2:37 PM
 
-Qty Value     Device            Package               Parts                         Description                                                                                                     PROD_ID   
-1             10UF-25V-20%(PTH) CPOL-RADIAL-10UF-25V  C1                            CAP-08440                                                                                                       CAP-08440 
-3             CONN_04LONGPADS   1X04_LONGPADS         H_BRIDGE, IRCONTROL, RECEIVER Multi connection point. Often used as Generic Header-pin footprint for 0.1 inch spaced/style header connections CONN-09696
-2             M01PTH_LONGPAD    1X01_LONGPAD          GND, JP6                      Header 1                                                                                                                  
-2             M15               1X15                  JP5, JP7                      Header 15                                                                                                                 
-2   Power     M023.5MM          SCREWTERMINAL-3.5MM-2 3.3CAM, 5VIN                  Standard 2-pin 0.1" header. Use with                                                                            CONN-08399
-1   Regulator M03LONGPADS       1X03_LONGPADS         3.3VOLT                       Header 3                                                                                                                  
+Qty Value Device                 Package               Parts                              Description                                                                                                     PROD_ID   
+3         CONN_04LONGPADS        1X04_LONGPADS         H_BRIDGE, IRCONTROL, WIFI_RECEIVER Multi connection point. Often used as Generic Header-pin footprint for 0.1 inch spaced/style header connections CONN-09696
+1         CONN_06SILK_FEMALE_PTH 1X06                  J1                                 Multi connection point. Often used as Generic Header-pin footprint for 0.1 inch spaced/style header connections CONN-08437
+2         M01PTH_LONGPAD         1X01_LONGPAD          GND, JP6                           Header 1                                                                                                                  
+2         M15                    1X15                  JP5, JP7                           Header 15                                                                                                                 
+1   Power M023.5MM               SCREWTERMINAL-3.5MM-2 3.3CAM                             Standard 2-pin 0.1" header. Use with                                                                            CONN-08399

@@ -11,9 +11,6 @@ from subprocess import check_output
 import sys
 
 cameraIpAddresses = {}
-cameraIpAddresses ['Tiger']  = '192.168.0.4:81/stream'
-cameraIpAddresses ['KingTiger'] = '192.168.0.16:83'
-cameraIpAddresses ['Other'] = '192.168.0.9:83/stream'
 
 udpCount = 0
 quit = False 
@@ -44,8 +41,6 @@ def users_event():
 
 async def notify_state():
     if USERS:  # asyncio.wait doesn't accept an empty list
-        # print ( "USERS: " + str(USERS)) 
-        # print ( "STATE: " + str(STATE)) 
         message = state_event()
         print (message)
         await asyncio.wait([user.send(message) for user in USERS])
@@ -66,6 +61,7 @@ async def register(websocket):
        if tank in cameraIpAddresses.keys():
           cameraAddress = cameraIpAddresses[tank]
           action = json.dumps({"type": "tankonline", "name": tank, "cameraAddress":cameraAddress})
+          print ( "Got a cameraAddress of : " + cameraAddress )
        else:
           action = json.dumps({"type": "tankonline", "name": tank})                  
        await asyncio.wait ([websocket.send (action)]);    
@@ -100,14 +96,13 @@ async def counter(websocket, path):
                      print ( 'action: [' + action + '] not found in list')
                elif 'tank' in data:                  
                   name = str(data['tank'])
+                  cameraIp = str(data['cameraIp'])
+                  cameraPort = str(data['cameraPort'])
+                  cameraIpAddresses [name]  = cameraIp + ':' + cameraPort                  
                   TANKS.add (name)
-                  print ( 'This tank is joining the webserver: ' + name ) 
+                  print ( 'This tank is joining the webserver: ' + name + ' with cameraIp: ' + cameraIp + ':' + cameraPort) 
                   for user in USERS:# Notify users that a tank has joined. 
-                     if name in cameraIpAddresses.keys():
-                        cameraAddress = cameraIpAddresses[name]
-                        action = json.dumps({"type": "tankonline", "name": name, "cameraAddress":cameraAddress})
-                     else:
-                        action = json.dumps({"type": "tankonline", "name": name})                  
+                     action = json.dumps({"type": "tankonline", "name": name, "cameraAddress":cameraIp, "cameraPort":cameraPort})
                      await asyncio.wait ([user.send (action)]);
             except Exception as ex: 
                print ( 'Not a json object: ' + message + ' ex: ' + str(ex) )

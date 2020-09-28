@@ -6,6 +6,8 @@ local timer1 = tmr.create()
 --Globals
 vehicle = nil
 vehicleName = nil 
+cameraIp = nil
+cameraPort = nil
 serverAddress = nil
 command = ""
 ip = nil
@@ -62,7 +64,9 @@ function readConfig()
       else
          vehicle = trim(line)
          vehicleName = trim(file.readline())
-         print ("[vehicle,vehicleName]: ["..vehicle..","..vehicleName.."]")
+         cameraIp = trim(file.readline())
+         cameraPort = trim(file.readline()) 
+         print ("[vehicle,vehicleName,cameraIp,cameraPort]: ["..vehicle..","..vehicleName..","..cameraIp..","..cameraPort.."]")
       end 
       file.close()
    else
@@ -71,11 +75,13 @@ function readConfig()
 end
 
 -- config ('tank', 'Tiger')
-function config(vehicle, vehicleName) 
+function config(vehicle, vehicleName, cameraIp, cameraPort) 
   print ("Writing info to config.txt" )
   file.open ("config.txt", "w")
   file.writeline (vehicle)
   file.writeline (vehicleName)
+  file.writeline (cameraIp)
+  file.writeline (cameraPort)
   file.close()
 end 
 
