@@ -1,4 +1,3 @@
-//  NRF24L01 truck or tank
 #include <MemoryFree.h>
 #include <EEPROM.h>
 #include "TimerOne.h"

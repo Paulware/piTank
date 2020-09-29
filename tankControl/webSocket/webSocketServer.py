@@ -23,7 +23,13 @@ def broadcastAddress():
       myAddress = socket.gethostbyname(socket.gethostname())   
    else:
       myAddress = check_output (['hostname','-I']).decode().strip()
-   print (myAddress)
+      if myAddress.find (' ') > -1: 
+         data = myAddress.split ( ' ')
+         myAddress = data[1]
+         
+   gethostname = socket.gethostbyname(socket.gethostname()) 
+   print ('[gethostname]: [' + gethostname + ']')
+   print ('[myAddress]: [' + myAddress + ']')
    index = myAddress.rfind ('.')
    clientIp = myAddress[0:index] + '.255'
    msg = 'server ' + myAddress
@@ -43,6 +49,7 @@ async def notify_state():
     if USERS:  # asyncio.wait doesn't accept an empty list
         message = state_event()
         print (message)
+        print ( 'send [' + message + '] to: ' + str(USERS))
         await asyncio.wait([user.send(message) for user in USERS])
 
 async def notify_users():
@@ -78,7 +85,14 @@ async def counter(websocket, path):
     await register(websocket);
     try:
         await websocket.send(state_event())
-        async for message in websocket:
+        
+        ##if sys.platform == 'win32' you may need the next line instead of the while True 
+        #async for message in websocket:
+        
+        # python 3.5 solution
+        while True: # for python 3.5
+            message = await websocket.recv() # needed for python 3.5
+            
             #print ( 'client: [' + str(message) + ']' )
             try: 
                data = json.loads(message)
