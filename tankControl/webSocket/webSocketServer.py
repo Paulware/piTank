@@ -46,43 +46,55 @@ def users_event():
     return json.dumps({"type": "users", "count": len(USERS)})
 
 async def notify_state():
-    if USERS:  # asyncio.wait doesn't accept an empty list
-        message = state_event()
-        print (message)
-        print ( 'send [' + message + '] to: ' + str(USERS))
-        await asyncio.wait([user.send(message) for user in USERS])
+    try: 
+        if USERS:  # asyncio.wait doesn't accept an empty list
+            message = state_event()
+            print (message)
+            print ( 'send [' + message + '] to: ' + str(USERS))
+            await asyncio.wait([user.send(message) for user in USERS])
+    except Exception as ex:
+        print ( 'notify_state, exception: ' + str(ex)) 
 
 async def notify_users():
-    if USERS:  # asyncio.wait doesn't accept an empty list
-        message = users_event()
-        print ( message )
-        await asyncio.wait([user.send(message) for user in USERS])
+    try: 
+        if USERS:  # asyncio.wait doesn't accept an empty list
+            message = users_event()
+            print ( message )
+            await asyncio.wait([user.send(message) for user in USERS])
+    except Exception as ex:
+        print ( 'notify_users, exception: ' + str(ex)) 
 
 async def register(websocket):
-    USERS.add(websocket)    
-    print ('user registered'+str(websocket))
+    try: 
+        USERS.add(websocket)    
+        print ('user registered'+str(websocket))
 
-    for tank in TANKS:
-       print ( 'This tank has already joined the webserver: ' + tank ) 
-       
-       if tank in cameraIpAddresses.keys():
-          cameraAddress = cameraIpAddresses[tank]
-          action = json.dumps({"type": "tankonline", "name": tank, "cameraAddress":cameraAddress})
-          print ( "Got a cameraAddress of : " + cameraAddress )
-       else:
-          action = json.dumps({"type": "tankonline", "name": tank})                  
-       await asyncio.wait ([websocket.send (action)]);    
-    
-    await notify_users() # Update all users with the new count of users
+        for tank in TANKS:
+           print ( 'This tank has already joined the webserver: ' + tank[0] ) 
+           tankName = tank[0]
+           if tankName in cameraIpAddresses.keys():
+              cameraAddress = cameraIpAddresses[tankName]
+              action = json.dumps({"type": "tankonline", "name": tankName, "cameraAddress":cameraAddress})
+              print ( "Got a cameraAddress of : " + cameraAddress )
+           else:
+              action = json.dumps({"type": "tankonline", "name": tankName})                  
+           await asyncio.wait ([websocket.send (action)]);    
+        
+        await notify_users() # Update all users with the new count of users
+    except Exception as ex:
+        print ( 'register, exception: ' + str(ex)) 
 
 async def unregister(websocket):
-    USERS.remove(websocket)
-    await notify_users()
+    try: 
+       USERS.remove(websocket)
+       await notify_users()
+    except Exception as ex:
+       print ( 'unregister, exception: ' + str(ex)) 
 
-async def counter(websocket, path):
+async def handleEvents(websocket, path):
     global quit
-    # register(websocket) sends user_event() to websocket
-    await register(websocket);
+
+    await register(websocket); # Add the user sends all tank data to all users
     try:
         await websocket.send(state_event())
         
@@ -90,7 +102,7 @@ async def counter(websocket, path):
         #async for message in websocket:
         
         # python 3.5 solution
-        while True: # for python 3.5
+        while True:
             message = await websocket.recv() # needed for python 3.5
             
             #print ( 'client: [' + str(message) + ']' )
@@ -98,28 +110,42 @@ async def counter(websocket, path):
                data = json.loads(message)
                #print ( 'got data: ' + str(data)) 
                if 'action' in data:
-                  action = data['action']
-                  print ( 'got action: ' + str(action))
+                  action = data['action'];
+                  print ( 'got action: ' + action )                  
+                  vehicle = data['vehicle'];
+                  print ( 'got vehicle: ' + vehicle)
+                  name = data['name'];
+                  print ( 'got name: ' + name )
+                  
+                  print ( 'got action: ' + str(action) + ' and name: ' + name )
                   if len(USERS) == 0: 
                      print ( 'No USERS registered yet' )
                   elif (action in ['left','right','forward','reverse','stop','fire','left turret','right turret', 'up turret', 'down turret', 'stop turret', 'start']):
-                     for user in USERS:
-                        print ( 'send action ' + action + ' to ' + str(user)) 
-                        await asyncio.wait([user.send(action)])
+                     print ( 'HandleEvents iterate through tanks')
+                     for tank in TANKS:
+                        tankName = tank[0]
+                        if tankName == name: 
+                           print ('Send command: ' + action + ' to tank: ' + tankName )
+                           socket = tank[1]
+                           await asyncio.wait ([socket.send(action)])
                   else:
                      print ( 'action: [' + action + '] not found in list')
-               elif 'tank' in data:                  
+               elif 'tank' in data: # Tank is joining the web-server                  
                   name = str(data['tank'])
                   cameraIp = str(data['cameraIp'])
                   cameraPort = str(data['cameraPort'])
+                  print ( 'Adding cameraIp+port to cameraIpAddresses ' + cameraIp + ':' + cameraPort)
                   cameraIpAddresses [name]  = cameraIp + ':' + cameraPort                  
-                  TANKS.add (name)
+                  print ( 'add list [name,websocket] to TANKS')
+                  TANKS.append ([name,websocket])
+                  print ( 'Number of tanks in system: ' + str(len(TANKS))) 
                   print ( 'This tank is joining the webserver: ' + name + ' with cameraIp: ' + cameraIp + ':' + cameraPort) 
                   for user in USERS:# Notify users that a tank has joined. 
                      action = json.dumps({"type": "tankonline", "name": name, "cameraAddress":cameraIp, "cameraPort":cameraPort})
                      await asyncio.wait ([user.send (action)]);
-            except Exception as ex: 
-               print ( 'Not a json object: ' + message + ' ex: ' + str(ex) )
+            except Exception as ex:
+               print ( 'handleEvents, exception: ' + str(ex))             
+               print ( 'message: ' + message )
     except Exception as ex:
         print ( 'perhaps disconnected?' + str(ex) )  
     finally:
@@ -132,7 +158,7 @@ def broadcastServerAddress():
    global quit
    startTime = time.time() 
    while not quit:
-      if (time.time() - startTime) > 10: 
+      if (time.time() - startTime) > 60: 
          broadcastAddress ()
          startTime = time.time()
       time.sleep (1)         
@@ -150,7 +176,7 @@ else: # Windows
 logging.basicConfig()
 STATE = {"value": 0}
 USERS = set()   
-TANKS = set()     
+TANKS = list()     
 
 broadcastAddress()
 broadcastThread = Thread(target=broadcastServerAddress)
@@ -160,12 +186,10 @@ print ( 'ident: ' + str(broadcastThread.ident ))
 myAddress = socket.gethostbyname(socket.gethostname())
 print ("myAddress: " + myAddress)        
 print ( "Serve 0.0.0.0:9876")
-start_server = websockets.serve(counter, "0.0.0.0", 9876)
+start_server = websockets.serve(handleEvents, "0.0.0.0", 9876) # Forever handle events 
 
 asyncio.get_event_loop().run_until_complete(start_server)
 try: 
    asyncio.get_event_loop().run_forever()
 finally: 
    quit = True
-
-

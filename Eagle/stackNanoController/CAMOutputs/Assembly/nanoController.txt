@@ -1,0 +1,4 @@
+Partlist exported from C:/piTank/Eagle/stackNanoController/nanoController.sch at 10/7/2020 10:04 AM
+
+Qty Value Device                 Package Parts  Description                                                                                                     PROD_ID   
+2         CONN_06SILK_FEMALE_PTH 1X06    J1, J2 Multi connection point. Often used as Generic Header-pin footprint for 0.1 inch spaced/style header connections CONN-08437

@@ -40,8 +40,9 @@
             
         </style>
         <script>
-            var serverAddress; //  = '192.168.4.1'; // '173.21.121.125'; // '192.168.0.143'; // = '10.13.7.79'
-            var websocket; // = new WebSocket("ws://" + serverAddress + ":5678/");
+            var serverAddress; 
+            var websocket; 
+            var selectedTank = '';
 
             document.addEventListener ('DOMContentLoaded', function () { 
                console.log ( 'Adding mouse down/up Listeners' );
@@ -116,11 +117,9 @@
                                        cameraIpAddress.value = cameraAddress;                                       
                                        var cameraFrame = document.getElementById ( 'cameraFrame')                     
                                        //cameraFrame.src = 'http://' + cameraAddress;
-                                                                        
                                        console.log ( 'Got tankonline: ' + data.name + ' cameraAddress: ' + cameraAddress);
                                        addCombo (data.name + ' ' + cameraAddress);
-                                       console.log ( 'cameraFrame.src set to : http://' + cameraAddress);
-                                       //cameraFrame.style.visibility = 'visible';
+                                       console.log ( 'Select tank to view camera: ' + cameraAddress);
                                     }
                                     break;
                                 default:
@@ -136,7 +135,7 @@
 
             function sendData (msg) {
               console.log ( 'sendData [' + msg + ']');
-              websocket.send(JSON.stringify({"action": msg }));              
+              websocket.send(JSON.stringify({"action": msg, "vehicle":"tank", "name":selectedTank }));              
             }
             function leftTurret() {
                sendData ('left turret');
@@ -195,9 +194,11 @@
                var e = document.getElementById("combo");
                var index = e.selectedIndex; 
                var value = e.options[index].text                          
-               var ind = value.indexOf ( ' ' );
+               var ind = value.lastIndexOf ( ' ' );
+               console.log ( 'Got a tank selection of : ' + value );
+               selectedTank = value.substring (0,ind);
                var cameraAddress = value.substring (ind+1);
-               // alert ( 'Got a tank cameraAddress: ' + cameraAddress);
+               console.log ( 'Got a selected tank cameraAddress of ' + cameraAddress);
                var cameraFrame = document.getElementById ( 'cameraFrame')                     
                cameraFrame.src = 'http://' + cameraAddress;
                cameraFrame.style.display = '';
@@ -237,7 +238,7 @@
        </div    
  
           <div style="float:left"> 
-              <iframe width="800px" height="600px" id="cameraFrame" style="display:none"></iframe><!<iframe src="http://192.168.0.16:83"> 
+              <iframe width="800px" height="600px" id="cameraFrame" style="display:none"></iframe>
               <img src="images/pleaseStandBy.jpg" id="pleaseStandBy"><br>             
           </div>
           <hr>

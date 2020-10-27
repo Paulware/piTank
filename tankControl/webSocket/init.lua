@@ -74,7 +74,7 @@ function readConfig()
    end    
 end
 
--- config ('tank', 'Tiger')
+-- config ('tank', 'Tiger', '192.168.0.X', 'YZ')
 function config(vehicle, vehicleName, cameraIp, cameraPort) 
   print ("Writing info to config.txt" )
   file.open ("config.txt", "w")

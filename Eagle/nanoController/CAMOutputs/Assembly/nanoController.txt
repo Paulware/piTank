@@ -1,8 +1,7 @@
-Partlist exported from C:/piTank/Eagle/nanoController/nanoController.sch at 9/29/2020 4:44 PM
+Partlist exported from C:/piTank/Eagle/nanoController/nanoController.sch at 10/15/2020 10:15 AM
 
-Qty Value Device                 Package               Parts                                     Description                                                                                                     PROD_ID   
-4         CONN_04LONGPADS        1X04_LONGPADS         EXTRA, H_BRIDGE, IRCONTROL, WIFI_RECEIVER Multi connection point. Often used as Generic Header-pin footprint for 0.1 inch spaced/style header connections CONN-09696
-1         CONN_06SILK_FEMALE_PTH 1X06                  J1                                        Multi connection point. Often used as Generic Header-pin footprint for 0.1 inch spaced/style header connections CONN-08437
-6         M01PTH_LONGPAD         1X01_LONGPAD          GND, GND10, GND11, GND12, GND14, JP6      Header 1                                                                                                                  
-2         M15                    1X15                  JP5, JP7                                  Header 15                                                                                                                 
-3   Power M023.5MM               SCREWTERMINAL-3.5MM-2 3.3CAM1, 3.3CAM2, 3.3CAM3                 Standard 2-pin 0.1" header. Use with                                                                            CONN-08399
+Qty Value Device                 Package       Parts                                                                                Description                                                                                                     PROD_ID   
+3         CONN_04LONGPADS        1X04_LONGPADS H_BRIDGE, IRCONTROL, WIFI_RECEIVER                                                   Multi connection point. Often used as Generic Header-pin footprint for 0.1 inch spaced/style header connections CONN-09696
+3         CONN_06SILK_FEMALE_PTH 1X06          J1, J2, J3                                                                           Multi connection point. Often used as Generic Header-pin footprint for 0.1 inch spaced/style header connections CONN-08437
+13        M01PTH_LONGPAD         1X01_LONGPAD  GND2, GND7, GND10, GND11, GND12, GND14, GND17, GND18, GND19, PWR1, PWR2, PWR7, PWR10 Header 1                                                                                                                  
+2         M15                    1X15          JP5, JP7                                                                             Header 15                                                                                                                 
