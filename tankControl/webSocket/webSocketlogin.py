@@ -155,6 +155,13 @@ async def handleEvents(websocket, path):
                           print ("send command: " + str(action))
                           await asyncio.wait ([websocket.send (action)])
                        else:
+                       
+                          cameraIpPort = cameraIpAddresses [myTankId]
+                          data = cameraIpPort.split ( ':' )
+                          cameraIp = data[0]
+                          cameraPort = data[1]
+                          action = json.dumps({"type": "tankonline", "name": myTankId, "cameraAddress":cameraIp, "cameraPort":cameraPort})
+                          await asyncio.wait ([user.send (action)]);                       
                           action = json.dumps({"type": "assign", "id":myTankId})
                           print ( "Send command: " + str(action) )
                           await asyncio.wait ([websocket.send (action)])                                              
@@ -190,9 +197,9 @@ async def handleEvents(websocket, path):
                   TANKS.append ([name,websocket])
                   print ( 'Number of tanks in system: ' + str(len(TANKS))) 
                   print ( 'This tank is joining the webserver: ' + name + ' with cameraIp: ' + cameraIp + ':' + cameraPort) 
-                  for user in USERS:# Notify users that a tank has joined. 
-                     action = json.dumps({"type": "tankonline", "name": name, "cameraAddress":cameraIp, "cameraPort":cameraPort})
-                     await asyncio.wait ([user.send (action)]);
+                  #for user in USERS:# Notify users that a tank has joined. 
+                  #   action = json.dumps({"type": "tankonline", "name": name, "cameraAddress":cameraIp, "cameraPort":cameraPort})
+                  #   await asyncio.wait ([user.send (action)]);
             except Exception as ex:
                print ( 'handleEvents, exception: ' + str(ex))             
                print ( 'message: ' + message )
