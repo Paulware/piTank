@@ -13,6 +13,7 @@ unsigned long speedTimeout = 0;
 unsigned long fireTimeout = 0;
 int turnPower = 50;
 int timeoutTime = 900;
+unsigned long allStopTimeout = 0;
 
 byte health = 0;
 int state = 0;
@@ -88,6 +89,8 @@ void setup() {
   Serial.println ( health );
 
   fireTimeout = 0;
+
+  allStopTimeout = millis() + 1000;
 }
 
 /*
@@ -103,6 +106,7 @@ void loop() {
   if (Serial.available()) {
      ch = Serial.read();
      Serial.print (ch);
+     allStopTimeout = millis() + 1000;
      if (ch == 'L')  { // Left Forward      
         analogWrite (5,0);
         analogWrite (6,FULLSPEED);
@@ -143,6 +147,17 @@ void loop() {
      } else if (ch == 'f') {
         fire = false;
      }
+  }
+
+  if (millis() > allStopTimeout ) { 
+     digitalWrite (7,0);
+     digitalWrite (8,0);
+     digitalWrite (11,0);
+     digitalWrite (12,0);
+     digitalWrite (5,0);
+     digitalWrite (6,0);
+     digitalWrite (9,0);
+     digitalWrite (10,0);
   }
   
 }
