@@ -160,7 +160,7 @@ async def handleEvents(websocket, path):
                           cameraIp = data[0]
                           cameraPort = data[1]
                           action = json.dumps({"type": "tankonline", "name": myTankId, "cameraAddress":cameraIp, "cameraPort":cameraPort})
-                          await asyncio.wait ([user.send (action)]);                       
+                          await asyncio.wait ([websocket.send (action)]);                       
                           action = json.dumps({"type": "assign", "id":myTankId})
                           print ( "Send command: " + str(action) )
                           await asyncio.wait ([websocket.send (action)])                                              
