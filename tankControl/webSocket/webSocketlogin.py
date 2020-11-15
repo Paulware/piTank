@@ -82,16 +82,16 @@ async def register(websocket):
         action = json.dumps({"type": "login", "name": "You"})        
         await asyncio.wait ([websocket.send (action)]); 
 
-        for tank in TANKS:
-           print ( 'This tank has already joined the webserver: ' + tank[0] ) 
-           tankName = tank[0]
-           if tankName in cameraIpAddresses.keys():
-              cameraAddress = cameraIpAddresses[tankName]
-              action = json.dumps({"type": "tankonline", "name": tankName, "cameraAddress":cameraAddress})
-              print ( "Got a cameraAddress of : " + cameraAddress )
-           else:
-              action = json.dumps({"type": "tankonline", "name": tankName})                  
-           await asyncio.wait ([websocket.send (action)]);    
+        #for tank in TANKS:
+        #   print ( 'This tank has already joined the webserver: ' + tank[0] ) 
+        #   tankName = tank[0]
+        #   if tankName in cameraIpAddresses.keys():
+        #      cameraAddress = cameraIpAddresses[tankName]
+        #      action = json.dumps({"type": "tankonline", "name": tankName, "cameraAddress":cameraAddress})
+        #      print ( "Got a cameraAddress of : " + cameraAddress )
+        #   else:
+        #      action = json.dumps({"type": "tankonline", "name": tankName})                  
+        #   await asyncio.wait ([websocket.send (action)]);    
         
         await notify_users() # Update all users with the new count of users
     except Exception as ex:
@@ -154,8 +154,7 @@ async def handleEvents(websocket, path):
                           action = json.dumps({"type": "alert", "message":"Your tank " + vehicle + " has not logged in yet..."})
                           print ("send command: " + str(action))
                           await asyncio.wait ([websocket.send (action)])
-                       else:
-                       
+                       else:    
                           cameraIpPort = cameraIpAddresses [myTankId]
                           data = cameraIpPort.split ( ':' )
                           cameraIp = data[0]
