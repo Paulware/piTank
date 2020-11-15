@@ -140,8 +140,19 @@ async def handleEvents(websocket, path):
                      if goodPassword ( username,password): 
                        action = json.dumps({"type": "welcome", "message":"Welcome " + username})
                        await asyncio.wait ([websocket.send (action)])
-                       action = json.dumps({"type": "welcome", "message":"You are assigned the vehicle: " + getVehicleAssignment (username)})
-                       await asyncio.wait ([websocket.send (action)])
+                       vehicle = getVehicleAssignment (username);
+                       myTankId = ""
+                       for tank in TANKS:
+                           tankName = tank[0]
+                           if tankName.find (vehicle) > -1: 
+                              myTankId = tankName
+                              break
+                       if myTankId == "": 
+                          action = json.dumps({"type": "alert", "message":"Your tank " + vehicle + " has not logged in yet..."})
+                          await asyncio.wait ([websocket.send (action)])
+                       else:
+                          action = json.dumps({"type": "assign", "id":myTankId})
+                          await asyncio.wait ([websocket.send (action)])                       
                        
                      else: 
                        action = json.dumps({"type": "alert", "message":"Incorrect username or password"})

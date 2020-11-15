@@ -43,42 +43,55 @@
             var serverAddress; 
             var websocket = undefined; 
             var selectedTank = '';
-            var homeServer = '173.21.121.125';     
+            var homeServer = '173.21.121.125';   
+            var loggedIn = false;   
+            document.addEventListener ('keyup', function (e) {
+	              if (loggedIn) { 
+                  stopTurret();
+                  stop();                  
+               }
+            });            
             document.addEventListener ('keydown', function (e) {
                // e = e || window.event;
                var key = e.key || e.keyCode;
-	                
-               switch (key) {
-                  case 'w':
-                     forward();
-                     break;
-                  case 'a':
-                     left();
-                     break;
-                  case 'd':
-                     right();
-                     break;
-                  case 's':
-                     reverse();
-                     break;
-                  case 37: // arrowLeft
-                     leftTurret ();
-                     console.log ( 'arrowLeft' );
-                     break;
-                  case 38: // arrowUp 
-                     upTurret();
-                     console.log ( 'arrowUp' );
-                     break;
-                  case 39: 
-                     rightTurret();
-                     console.log ( 'arrowRight' );
-                     break;
-                  case 40:
-                     downTurret();
-                     console.log ( 'arrowDown' );
-                     break;
+	              if (loggedIn) {   
+                  switch (key) {
+                     case 'w':
+                        forward();
+                        break;
+                     case 'a':
+                        left();
+                        break;
+                     case 'd':
+                        right();
+                        break;
+                     case 's':
+                        reverse();
+                        break;
+                     case 'ArrowLeft':
+                     case 37: // arrowLeft
+                        leftTurret ();
+                        console.log ( 'arrowLeft' );
+                        break;
+                     case 'ArrowUp':
+                     case 38: // arrowUp 
+                        upTurret();
+                        console.log ( 'arrowUp' );
+                        break;
+                     case 'ArrowRight':                     
+                     case 39: 
+                        rightTurret();
+                        console.log ( 'arrowRight' );
+                        break;
+                     case 'ArrowDown':
+                     case 40:
+                        downTurret();
+                        console.log ( 'arrowDown' );
+                        break;
+                  }
+                  console.log ( 'This key was pressed: ' + key );
+                  event.preventDefault();
                }
-               console.log ( 'This key was pressed: ' + key );
             });
 
             document.addEventListener ('DOMContentLoaded', function () { 
@@ -115,6 +128,7 @@
                var cameraPort;
                var username;
                var serverAction;
+               var vehicle;
                if (websocket != undefined) {
                   console.log ( 'Send login information to the server ' );                  
                   username = document.getElementById ( 'username').value;
@@ -146,6 +160,11 @@
                             data = JSON.parse(event.data);
                             console.log ( 'Got a JSON datatype: ' + data.type)
                             switch (data.type) {
+                                case 'assign':
+                                    vehicle = data['id'];
+                                    alert ( 'You have been assigned the vehicle: ' + vehicle);
+                                    addCombo ( data['id'])
+                                    break;
                                 case 'alert': 
                                     //message = document.getElementById ('serverMessage')
                                     //message.value = data['message']
@@ -161,6 +180,7 @@
                                     break;
                                 case 'welcome':
                                     alert (  data['message'])
+                                    loggedIn = true;
                                 case 'state':
                                     //value.textContent = data.value;
                                     break;
@@ -286,7 +306,7 @@
       <p>
       <hr>
           <p>
-            Note: For best frame rate, use vga 640x480<br>
+            Note: Use wasd keys to move, and left/right arrow keys for turret<br>
             Camera Ip Address: http://<input value="Unknown" id="cameraAddress"><br>
             <br>
             Also:from a cmd windows: nslookup rctankonline.ddns.net<br>
