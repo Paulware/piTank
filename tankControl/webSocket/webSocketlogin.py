@@ -111,12 +111,7 @@ def goodPassword ( username, password ):
    elif (username == 'Bryce') and (password == 'ecyrB'):
       good = True
    return good
-   
-async def sendCommand (websocket, action):
-   print ("sendCommand: " + str(action))
-   await asyncio.wait ([websocket.send (action)])
-
-       
+      
 async def handleEvents(websocket, path):
     global quit
 
@@ -152,9 +147,11 @@ async def handleEvents(websocket, path):
                            if tankName.find (vehicle) > -1: 
                               myTankId = tankName
                               break
+                       
                        if myTankId == "": 
                           action = json.dumps({"type": "alert", "message":"Your tank " + vehicle + " has not logged in yet..."})
-                          sendCommand (websocket, action)
+                          print ("sendCommand: " + str(action))
+                          await asyncio.wait ([websocket.send (action)])
                        else:
                           action = json.dumps({"type": "assign", "id":myTankId})
                           await asyncio.wait ([websocket.send (action)])                                              
