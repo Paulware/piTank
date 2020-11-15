@@ -145,7 +145,9 @@ async def handleEvents(websocket, path):
                        for tank in TANKS:
                            tankName = tank[0]
                            if tankName.find (vehicle) > -1: 
+                              print ( 'Found tank ' + tankName + ' for vehicle: ' + vehicle)
                               myTankId = tankName
+                              print ( 'myTankId: ' + myTankId)
                               break
                        
                        if myTankId == "": 
