@@ -18,7 +18,7 @@ quit = False
 def getVehicleAssignment (username): 
    vehicle = 'None'
    if username == 'Sean': 
-      vehicle = 'M26a'
+      vehicle = 'M26b'
    elif username == 'Bryce':
       vehicle = 'Panthera'
    return vehicle 
