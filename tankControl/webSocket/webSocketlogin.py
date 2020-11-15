@@ -186,7 +186,7 @@ async def handleEvents(websocket, path):
                   cameraPort = str(data['cameraPort'])
                   print ( 'Adding cameraIp+port to cameraIpAddresses ' + cameraIp + ':' + cameraPort)
                   cameraIpAddresses [name]  = cameraIp + ':' + cameraPort                  
-                  print ( 'add list [name,websocket] to TANKS')
+                  print ( 'add [name,websocket] to TANKS: [' + name + ',websocket]')
                   TANKS.append ([name,websocket])
                   print ( 'Number of tanks in system: ' + str(len(TANKS))) 
                   print ( 'This tank is joining the webserver: ' + name + ' with cameraIp: ' + cameraIp + ':' + cameraPort) 
