@@ -191,26 +191,21 @@
                                     break;
                                 // Get a tank that has joined. 
                                 case 'tankonline': 
-                                    cameraAddress = data.cameraAddress;
-                                    if (cameraAddress == undefined) {
-                                       console.log ( 'No cameraAddress...Got tankonline: ' + data.name);
-                                       //addCombo (data.name);
-                                    } else {
-                                       cameraAddress = data.cameraAddress = ':' + data.cameraPort;
-                                       if (serverAddress == homeServer) {
-                                          cameraAddress = serverAddress + data.externalPort;
-                                          alert ( 'Resetting cameraAddress to : ' + cameraAddress);
-                                       }
-                                       selectCamera ( cameraAddress)
-
-                                       var cameraIpAddress = document.getElementById ( 'cameraAddress')
-                                       cameraIpAddress.value = cameraAddress;                                       
-                                       var cameraFrame = document.getElementById ( 'cameraFrame')                     
-                                       console.log ( 'Got tankonline: ' + data.name + ' cameraAddress: ' + cameraAddress);
-                                       //addCombo (data.name + ' ' + cameraAddress);
-                                       console.log ( 'Select tank to view camera: ' + cameraAddress);
-                                       selectedTank = data.name;
+                                    console.log ( 'tankonline [cameraAddress,cameraPort]: [' + data.cameraAddress + ':' + data.cameraPort + ']');
+                                    cameraAddress = data.cameraAddress + ':' + data.cameraPort;
+                                    if (serverAddress == homeServer) {
+                                       cameraAddress = serverAddress + data.externalPort;
+                                       alert ( 'Resetting cameraAddress to : ' + cameraAddress);
                                     }
+                                    selectCamera ( cameraAddress)
+
+                                    var cameraIpAddress = document.getElementById ( 'cameraAddress')
+                                    cameraIpAddress.value = cameraAddress;                                       
+                                    var cameraFrame = document.getElementById ( 'cameraFrame')                     
+                                    console.log ( 'Got tankonline: ' + data.name + ' cameraAddress: ' + cameraAddress);
+                                    //addCombo (data.name + ' ' + cameraAddress);
+                                    console.log ( 'Select tank to view camera: ' + cameraAddress);
+                                    selectedTank = data.name;
                                     break;
                                 default:
                                     console.log ( 'data.type: ' + data.type);

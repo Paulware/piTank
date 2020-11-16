@@ -20,7 +20,7 @@ def getVehicleAssignment (username):
    if username == 'Sean': 
       vehicle = 'M26b'
    elif username == 'Bryce':
-      vehicle = 'Panthera'
+      vehicle = 'King Tiger A'
    return vehicle 
    
 '''
