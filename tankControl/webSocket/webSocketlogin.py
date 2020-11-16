@@ -112,6 +112,26 @@ def goodPassword ( username, password ):
       good = True
    return good
       
+def lookupPortForwarded (cameraIp):
+   portForwarded='79';
+   if cameraIp == '192.168.0.18':
+      portForwarded = '85'
+   elif cameraIp == '192.168.0.4':
+      portForwarded = '81'
+   elif cameraIp == '192.168.0.16':
+      portForwarded = '83'
+   elif cameraIp == '192.168.0.17':
+      portForwarded = '84'
+   elif cameraIp == '192.168.0.19':
+      portForwarded = '86'
+   elif cameraIp == '192.168.0.20':
+      portForwarded = '87'
+   elif cameraIp == '192.168.0.21':
+      portForwarded = '88'
+
+   return portForwarded;
+      
+      
 async def handleEvents(websocket, path):
     global quit
 
@@ -159,7 +179,8 @@ async def handleEvents(websocket, path):
                           data = cameraIpPort.split ( ':' )
                           cameraIp = data[0]
                           cameraPort = data[1]
-                          action = json.dumps({"type": "tankonline", "name": myTankId, "cameraAddress":cameraIp, "cameraPort":cameraPort})
+                          externalPort = lookupPortForwarded (cameraIp);
+                          action = json.dumps({"type": "tankonline", "name": myTankId, "cameraAddress":cameraIp, "cameraPort":cameraPort, "portForwarded":externalPort})
                           await asyncio.wait ([websocket.send (action)]);                       
                           action = json.dumps({"type": "assign", "id":myTankId})
                           print ( "Send command: " + str(action) )

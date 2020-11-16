@@ -163,7 +163,7 @@
                                 case 'assign':
                                     vehicle = data['id'];
                                     alert ( 'You have been assigned the vehicle: ' + vehicle);
-                                    addCombo ( data['id'])
+                                    //addCombo ( data['id'])
                                     break;
                                 case 'alert': 
                                     //message = document.getElementById ('serverMessage')
@@ -194,20 +194,22 @@
                                     cameraAddress = data.cameraAddress;
                                     if (cameraAddress == undefined) {
                                        console.log ( 'No cameraAddress...Got tankonline: ' + data.name);
-                                       addCombo (data.name);
+                                       //addCombo (data.name);
                                     } else {
+                                       cameraAddress = data.cameraAddress = ':' + data.cameraPort;
                                        if (serverAddress == homeServer) {
-                                          ind = cameraAddress.indexOf ( ':' )
-                                          cameraPort = cameraAddress.substring (ind);
-                                          cameraAddress = serverAddress + cameraPort;
+                                          cameraAddress = serverAddress + data.externalPort;
                                           alert ( 'Resetting cameraAddress to : ' + cameraAddress);
                                        }
+                                       selectCamera ( cameraAddress)
+
                                        var cameraIpAddress = document.getElementById ( 'cameraAddress')
                                        cameraIpAddress.value = cameraAddress;                                       
                                        var cameraFrame = document.getElementById ( 'cameraFrame')                     
                                        console.log ( 'Got tankonline: ' + data.name + ' cameraAddress: ' + cameraAddress);
-                                       addCombo (data.name + ' ' + cameraAddress);
+                                       //addCombo (data.name + ' ' + cameraAddress);
                                        console.log ( 'Select tank to view camera: ' + cameraAddress);
+                                       selectedTank = data.name;
                                     }
                                     break;
                                 default:
@@ -223,7 +225,7 @@
             }
 
             function sendData (msg) {
-              console.log ( 'sendData [' + msg + ']');
+              console.log ( 'sendData [' + msg + '] to tank:' + selectedTank);
               websocket.send(JSON.stringify({"action": msg, "vehicle":"tank", "name":selectedTank }));              
             }
             function leftTurret() {
@@ -263,9 +265,10 @@
                sendData ('fire');
             }  
 
+            /*
             function addCombo(value) {
-               var tankStatus = document.getElementById ( 'tankStatus')
-               tankStatus.value = 'New Tank Available'
+               //var tankStatus = document.getElementById ( 'tankStatus')
+               //tankStatus.value = 'New Tank Available'
                var cameraFrame = document.getElementById ( 'cameraFrame')
             
                var combo = document.getElementById("combo");              
@@ -278,6 +281,7 @@
                   combo.add(option); // IE only
                }
             } 
+            
 
             function tankSelected () {
                var e = document.getElementById("combo");
@@ -296,12 +300,28 @@
                var pleaseStandBy = document.getElementById ( 'pleaseStandBy');
                pleaseStandBy.style.visibility = 'hidden';               
             }            
+            */
+            function selectCamera (cameraAddress) {
+               console.log ( 'selectCamera: ' + cameraAddress)
+               var cameraFrame = document.getElementById ( 'cameraFrame')                     
+               cameraFrame.src = 'http://' + cameraAddress;
+               cameraFrame.style.display = '';
+               cameraFrame.style.visibility = 'visible';               
+               
+               var pleaseStandBy = document.getElementById ( 'pleaseStandBy');
+               pleaseStandBy.style.visibility = 'hidden';               
+            }            
+            
         </script>
       </head>
     <body>
+      <script>
+        /*
       Tanks: <select name="combo" id="combo" onchange="tankSelected();">
                  <option value="none">No Tanks Registered</option>      
               </select><input id="tankStatus" value=" ">     
+       */
+       </script>
       <div style="align:left">
       <p>
       <hr>
@@ -309,16 +329,24 @@
             Note: Use wasd keys to move, and left/right arrow keys for turret<br>
             Camera Ip Address: http://<input value="Unknown" id="cameraAddress"><br>
             <br>
+            <script>
+            /*
             Also:from a cmd windows: nslookup rctankonline.ddns.net<br>
             Try: rctankonline.ddns.net for server address<br>
+            */
+            </script>
             Server Ip Address: <Select name="ipAddress" id="ipAddress"> 
+                                   <option value="173.21.121.125">173.21.121.125</option>
+                                   <option value="192.168.0.15">192.168.0.15</option>
+                         <script>
+                         /*
                                    <option value="localhost">localhost</option>
                                    <option value="10.3.141.1">10.3.141.1</option>
                                    <option value="192.168.0.4">192.168.0.4</option>            
-                                   <option value="192.168.0.15">192.168.0.15</option>
                                    <option value="192.168.4.1">192.168.4.1</option>
-                                   <option value="173.21.121.125">173.21.121.125</option>
-                               </Select>:9876<br>&nbsp;&nbsp;Username: <input value="username" id="username"><br>
+                         */
+                         </script>
+                               </Select>:9876<br>&nbsp;&nbsp;Username: <input id="username"><br>
                                &nbsp;&nbsp;Password: <input type="password" id="password"><br>
                                <input type="button" onclick=";" value="login" id="connectToServer"><br>
 
@@ -326,7 +354,11 @@
             <div class="state">
               <span class="users">?</span> online
             </div>
+            <script>
+            /*
             See <a href="https://websockets.readthedocs.io/en/stable/intro.html">https://websockets.readthedocs.io/en/stable/intro.html</a> for more info.
+            */
+            </script>
             <hr>            
        </div    
  
