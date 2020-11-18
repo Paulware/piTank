@@ -1,5 +1,10 @@
 print ( 'MAC:'..MAC)
 local ws = websocket.createClient()
+function hit()
+   ws:send ("{\"action\":\"hit\",\""..vehicle.."\":\""..vehicleName.."\"}")
+   print ( "Hit sent to server" )
+end
+
 ws:on("connection", function(ws)
   print ( 'SsUu' )
   print ( 'SsUu' )

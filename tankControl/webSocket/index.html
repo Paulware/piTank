@@ -194,8 +194,8 @@
                                     console.log ( 'tankonline [cameraAddress,cameraPort]: [' + data.cameraAddress + ':' + data.cameraPort + ']');
                                     cameraAddress = data.cameraAddress + ':' + data.cameraPort;
                                     if (serverAddress == homeServer) {
-                                       cameraAddress = serverAddress + data.externalPort;
-                                       alert ( 'Resetting cameraAddress to : ' + cameraAddress);
+                                       cameraAddress = serverAddress + ':' + data.cameraPort;
+                                       //alert ( 'Resetting cameraAddress to : ' + cameraAddress);
                                     }
                                     selectCamera ( cameraAddress)
 
@@ -333,11 +333,11 @@
             Server Ip Address: <Select name="ipAddress" id="ipAddress"> 
                                    <option value="173.21.121.125">173.21.121.125</option>
                                    <option value="192.168.0.15">192.168.0.15</option>
+                                   <option value="192.168.0.3">192.168.0.3</option>            
                          <script>
                          /*
                                    <option value="localhost">localhost</option>
                                    <option value="10.3.141.1">10.3.141.1</option>
-                                   <option value="192.168.0.4">192.168.0.4</option>            
                                    <option value="192.168.4.1">192.168.4.1</option>
                          */
                          </script>

@@ -14,6 +14,7 @@ cameraIpAddresses = {}
 
 udpCount = 0
 quit = False 
+loginNames = {} 
 
 def getVehicleAssignment (username): 
    vehicle = 'None'
@@ -21,7 +22,33 @@ def getVehicleAssignment (username):
       vehicle = 'M26b'
    elif username == 'Bryce':
       vehicle = 'King Tiger A'
+   elif username == 'Paul':
+      vehicle = 'Tiger1 A'
    return vehicle 
+   
+def findUser (tank):
+   user = ""
+   if getVehicleAssignment('Paul') == tank: 
+      user = 'Paul'
+   elif getVehicleAssignment ('Sean') == tank:
+      user = 'Sean'
+   elif getVehicleAssignment ('Bryce') == tank:
+      user = 'Bryce'   
+   if user == "": 
+      print ( "Count not find a user for tank: " + tank)
+   else:
+      print ( user + " is using " + tank)
+   return user
+      
+def goodPassword ( username, password ):
+   good = False 
+   if (username == 'Sean') and (password == 'naeS'): 
+      good = True
+   elif (username == 'Bryce') and (password == 'ecyrB'):
+      good = True
+   elif (username=='Paul') and (password == 'luaP'):
+      good = True
+   return good   
    
 '''
    Send the address of the server to the tank receivers so that they can login. 
@@ -103,14 +130,6 @@ async def unregister(websocket):
        await notify_users()
     except Exception as ex:
        print ( 'unregister, exception: ' + str(ex)) 
-
-def goodPassword ( username, password ):
-   good = False 
-   if (username == 'Sean') and (password == 'naeS'): 
-      good = True
-   elif (username == 'Bryce') and (password == 'ecyrB'):
-      good = True
-   return good
       
 def lookupPortForwarded (cameraIp):
    portForwarded='79';
@@ -134,6 +153,7 @@ def lookupPortForwarded (cameraIp):
       
 async def handleEvents(websocket, path):
     global quit
+    global loginNames
 
     await register(websocket); # Add the user sends all tank data to all users
     try:
@@ -153,9 +173,11 @@ async def handleEvents(websocket, path):
                if 'action' in data:
                   action = data['action'];
                   print ( 'got action: ' + action )                  
-                  if action == 'login': 
+                  if action == 'login': # User is logging in
                      username = str(data['username'])
                      password = str(data['password'])
+                     print ( "Adding " + username + " to loginNames dictionary" )
+                     loginNames[username] = websocket
                      print ( 'Got [username,password]: [' + username + ',' + password + ']')
                      if goodPassword ( username,password): 
                        action = json.dumps({"type": "welcome", "message":"Welcome " + username})
@@ -168,8 +190,7 @@ async def handleEvents(websocket, path):
                               print ( 'Found tank ' + tankName + ' for vehicle: ' + vehicle)
                               myTankId = tankName
                               print ( 'myTankId: ' + myTankId)
-                              break
-                       
+                              break                   
                        if myTankId == "": 
                           action = json.dumps({"type": "alert", "message":"Your tank " + vehicle + " has not logged in yet..."})
                           print ("send command: " + str(action))
@@ -188,6 +209,20 @@ async def handleEvents(websocket, path):
                      else: 
                        action = json.dumps({"type": "alert", "message":"Incorrect username or password"})
                        await asyncio.wait ([websocket.send (action)])
+                  elif action == 'hit': # this tank has got a hit. 
+                     print ( "Received notification that hit detected")
+                     tank = str(data['tank'])
+                     hitName = findUser (tank)
+                     sendSocket = None
+                     for name in loginNames:
+                        print ( "Does name " + str(name) + "== hitName " + str(hitName) + "?")
+                        if name == hitName: 
+                           print ( "I found the login name")
+                           sendSocket = loginNames[name]
+                           action = json.dumps({"type": "hit"})        
+                           print ( "sending action: " + str(action))
+                           await asyncio.wait ([sendSocket.send (action)]); 
+                           break
                   else: 
                      vehicle = data['vehicle'];
                      print ( 'got vehicle: ' + vehicle)
@@ -235,7 +270,7 @@ def broadcastServerAddress():
    global quit
    startTime = time.time() 
    while not quit:
-      if (time.time() - startTime) > 30: 
+      if (time.time() - startTime) > 20: 
          broadcastAddress ()
          startTime = time.time()
       time.sleep (1)         
