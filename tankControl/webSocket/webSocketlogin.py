@@ -15,6 +15,7 @@ cameraIpAddresses = {}
 udpCount = 0
 quit = False 
 loginNames = {} 
+hitCounts = {}
 
 def getVehicleAssignment (username): 
    vehicle = 'None'
@@ -108,17 +109,6 @@ async def register(websocket):
         print ('user registered'+str(websocket))
         action = json.dumps({"type": "login", "name": "You"})        
         await asyncio.wait ([websocket.send (action)]); 
-
-        #for tank in TANKS:
-        #   print ( 'This tank has already joined the webserver: ' + tank[0] ) 
-        #   tankName = tank[0]
-        #   if tankName in cameraIpAddresses.keys():
-        #      cameraAddress = cameraIpAddresses[tankName]
-        #      action = json.dumps({"type": "tankonline", "name": tankName, "cameraAddress":cameraAddress})
-        #      print ( "Got a cameraAddress of : " + cameraAddress )
-        #   else:
-        #      action = json.dumps({"type": "tankonline", "name": tankName})                  
-        #   await asyncio.wait ([websocket.send (action)]);    
         
         await notify_users() # Update all users with the new count of users
     except Exception as ex:
@@ -154,6 +144,7 @@ def lookupPortForwarded (cameraIp):
 async def handleEvents(websocket, path):
     global quit
     global loginNames
+    global hitCounts
 
     await register(websocket); # Add the user sends all tank data to all users
     try:
@@ -178,6 +169,7 @@ async def handleEvents(websocket, path):
                      password = str(data['password'])
                      print ( "Adding " + username + " to loginNames dictionary" )
                      loginNames[username] = websocket
+                     hitCounts[username] = 0
                      print ( 'Got [username,password]: [' + username + ',' + password + ']')
                      if goodPassword ( username,password): 
                        action = json.dumps({"type": "welcome", "message":"Welcome " + username})
@@ -213,13 +205,14 @@ async def handleEvents(websocket, path):
                      print ( "Received notification that hit detected")
                      tank = str(data['tank'])
                      hitName = findUser (tank)
+                     hitCounts[hitName] = hitCounts[hitName] + 1
                      sendSocket = None
                      for name in loginNames:
                         print ( "Does name " + str(name) + "== hitName " + str(hitName) + "?")
                         if name == hitName: 
                            print ( "I found the login name")
                            sendSocket = loginNames[name]
-                           action = json.dumps({"type": "hit"})        
+                           action = json.dumps({"type": "hit","count":hitCounts[hitName]})        
                            print ( "sending action: " + str(action))
                            await asyncio.wait ([sendSocket.send (action)]); 
                            break

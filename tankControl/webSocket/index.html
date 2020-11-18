@@ -45,6 +45,7 @@
             var selectedTank = '';
             var homeServer = '173.21.121.125';   
             var loggedIn = false;   
+            var hitCount = 0;
             document.addEventListener ('keyup', function (e) {
 	              if (loggedIn) { 
                   stopTurret();
@@ -140,6 +141,7 @@
                   websocket = new WebSocket("ws://" + serverAddress + ":9876"); 
                   websocket.onmessage = function (event) {
                       users = document.querySelector('.users');
+                      hits = document.querySelector ('.hits');
                       value = document.querySelector('.value');
                       console.log ( 'event.data: [' + event.data + ']')
                       switch (event.data) {
@@ -183,6 +185,11 @@
                                     loggedIn = true;
                                 case 'state':
                                     //value.textContent = data.value;
+                                    break;
+                                case 'hit': 
+                                    hits.textContent = (
+                                        data.count.toString() + " hit" +
+                                        (data.count == 1 ? "" : "s"));
                                     break;
                                 case 'users':
                                     users.textContent = (
@@ -347,7 +354,8 @@
 
 
             <div class="state">
-              <span class="users">?</span> online
+              <span class="users">?</span> online<br>
+              <span class="hits">0 hits</span>
             </div>
             <script>
             /*
