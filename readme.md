@@ -13,4 +13,4 @@
    
 <h1><a href="http://Paulware.github.io/piTank/docs/index.html">Step By Step Instructions</a></h1>
 <hr>
-<b>Note</b>  Adeept also has a similar project described: <a href="https://www.adeept.com/learn/detail-33.html">here</a>
+<b>Note</b>  Adeept also has a similar (but different) project described: <a href="https://www.adeept.com/learn/detail-33.html">here</a>
