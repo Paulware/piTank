@@ -14,7 +14,45 @@
      <li>Once the raspbian image is flashed to the 16gb, there will be a windows/boot partition.  Place the below .sh file in the /boot directory using a laptop</li> 
   </ul>
   
-  Here is a .sh file which will set-up the access point and the wifi SSID.   
+  Here is a .sh file which will set-up the access point and the wifi SSID.<Br>
+  Paste this file into the /boot directory as  config.sh extension<br>
+  To run it enter the commands: <br>  
+  cd /boot<br>
+  ./config.sh</br>
+<pre>
+if [ "$EUID" -ne 0 ]
+then 
+  echo "Must be root"
+  exit
+fi
+   do_ssh 
+   do_keyboard 
+   # addCountryCode (not working)
+   do_timezone 
+    
+   # permit ssh login  
+   sudo touch /boot/ssh
+   # permit root ssh login
+   update_file /etc/ssh/sshd_config "#PermitRootLogin prohibit-password" "PermitRootLogin yes"
+   sudo echo "root:raspberry" | sudo chpasswd
+
+   # Setup us keyboard   
+   update_file /etc/default/keyboard "XKBLAYOUT=\"gb\"" "XKBLAYOUT=\"us\""
+
+   # Set timezone to Chicago
+   timedatectl set-timezone America/Chicago
+
+   # Setup the SSID and password    
+   read -p "Enter the SSID" SSID  
+   read -p "Enter the password" PASSWORD
+   echo "network={">>/etc/wpa_supplicant/wpa_supplicant.conf
+   echo "   ssid=\"$SSID\"">>/etc/wpa_supplicant/wpa_supplicant.conf    
+   echo "   psk=\"$PASSWORD\"">>/etc/wpa_supplicant/wpa_supplicant.conf
+   echo "}">>/etc/wpa_supplicant/wpa_supplicant.conf
+   echo "$SSID configured with password: $PASSWORD"
+   
+   echo "reboot"
+</pre>  
 
 </body>
 </html>
