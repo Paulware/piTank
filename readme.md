@@ -11,4 +11,4 @@
    
    A lot of the testing and setup can be done without a vehicle.
    
-<h1><a href="http://Paulware.github.io/piTank/docs/index.html">Step By Steps</a></h1>
+<h1><a href="http://Paulware.github.io/piTank/docs/index.html">Step By Step Instructions</a></h1>
