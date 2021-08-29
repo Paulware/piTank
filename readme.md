@@ -1,22 +1,14 @@
 <h1>Pi Tank</h1>
-  This project will allow you to drive a tracked vehicle (via a bt joystick), while watching 
-  the stream from its onboard raspberry pi camera. <br>
-  Additionally the vehicle can shoot infra-red pulses to disable other tanks on the battlefield
+  This project will allow you to drive a vehicle using a laptop, optionally, you can watch 
+  a video stream on the laptop from its raspberry pi camera. <br>
   
-  Enclosed here are: 
-     <ul>
-        <li>Eagle Schematic for creating a raspberry pi hat and bt joystick</li>
-        <li>Arduino code, which handles shooting, receiving IR pulses</li>
-        <li>pi setup file</li>
-     </ul>
 <h2>Components</h2>
    <ul>
       <li>Raspberry Pi4</li>
-      <li>Raspberry pi camera</li>
-      <li>Arduino Nano</li>
-      <li>Raspberry pi-hat (custom, available on tindie)</li>
-      <li>BT joystick (custom, available on tindie)</li>
-      <li>Tracked Vehicle (I prefer heng-long scale 1/16 rc tanks)</li>
+      <li>Raspberry pi camera</li>0
+      <li>Raspberry pi-hat (custom, available from < a href="https://www.adeept.com/adeept-motor-hat-for-raspberry-pi-smart-robot-car-driver_p0133.html">adeept</a>)</li>
    </ul>
    
-<h1><a href="http://Paulware.github.io/piTank/docs/index.html">Design Docs</a></h1>
+   A lot of the testing and setup can be done without a vehicle.
+   
+<h1><a href="http://Paulware.github.io/piTank/docs/index.html">Step By Steps</a></h1>
