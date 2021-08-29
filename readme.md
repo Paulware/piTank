@@ -6,7 +6,7 @@
    <ul>
       <li>Raspberry Pi4</li>
       <li>Raspberry pi camera</li>
-      <li>Raspberry pi-hat (custom, available from < a href="https://www.adeept.com/adeept-motor-hat-for-raspberry-pi-smart-robot-car-driver_p0133.html">adeept</a>)</li>
+      <li>Raspberry motor driver pi-hat (available from <a href="https://www.adeept.com/adeept-motor-hat-for-raspberry-pi-smart-robot-car-driver_p0133.html">adeept</a>)</li>
    </ul>
    
    A lot of the testing and setup can be done without a vehicle.
