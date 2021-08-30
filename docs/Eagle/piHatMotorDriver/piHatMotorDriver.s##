@@ -7586,12 +7586,22 @@ Source: www.vishay.com .. rwm.pdf</description>
 <wire x1="87.63" y1="334.01" x2="87.63" y2="336.55" width="0.1524" layer="91"/>
 <label x="87.63" y="336.55" size="1.778" layer="95" rot="R90"/>
 </segment>
+<segment>
+<pinref part="J11" gate="G$1" pin="2"/>
+<wire x1="120.65" y1="276.86" x2="120.65" y2="283.21" width="0.1524" layer="91"/>
+<label x="120.65" y="283.21" size="1.778" layer="95"/>
+</segment>
 </net>
 <net name="GPIO21" class="0">
 <segment>
 <pinref part="J9" gate="G$1" pin="1"/>
 <wire x1="90.17" y1="334.01" x2="90.17" y2="336.55" width="0.1524" layer="91"/>
 <label x="90.17" y="336.55" size="1.778" layer="95" rot="R90"/>
+</segment>
+<segment>
+<pinref part="J11" gate="G$1" pin="1"/>
+<wire x1="123.19" y1="276.86" x2="123.19" y2="280.67" width="0.1524" layer="91"/>
+<label x="123.19" y="280.67" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="GPIO26" class="0">
